@@ -11,8 +11,13 @@ import Nav from './components/Nav'
 // Picatic API Key
 const PICATIC_API_KEY = 'sk_live_e53cbafd83670003d7de88169eb50851'
 
-// Picatic credentials
+// Picatic API Domain
 const picaticDomain = 'https://api.picatic.com/v2'
+
+// Picatic Page Restrictions
+const picaticLimit = '&page[limit]=2&page[offset]=0'
+
+// Picatic Header
 const picaticHeader = {
   method: 'GET',
   headers: {
@@ -20,40 +25,72 @@ const picaticHeader = {
   },
 }
 
-const picaticId = 664654
-const eventId = 117480
-
-// url Request
-const url = `${picaticDomain}/event/${eventId}`
-// const url = `${picaticDomain}/event?filter[user_id]=${picaticId}&page[limit]=2&page[offset]=0`
-
 class App extends Component {
   state = {
-    url: null,
+    backgroundUrl: null,
+    picaticId: 664654,
+    eventId: 117480,
+    tickets: [],
   }
   componentWillMount() {
     this.getRandomPic()
+    this.getEvent()
+    this.getEventTickets()
+  }
+
+  getPicaticId = () => {
+    // User Id Endpoint
+    const url = `${picaticDomain}/user/me`
+
+    // Fetch Request
     fetch(url, picaticHeader)
       .then(res => res.json())
       .then(data => console.log(data))
-      .catch(res => console.log(res))
+      .catch(err => console.log(err))
   }
+
+  getEvent = () => {
+    // Destructure State
+    const { eventId } = this.state
+
+    // Read Event Endpoint
+    const url = `${picaticDomain}/event/${eventId}`
+
+    fetch(url, picaticHeader)
+      .then(res => res.json())
+      .then(event => console.log(event))
+      .catch(err => console.log(err))
+  }
+
+  getEventTickets = () => {
+    // Destructure State
+    const { eventId } = this.state
+
+    // All Tickets Based On Event Id Endpoint
+    const url = `${picaticDomain}/ticket_price?filter[event_id]=${eventId}${picaticLimit}`
+
+    fetch(url, picaticHeader)
+      .then(res => res.json())
+      .then(tickets => this.setState({ tickets: tickets.data }))
+      .catch(err => console.log(err))
+  }
+
   getRandomPic = () => {
     fetch('https://source.unsplash.com/category/nature/2880x1800')
       .then(res => res)
       .then(data => {
         // console.log(data)
         const { url } = data
-        this.setState({ url })
+        this.setState({ backgroundUrl: url })
       })
   }
   render() {
     // Destructure State
-    const { url } = this.state
+    const { backgroundUrl } = this.state
 
     // Pass new image to background
     const style = {
-      backgroundImage: `url(${url})`,
+      backgroundImage: `url(${backgroundUrl})`,
       backgroundSize: 'cover',
     }
 
@@ -68,7 +105,7 @@ class App extends Component {
               <p className="lead text-white">
                 brought to you by React Vancouver
               </p>
-              <Button>Buy Now</Button>
+              <Button raised>Buy Now</Button>
             </div>
 
             <div className="row">
