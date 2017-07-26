@@ -181,7 +181,7 @@ class App extends Component {
                   <Typography type="display1">{eventDay}</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button raised color="primary">Get Tickets</Button>
+                  <Button href="https://www.picatic.com/117480" raised color="primary">Get Tickets</Button>
                 </Grid>
               </Grid>
 
