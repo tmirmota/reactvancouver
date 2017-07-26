@@ -1,24 +1,16 @@
-.App {
+.app-img {
   text-align: center;
+  min-height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.app-overlay {
+  background-color: #3f51b5;
+  min-height: 100vh;
+  opacity: .2;
+  position: absolute;
+  width: 100%;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.hero-content {
+  padding-top: 50px;
 }
