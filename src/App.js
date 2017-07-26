@@ -2,11 +2,49 @@ import React, { Component } from 'react'
 import './App.css'
 
 // Material UI Components
-import { MuiThemeProvider } from 'material-ui/styles'
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  createTypography,
+} from 'material-ui/styles'
 import Button from 'material-ui/Button'
+import Typography from 'material-ui/Typography'
+import Grid from 'material-ui/Grid'
 
 // Components
 import Nav from './components/Nav'
+
+let theme = createMuiTheme()
+
+const typography = createTypography(theme.palette, {
+  // System font
+  fontFamily:
+    '-apple-system,system-ui,BlinkMacSystemFont,' +
+    '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+})
+
+theme = {
+  ...theme,
+  typography: {
+    ...typography,
+    display3: {
+      ...typography.display3,
+      textTransform: 'uppercase',
+      color: '#FFFFFF',
+      fontWeight: 100,
+    },
+    subheading: {
+      ...typography.subheading,
+      fontStyle: 'italic',
+      color: '#F5F5F5',
+    },
+    headline: {
+      ...typography.headline,
+      textTransform: 'uppercase',
+      color: '#F5F5F5',
+    },
+  },
+}
 
 // Picatic API Key
 const PICATIC_API_KEY = 'sk_live_e53cbafd83670003d7de88169eb50851'
@@ -29,6 +67,7 @@ class App extends Component {
   state = {
     backgroundUrl: null,
     picaticId: 664654,
+    event: null,
     eventId: 117480,
     tickets: [],
   }
@@ -58,7 +97,7 @@ class App extends Component {
 
     fetch(url, picaticHeader)
       .then(res => res.json())
-      .then(event => console.log(event))
+      .then(event => this.setState({ event: event.data }))
       .catch(err => console.log(err))
   }
 
@@ -84,9 +123,10 @@ class App extends Component {
         this.setState({ backgroundUrl: url })
       })
   }
+
   render() {
     // Destructure State
-    const { backgroundUrl } = this.state
+    const { backgroundUrl, event } = this.state
 
     // Pass new image to background
     const style = {
@@ -94,31 +134,35 @@ class App extends Component {
       backgroundSize: 'cover',
     }
 
+    // Return nothing if the event has not yet loaded
+    const noEvent = event === null
+    if (noEvent) {
+      return false
+    }
+
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
         <div className="app-img" style={style}>
           <div className="app-overlay" />
-          <Nav />
           <section className="container">
+            <Nav />
             <div className="hero-content my-5">
-              <h1 className="display-3 text-white">React August Meetup</h1>
-              <p className="lead text-white">
-                brought to you by React Vancouver
-              </p>
+              <Typography type="display3">{event.attributes.title}</Typography>
+              <Typography type="subheading">{event.attributes.start_date}</Typography>
               <Button raised>Buy Now</Button>
             </div>
 
-            <div className="row">
-              <div className="col">
-                <h3>When</h3>
-              </div>
-              <div className="col">
-                <h3>When</h3>
-              </div>
-              <div className="col">
-                <h3>When</h3>
-              </div>
-            </div>
+            <Grid container justify="center">
+              <Grid item sm={4} xs={12}>
+                <Typography type="headline">When</Typography>
+              </Grid>
+              <Grid item sm={4} xs={12}>
+                <Typography type="headline">Where</Typography>
+              </Grid>
+              <Grid item sm={4} xs={12}>
+                <Typography type="headline">Who</Typography>
+              </Grid>
+            </Grid>
           </section>
         </div>
       </MuiThemeProvider>

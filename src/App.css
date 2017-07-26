@@ -6,7 +6,7 @@
 .app-overlay {
   background-color: #3f51b5;
   min-height: 100vh;
-  opacity: .2;
+  opacity: .4;
   position: absolute;
   width: 100%;
 }

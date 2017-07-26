@@ -2,7 +2,6 @@ import React from 'react'
 
 // Material UI Components
 import Button from 'material-ui/Button'
-import Typography from 'material-ui/Typography'
 
 const Nav = () =>
   <ul className="nav justify-content-center pt-2">
