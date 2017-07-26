@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import './App.css'
 
 // Material UI Components
 import {
   MuiThemeProvider,
   createMuiTheme,
+  createPalette,
   createTypography,
 } from 'material-ui/styles'
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
+import { indigo, pink } from 'material-ui/colors'
 
 // Components
 import Nav from './components/Nav'
@@ -25,6 +28,11 @@ const typography = createTypography(theme.palette, {
 
 theme = {
   ...theme,
+  palette: createPalette({
+    ...theme.palette,
+    primary: pink,
+    // secondary: green['A400'],
+  }),
   typography: {
     ...typography,
     display3: {
@@ -33,17 +41,31 @@ theme = {
       color: '#FFFFFF',
       fontWeight: 100,
     },
-    subheading: {
-      ...typography.subheading,
-      fontStyle: 'italic',
+    display1: {
+      ...typography.display1,
       color: '#F5F5F5',
+      fontWeight: 300,
     },
     headline: {
       ...typography.headline,
       textTransform: 'uppercase',
       color: '#F5F5F5',
     },
+    caption: {
+      ...typography.caption,
+      color: '#F5F5F5',
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+    }
   },
+  overrides: {
+    MuiButton: {
+      raisedPrimary: {
+        margin: '10px',
+      }
+    }
+  }
 }
 
 // Picatic API Key
@@ -140,29 +162,34 @@ class App extends Component {
       return false
     }
 
+    const eventDay = moment(event.attributes.start_date).format('MMMM Do, YYYY')
+
+    const venueMap = `https://www.google.com/maps/search/${event.attributes.venue_street}`
+
     return (
       <MuiThemeProvider theme={theme}>
         <div className="app-img" style={style}>
           <div className="app-overlay" />
           <section className="container">
             <Nav />
-            <div className="hero-content my-5">
-              <Typography type="display3">{event.attributes.title}</Typography>
-              <Typography type="subheading">{event.attributes.start_date}</Typography>
-              <Button raised>Buy Now</Button>
-            </div>
+            <section className="hero-content">
+              <Grid container>
+                <Grid item xs={12}>
+                  <Typography type="display3">{event.attributes.title}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography type="display1">{eventDay}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button raised color="primary">Get Tickets</Button>
+                </Grid>
+              </Grid>
 
-            <Grid container justify="center">
-              <Grid item sm={4} xs={12}>
-                <Typography type="headline">When</Typography>
-              </Grid>
-              <Grid item sm={4} xs={12}>
-                <Typography type="headline">Where</Typography>
-              </Grid>
-              <Grid item sm={4} xs={12}>
-                <Typography type="headline">Who</Typography>
-              </Grid>
-            </Grid>
+              <a href={venueMap} target="_blank">
+                <Typography type="caption">{event.attributes.venue_name} - {event.attributes.venue_street}</Typography>
+              </a>
+
+            </section>
           </section>
         </div>
       </MuiThemeProvider>

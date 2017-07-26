@@ -12,5 +12,7 @@
 }
 
 .hero-content {
-  padding-top: 50px;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
 }
