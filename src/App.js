@@ -171,8 +171,7 @@ class App extends Component {
     const eventDay = moment(event.attributes.start_date).format('MMMM Do, YYYY')
 
     // Search for venue in google maps
-    const venueMap = `https://www.google.com/maps/search/${event.attributes
-      .venue_street}`
+    const venueMap = `http://maps.google.com/?q=${event.attributes.venue_name} ${event.attributes.venue_street}`
 
     return (
       <MuiThemeProvider theme={theme}>
@@ -205,7 +204,7 @@ class App extends Component {
 
               <a href={venueMap} target="_blank">
                 <Typography type="caption">
-                  {event.attributes.venue_name} -{' '}
+                  {event.attributes.venue_name} |{' '}
                   {event.attributes.venue_street}
                 </Typography>
               </a>
