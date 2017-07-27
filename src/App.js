@@ -9,10 +9,11 @@ import {
   createPalette,
   createTypography,
 } from 'material-ui/styles'
+import { CircularProgress } from 'material-ui/Progress'
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
-import { indigo, pink } from 'material-ui/colors'
+import { pink } from 'material-ui/colors'
 
 // Components
 import Nav from './components/Nav'
@@ -57,19 +58,20 @@ theme = {
       position: 'fixed',
       bottom: '20px',
       right: '20px',
-    }
+    },
   },
   overrides: {
     MuiButton: {
       raisedPrimary: {
         margin: '10px',
-      }
-    }
-  }
+      },
+    },
+  },
 }
 
 // Picatic API Key
-const PICATIC_API_KEY = 'sk_live_e53cbafd83670003d7de88169eb50851'
+// TODO: Pass in API Key
+const PICATIC_API_KEY = ''
 
 // Picatic API Domain
 const picaticDomain = 'https://api.picatic.com/v2'
@@ -96,7 +98,6 @@ class App extends Component {
   componentWillMount() {
     this.getRandomPic()
     this.getEvent()
-    this.getEventTickets()
   }
 
   getPicaticId = () => {
@@ -117,7 +118,7 @@ class App extends Component {
     // Read Event Endpoint
     const url = `${picaticDomain}/event/${eventId}`
 
-    fetch(url, picaticHeader)
+    fetch(url)
       .then(res => res.json())
       .then(event => this.setState({ event: event.data }))
       .catch(err => console.log(err))
@@ -159,12 +160,19 @@ class App extends Component {
     // Return nothing if the event has not yet loaded
     const noEvent = event === null
     if (noEvent) {
-      return false
+      return (
+        <div className="hero-content">
+          <CircularProgress className="mx-auto" size={50} />
+        </div>
+      )
     }
 
+    // Reformat event day
     const eventDay = moment(event.attributes.start_date).format('MMMM Do, YYYY')
 
-    const venueMap = `https://www.google.com/maps/search/${event.attributes.venue_street}`
+    // Search for venue in google maps
+    const venueMap = `https://www.google.com/maps/search/${event.attributes
+      .venue_street}`
 
     return (
       <MuiThemeProvider theme={theme}>
@@ -175,25 +183,46 @@ class App extends Component {
             <section className="hero-content">
               <Grid container>
                 <Grid item xs={12}>
-                  <Typography type="display3">{event.attributes.title}</Typography>
+                  <Typography type="display3">
+                    {event.attributes.title}
+                  </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography type="display1">{eventDay}</Typography>
+                  <Typography type="display1">
+                    {eventDay}
+                  </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button href="https://www.picatic.com/117480" raised color="primary">Get Tickets</Button>
+                  <Button
+                    href="https://www.picatic.com/117480"
+                    raised
+                    color="primary"
+                  >
+                    Get Tickets
+                  </Button>
                 </Grid>
               </Grid>
 
               <a href={venueMap} target="_blank">
-                <Typography type="caption">{event.attributes.venue_name} - {event.attributes.venue_street}</Typography>
+                <Typography type="caption">
+                  {event.attributes.venue_name} -{' '}
+                  {event.attributes.venue_street}
+                </Typography>
               </a>
-
             </section>
           </section>
         </div>
       </MuiThemeProvider>
     )
+  }
+  componentDidUpdate() {
+    const script = document.createElement('script')
+
+    script.src = 'https://widget.picatic.com/latest/js/embed.min.js'
+    script.async = true
+    script.id = 'picatic-widget-script'
+
+    return document.body.appendChild(script)
   }
 }
 
