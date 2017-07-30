@@ -41,11 +41,18 @@ theme = {
       textTransform: 'uppercase',
       color: '#FFFFFF',
       fontWeight: 100,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '16px',
+      },
     },
     display1: {
       ...typography.display1,
       color: '#F5F5F5',
       fontWeight: 300,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '14px',
+        lineHeight: '10px',
+      },
     },
     headline: {
       ...typography.headline,
@@ -148,6 +155,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('render');
     // Destructure State
     const { backgroundUrl, event } = this.state
 
@@ -215,6 +223,7 @@ class App extends Component {
     )
   }
   componentDidUpdate() {
+    console.log('script');
     const script = document.createElement('script')
 
     script.src = 'https://widget.picatic.com/latest/js/embed.min.js'
