@@ -41,6 +41,7 @@ theme = {
       textTransform: 'uppercase',
       color: '#FFFFFF',
       fontWeight: 100,
+      fontSize: '48px',
       [theme.breakpoints.down('sm')]: {
         fontSize: '16px',
       },
