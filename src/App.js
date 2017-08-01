@@ -80,7 +80,6 @@ theme = {
 // Picatic API Key
 // TODO: Pass in API Key
 const PICATIC_API_KEY = ''
-// const PICATIC_API_KEY = 'sk_live_e53cbafd83670003d7de88169eb50851'
 
 // Picatic API Domain
 const picaticDomain = 'https://api.picatic.com/v2'
