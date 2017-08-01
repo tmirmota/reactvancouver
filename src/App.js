@@ -80,12 +80,13 @@ theme = {
 // Picatic API Key
 // TODO: Pass in API Key
 const PICATIC_API_KEY = ''
+// const PICATIC_API_KEY = 'sk_live_e53cbafd83670003d7de88169eb50851'
 
 // Picatic API Domain
 const picaticDomain = 'https://api.picatic.com/v2'
 
 // Picatic Page Restrictions
-const picaticLimit = '&page[limit]=2&page[offset]=0'
+const picaticLimit = '&page[limit]=10&page[offset]=0'
 
 // Picatic Header
 const picaticHeader = {
@@ -106,6 +107,7 @@ class App extends Component {
   componentWillMount() {
     this.getRandomPic()
     this.getEvent()
+    this.getSponsors()
   }
 
   getPicaticId = () => {
@@ -155,10 +157,23 @@ class App extends Component {
       })
   }
 
+  getSponsors = () => {
+    // Destructure State
+    const { eventId } = this.state
+
+    // Get all sponsors
+    const url = `${picaticDomain}/sponsor?filter[event_id]=${eventId}${picaticLimit}`
+
+    fetch(url)
+    .then(res => res.json())
+    .then(sponsors => this.setState({ sponsors: sponsors.data }))
+    .catch(err => console.log(err))
+  }
+
   render() {
     console.log('render');
     // Destructure State
-    const { backgroundUrl, event } = this.state
+    const { backgroundUrl, event, sponsors } = this.state
 
     // Pass new image to background
     const style = {
@@ -181,6 +196,9 @@ class App extends Component {
 
     // Search for venue in google maps
     const venueMap = `http://maps.google.com/?q=${event.attributes.venue_name} ${event.attributes.venue_street}`
+
+    // If sponsors
+    const hasSponsors = sponsors.lenght !== 0
 
     return (
       <MuiThemeProvider theme={theme}>
@@ -209,6 +227,20 @@ class App extends Component {
                     Get Tickets
                   </Button>
                 </Grid>
+                {hasSponsors &&
+                <Grid container align="center" justify="center" className="sponsors mt-5">
+                    {sponsors.map(sponsor => {
+                      const { name, external_url, image_uri } = sponsor.attributes
+                      return (
+                        <Grid item key={sponsor.id}>
+                          <Button href={external_url}>
+                            <img src={image_uri} alt={name} className="img-fluid"/>
+                          </Button>
+                        </Grid>
+                        )
+                      })
+                    }
+                </Grid>}
               </Grid>
 
               <a href={venueMap} target="_blank">
