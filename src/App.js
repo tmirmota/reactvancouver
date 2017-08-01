@@ -43,7 +43,7 @@ theme = {
       fontWeight: 100,
       fontSize: '48px',
       [theme.breakpoints.down('sm')]: {
-        fontSize: '16px',
+        fontSize: '18px',
       },
     },
     display1: {
@@ -197,7 +197,7 @@ class App extends Component {
     const venueMap = `http://maps.google.com/?q=${event.attributes.venue_name} ${event.attributes.venue_street}`
 
     // If sponsors
-    const hasSponsors = sponsors.lenght !== 0
+    const hasSponsors = sponsors.length !== 0
 
     return (
       <MuiThemeProvider theme={theme}>
@@ -227,12 +227,12 @@ class App extends Component {
                   </Button>
                 </Grid>
                 {hasSponsors &&
-                <Grid container align="center" justify="center" className="sponsors mt-5">
+                <Grid container align="center" justify="center" className="sponsors">
                     {sponsors.map(sponsor => {
                       const { name, external_url, image_uri } = sponsor.attributes
                       return (
                         <Grid item key={sponsor.id}>
-                          <Button href={external_url}>
+                          <Button href={external_url} target="_blank">
                             <img src={image_uri} alt={name} className="img-fluid"/>
                           </Button>
                         </Grid>

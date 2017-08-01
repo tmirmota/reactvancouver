@@ -17,12 +17,25 @@
   align-items: center;
 }
 
-.sponsors {
-  position: absolute;
-  bottom: 0;
+@media (min-width: 800px) {
+  .sponsors {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 .img-fluid {
   max-height: 50px;
   max-width: 200px;
+}
+
+@media(max-width: 750px) {
+  .sponsors {
+    padding-top: 3rem;
+  }
+  .img-fluid {
+    max-height: 25px;
+    max-width: 100px;
+  }
 }
