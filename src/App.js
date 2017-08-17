@@ -100,7 +100,7 @@ class App extends Component {
     backgroundUrl: null,
     picaticId: 664654,
     event: null,
-    eventId: 117480,
+    eventId: 119444,
     tickets: [],
   }
   componentWillMount() {
@@ -197,7 +197,8 @@ class App extends Component {
     const venueMap = `http://maps.google.com/?q=${event.attributes.venue_name} ${event.attributes.venue_street}`
 
     // If sponsors
-    const hasSponsors = sponsors.length !== 0
+    // const hasSponsors = sponsors.length !== 0
+    const hasSponsors = false
 
     return (
       <MuiThemeProvider theme={theme}>
@@ -219,13 +220,14 @@ class App extends Component {
                 </Grid>
                 <Grid item xs={12}>
                   <Button
-                    href="https://www.picatic.com/117480"
+                    href={`https://www.picatic.com/${event.id}`}
                     raised
                     color="primary"
                   >
-                    Get Tickets
+                    Join Wait List
                   </Button>
                 </Grid>
+
                 {hasSponsors &&
                 <Grid container align="center" justify="center" className="sponsors">
                     {sponsors.map(sponsor => {
@@ -242,12 +244,13 @@ class App extends Component {
                 </Grid>}
               </Grid>
 
-              <a href={venueMap} target="_blank">
-                <Typography type="caption">
-                  {event.attributes.venue_name} |{' '}
-                  {event.attributes.venue_street}
-                </Typography>
-              </a>
+              {/*<a href={venueMap} target="_blank">*/}
+                {/*<Typography type="caption">*/}
+                  {/*{event.attributes.venue_name} |{' '}*/}
+                  {/*{event.attributes.venue_street}*/}
+                {/*</Typography>*/}
+              {/*</a>*/}
+
             </section>
           </section>
         </div>

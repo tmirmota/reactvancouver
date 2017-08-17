@@ -17,7 +17,7 @@ const Nav = () =>
     </li>
     <li className="nav-item pr-3">
       <Button
-        href="https://reactvancouver.now.sh/"
+        href="https://reactvancouver-slack.now.sh/"
         target="_blank"
         className="text-white"
       >
