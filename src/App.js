@@ -77,23 +77,11 @@ theme = {
   },
 }
 
-// Picatic API Key
-// TODO: Pass in API Key
-const PICATIC_API_KEY = ''
-
 // Picatic API Domain
 const picaticDomain = 'https://api.picatic.com/v2'
 
 // Picatic Page Restrictions
 const picaticLimit = '&page[limit]=10&page[offset]=0'
-
-// Picatic Header
-const picaticHeader = {
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${PICATIC_API_KEY}`,
-  },
-}
 
 class App extends Component {
   state = {
@@ -109,16 +97,6 @@ class App extends Component {
     this.getSponsors()
   }
 
-  getPicaticId = () => {
-    const url = `${picaticDomain}/user/me`
-
-    // Fetch Request
-    fetch(url, picaticHeader)
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
-  }
-
   getEvent = () => {
     const { eventId } = this.state
 
@@ -127,18 +105,6 @@ class App extends Component {
     fetch(url)
       .then(res => res.json())
       .then(event => this.setState({ event: event.data }))
-      .catch(err => console.log(err))
-  }
-
-  getEventTickets = () => {
-    const { eventId } = this.state
-
-    // All Tickets Based On Event Id Endpoint
-    const url = `${picaticDomain}/ticket_price?filter[event_id]=${eventId}${picaticLimit}`
-
-    fetch(url, picaticHeader)
-      .then(res => res.json())
-      .then(tickets => this.setState({ tickets: tickets.data }))
       .catch(err => console.log(err))
   }
 
@@ -165,8 +131,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('render');
-    // Destructure State
     const { backgroundUrl, event, sponsors } = this.state
 
     // Pass new image to background
@@ -252,7 +216,6 @@ class App extends Component {
     )
   }
   componentDidUpdate() {
-    console.log('script');
     const script = document.createElement('script')
 
     script.src = 'https://widget.picatic.com/latest/js/embed.min.js'
