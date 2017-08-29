@@ -23,8 +23,8 @@ let theme = createMuiTheme()
 const typography = createTypography(theme.palette, {
   // System font
   fontFamily:
-    '-apple-system,system-ui,BlinkMacSystemFont,' +
-    '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+  '-apple-system,system-ui,BlinkMacSystemFont,' +
+  '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
 })
 
 theme = {
@@ -110,7 +110,6 @@ class App extends Component {
   }
 
   getPicaticId = () => {
-    // User Id Endpoint
     const url = `${picaticDomain}/user/me`
 
     // Fetch Request
@@ -121,10 +120,8 @@ class App extends Component {
   }
 
   getEvent = () => {
-    // Destructure State
     const { eventId } = this.state
 
-    // Read Event Endpoint
     const url = `${picaticDomain}/event/${eventId}`
 
     fetch(url)
@@ -134,7 +131,6 @@ class App extends Component {
   }
 
   getEventTickets = () => {
-    // Destructure State
     const { eventId } = this.state
 
     // All Tickets Based On Event Id Endpoint
@@ -150,7 +146,6 @@ class App extends Component {
     fetch('https://source.unsplash.com/category/nature/2880x1800')
       .then(res => res)
       .then(data => {
-        // console.log(data)
         const { url } = data
         this.setState({ backgroundUrl: url })
       })
@@ -164,9 +159,9 @@ class App extends Component {
     const url = `${picaticDomain}/sponsor?filter[event_id]=${eventId}${picaticLimit}`
 
     fetch(url)
-    .then(res => res.json())
-    .then(sponsors => this.setState({ sponsors: sponsors.data }))
-    .catch(err => console.log(err))
+      .then(res => res.json())
+      .then(sponsors => this.setState({ sponsors: sponsors.data }))
+      .catch(err => console.log(err))
   }
 
   render() {
@@ -197,8 +192,7 @@ class App extends Component {
     const venueMap = `http://maps.google.com/?q=${event.attributes.venue_name} ${event.attributes.venue_street}`
 
     // If sponsors
-    // const hasSponsors = sponsors.length !== 0
-    const hasSponsors = false
+    const hasSponsors = sponsors.length !== 0
 
     return (
       <MuiThemeProvider theme={theme}>
@@ -224,32 +218,32 @@ class App extends Component {
                     raised
                     color="primary"
                   >
-                    Join Wait List
+                    Get Tickets
                   </Button>
                 </Grid>
 
                 {hasSponsors &&
-                <Grid container align="center" justify="center" className="sponsors">
+                  <Grid container align="center" justify="center" className="sponsors">
                     {sponsors.map(sponsor => {
                       const { name, external_url, image_uri } = sponsor.attributes
                       return (
                         <Grid item key={sponsor.id}>
                           <Button href={external_url} target="_blank">
-                            <img src={image_uri} alt={name} className="img-fluid"/>
+                            <img src={image_uri} alt={name} className="img-fluid" />
                           </Button>
                         </Grid>
-                        )
-                      })
+                      )
+                    })
                     }
-                </Grid>}
+                  </Grid>}
               </Grid>
 
-              {/*<a href={venueMap} target="_blank">*/}
-                {/*<Typography type="caption">*/}
-                  {/*{event.attributes.venue_name} |{' '}*/}
-                  {/*{event.attributes.venue_street}*/}
-                {/*</Typography>*/}
-              {/*</a>*/}
+              <a href={venueMap} target="_blank">
+                <Typography type="caption">
+                  {event.attributes.venue_name} |{' '}
+                  {event.attributes.venue_street}
+                </Typography>
+              </a>
 
             </section>
           </section>
