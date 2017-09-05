@@ -3,175 +3,46 @@ import fetch from 'isomorphic-fetch'
 import moment from 'moment'
 
 // Material UI Components
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createPalette,
-  createTypography
-} from 'material-ui/styles'
 import { CircularProgress } from 'material-ui/Progress'
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
 import { pink } from 'material-ui/colors'
 
-// Components
-// import Nav from './components/Nav'
-
-let theme = createMuiTheme()
-
-const typography = createTypography(theme.palette, {
-  // System font
-  fontFamily:
-    '-apple-system,system-ui,BlinkMacSystemFont,' +
-    '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif'
-})
-
-theme = {
-  ...theme,
-  palette: createPalette({
-    ...theme.palette,
-    primary: pink
-    // secondary: green['A400'],
-  }),
-  typography: {
-    ...typography,
-    display3: {
-      ...typography.display3,
-      textTransform: 'uppercase',
-      color: '#FFFFFF',
-      fontWeight: 100,
-      fontSize: '48px',
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '18px'
-      }
-    },
-    display1: {
-      ...typography.display1,
-      color: '#F5F5F5',
-      fontWeight: 300,
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '14px',
-        lineHeight: '10px'
-      }
-    },
-    headline: {
-      ...typography.headline,
-      textTransform: 'uppercase',
-      color: '#F5F5F5'
-    },
-    caption: {
-      ...typography.caption,
-      color: '#F5F5F5',
-      position: 'fixed',
-      bottom: '20px',
-      right: '20px'
-    }
-  },
-  overrides: {
-    MuiButton: {
-      raisedPrimary: {
-        margin: '10px'
-      }
-    }
-  }
-}
-
-// Picatic API Key
-// TODO: Pass in API Key
-const PICATIC_API_KEY = ''
-
-// Picatic API Domain
-const picaticDomain = 'https://api.picatic.com/v2'
-
-// Picatic Page Restrictions
+// Picatic Requests
+const picaticHost = 'https://api.picatic.com/v2'
 const picaticLimit = '&page[limit]=10&page[offset]=0'
 
-// Picatic Header
-const picaticHeader = {
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${PICATIC_API_KEY}`
-  }
-}
+export default class extends Component {
+  static async getInitialProps() {
+    const unsplashRandom = await fetch(
+      'https://source.unsplash.com/category/nature/2880x1800'
+    )
+    const picture = unsplashRandom.url
 
-class App extends Component {
+    const eventId = 119444
+
+    const getEvent = await fetch(`${picaticHost}/event/${eventId}`)
+    const eventJSON = getEvent.json()
+    const event = eventJSON.data
+
+    const getSponsors = await fetch(
+      `${picaticHost}/sponsor?filter[event_id]=${eventId}${picaticLimit}`
+    )
+    const sponsorJSON = getSponsors.json()
+    const sponsors = sponsorJSON.data
+
+    return { picture, event, sponsors }
+  }
   state = {
-    backgroundUrl: null,
     picaticId: 664654,
     event: null,
     eventId: 119444,
     tickets: []
   }
-  componentWillMount() {
-    this.getRandomPic()
-    this.getEvent()
-    this.getSponsors()
-  }
-
-  getPicaticId = () => {
-    // User Id Endpoint
-    const url = `${picaticDomain}/user/me`
-
-    // Fetch Request
-    fetch(url, picaticHeader)
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
-  }
-
-  getEvent = () => {
-    // Destructure State
-    const { eventId } = this.state
-
-    // Read Event Endpoint
-    const url = `${picaticDomain}/event/${eventId}`
-
-    fetch(url)
-      .then(res => res.json())
-      .then(event => this.setState({ event: event.data }))
-      .catch(err => console.log(err))
-  }
-
-  getEventTickets = () => {
-    // Destructure State
-    const { eventId } = this.state
-
-    // All Tickets Based On Event Id Endpoint
-    const url = `${picaticDomain}/ticket_price?filter[event_id]=${eventId}${picaticLimit}`
-
-    fetch(url, picaticHeader)
-      .then(res => res.json())
-      .then(tickets => this.setState({ tickets: tickets.data }))
-      .catch(err => console.log(err))
-  }
-
-  getRandomPic = () => {
-    fetch('https://source.unsplash.com/category/nature/2880x1800')
-      .then(res => res)
-      .then(data => {
-        // console.log(data)
-        const { url } = data
-        this.setState({ backgroundUrl: url })
-      })
-  }
-
-  getSponsors = () => {
-    // Destructure State
-    const { eventId } = this.state
-
-    // Get all sponsors
-    const url = `${picaticDomain}/sponsor?filter[event_id]=${eventId}${picaticLimit}`
-
-    fetch(url)
-      .then(res => res.json())
-      .then(sponsors => this.setState({ sponsors: sponsors.data }))
-      .catch(err => console.log(err))
-  }
 
   render() {
-    // Destructure State
-    const { backgroundUrl, event, sponsors } = this.state
+    const { picatic, event, sponsors } = this.props
 
     // Pass new image to background
     const style = {
@@ -201,73 +72,102 @@ class App extends Component {
     const hasSponsors = false
 
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="app-img" style={style}>
-          <div className="app-overlay" />
-          <section className="container">
-            <section className="hero-content">
-              <Grid container>
-                <Grid item xs={12}>
-                  <Typography type="display3">
-                    {event.attributes.title}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography type="display1">{eventDay}</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Button
-                    href={`https://www.picatic.com/${event.id}`}
-                    raised
-                    color="primary"
-                  >
-                    Join Wait List
-                  </Button>
-                </Grid>
-
-                {hasSponsors && (
-                  <Grid
-                    container
-                    align="center"
-                    justify="center"
-                    className="sponsors"
-                  >
-                    {sponsors.map(sponsor => {
-                      const {
-                        name,
-                        external_url,
-                        image_uri
-                      } = sponsor.attributes
-                      return (
-                        <Grid item key={sponsor.id}>
-                          <Button href={external_url} target="_blank">
-                            <img
-                              src={image_uri}
-                              alt={name}
-                              className="img-fluid"
-                            />
-                          </Button>
-                        </Grid>
-                      )
-                    })}
-                  </Grid>
-                )}
+      <div className="app-img" style={style}>
+        {stylesheet}
+        <div className="app-overlay" />
+        <section className="container">
+          <section className="hero-content">
+            <Grid container>
+              <Grid item xs={12}>
+                <Typography type="display3">
+                  {event.attributes.title}
+                </Typography>
               </Grid>
-            </section>
+              <Grid item xs={12}>
+                <Typography type="display1">{eventDay}</Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  href={`https://www.picatic.com/${event.id}`}
+                  raised
+                  color="primary"
+                >
+                  Join Wait List
+                </Button>
+              </Grid>
+
+              {hasSponsors && (
+                <Grid
+                  container
+                  align="center"
+                  justify="center"
+                  className="sponsors"
+                >
+                  {sponsors.map(sponsor => {
+                    const { name, external_url, image_uri } = sponsor.attributes
+                    return (
+                      <Grid item key={sponsor.id}>
+                        <Button href={external_url} target="_blank">
+                          <img
+                            src={image_uri}
+                            alt={name}
+                            className="img-fluid"
+                          />
+                        </Button>
+                      </Grid>
+                    )
+                  })}
+                </Grid>
+              )}
+            </Grid>
           </section>
-        </div>
-      </MuiThemeProvider>
+        </section>
+        <style jsx>
+          {`
+            .app-img {
+              text-align: center;
+              min-height: 100vh;
+            }
+
+            .app-overlay {
+              background-color: #3f51b5;
+              min-height: 100vh;
+              opacity: 0.4;
+              position: absolute;
+              width: 100%;
+            }
+
+            .hero-content {
+              min-height: calc(100vh - 100px);
+              display: flex;
+              align-items: center;
+            }
+
+            @media (min-width: 800px) {
+              .sponsors {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+              }
+            }
+
+            .img-fluid {
+              max-height: 50px;
+              max-width: 200px;
+            }
+
+            @media (max-width: 750px) {
+              .sponsors {
+                padding-top: 3rem;
+              }
+              .img-fluid {
+                max-height: 25px;
+                max-width: 100px;
+              }
+            }
+          `}
+        </style>
+      </div>
     )
   }
-  componentDidUpdate() {
-    const script = document.createElement('script')
-
-    script.src = 'https://widget.picatic.com/latest/js/embed.min.js'
-    script.async = true
-    script.id = 'picatic-widget-script'
-
-    return document.body.appendChild(script)
-  }
 }
-
-export default App
