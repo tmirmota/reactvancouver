@@ -89,11 +89,5 @@ export default ({ children, title = 'React Vancouver' }) => (
     <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
 
     <footer />
-    {/* Picatic Anywhere */}
-    {/* <script
-      src="https://widget.picatic.com/latest/js/embed.min.js"
-      id="picatic-widget-script"
-      async
-    /> */}
   </div>
 )

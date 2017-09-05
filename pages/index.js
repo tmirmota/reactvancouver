@@ -67,6 +67,7 @@ export default class extends Component {
     return (
       <Layout title="React September Meetup | React Vancouver">
         <div className="app-img" style={style}>
+          {stylesheet}
           <div className="app-overlay" />
           <section className="container">
             <section className="hero-content">
@@ -119,62 +120,64 @@ export default class extends Component {
               </Grid>
             </section>
           </section>
-          <style jsx>
-            {`
-              .app-img {
-                text-align: center;
-                min-height: 100vh;
-              }
-
-              .app-overlay {
-                background-color: #3f51b5;
-                min-height: 100vh;
-                opacity: 0.4;
-                position: absolute;
-                width: 100%;
-              }
-
-              .hero-content {
-                min-height: calc(100vh - 100px);
-                display: flex;
-                align-items: center;
-              }
-
-              @media (min-width: 800px) {
-                .sponsors {
-                  position: absolute;
-                  bottom: 0;
-                  left: 0;
-                }
-              }
-
-              .img-fluid {
-                max-height: 50px;
-                max-width: 200px;
-              }
-
-              @media (max-width: 750px) {
-                .sponsors {
-                  padding-top: 3rem;
-                }
-                .img-fluid {
-                  max-height: 25px;
-                  max-width: 100px;
-                }
-              }
-            `}
-          </style>
         </div>
       </Layout>
     )
   }
-  componentDidUpdate() {
+  componentDidMount() {
     const script = document.createElement('script')
-
     script.src = 'https://widget.picatic.com/latest/js/embed.min.js'
-    script.async = true
     script.id = 'picatic-widget-script'
+    script.async = true
 
-    return document.body.appendChild(script)
+    document.append(script)
   }
 }
+
+const stylesheet = (
+  <style jsx>
+    {`
+      .app-img {
+        text-align: center;
+        min-height: 100vh;
+      }
+
+      .app-overlay {
+        background-color: #3f51b5;
+        min-height: 100vh;
+        opacity: 0.4;
+        position: absolute;
+        width: 100%;
+      }
+
+      .hero-content {
+        min-height: calc(100vh - 100px);
+        display: flex;
+        align-items: center;
+      }
+
+      @media (min-width: 800px) {
+        .sponsors {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+      }
+
+      .img-fluid {
+        max-height: 50px;
+        max-width: 200px;
+      }
+
+      @media (max-width: 750px) {
+        .sponsors {
+          padding-top: 3rem;
+        }
+        .img-fluid {
+          max-height: 25px;
+          max-width: 100px;
+        }
+      }
+    `}
+  </style>
+)
