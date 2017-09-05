@@ -3,16 +3,14 @@ import fetch from 'isomorphic-fetch'
 import moment from 'moment'
 
 // Components
-import Layout from '../components/Layout'
+import Layout from 'components/Layout'
+import Nav from 'components/Nav'
 
 // Material UI Components
 import { CircularProgress } from 'material-ui/Progress'
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
-import { pink } from 'material-ui/colors'
-
-// Material Web Components
 
 // Picatic Requests
 const picaticHost = 'https://api.picatic.com/v2'
@@ -71,15 +69,14 @@ export default class extends Component {
         <div className="app-img" style={style}>
           <div className="app-overlay" />
           <section className="container">
+            <Nav />
             <section className="hero-content">
               <Grid container>
                 <Grid item xs={12}>
-                  <Typography type="display3">
-                    {event.attributes.title}
-                  </Typography>
+                  <h1>{event.attributes.title}</h1>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography type="display1">{eventDay}</Typography>
+                  <h3>{eventDay}</h3>
                 </Grid>
                 <Grid item xs={12}>
                   <Button
@@ -89,7 +86,6 @@ export default class extends Component {
                   >
                     Get Tickets
                   </Button>
-                  <a className="mdc-button">hello world</a>
                 </Grid>
 
                 {hasSponsors && (

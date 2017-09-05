@@ -6,7 +6,8 @@
         "root": ["."],
         "alias": {
           "styles": "./styles",
-          "pages": "./pages"
+          "pages": "./pages",
+          "components": "./components"
         },
         "cwd": "babelrc"
       }
