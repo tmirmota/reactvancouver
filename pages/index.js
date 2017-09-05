@@ -130,7 +130,7 @@ export default class extends Component {
     script.id = 'picatic-widget-script'
     script.async = true
 
-    document.append(script)
+    document.body.appendChild(script)
   }
 }
 
