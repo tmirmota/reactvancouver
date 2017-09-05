@@ -12,6 +12,8 @@ import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
 import { pink } from 'material-ui/colors'
 
+// Material Web Components
+
 // Picatic Requests
 const picaticHost = 'https://api.picatic.com/v2'
 const picaticLimit = '&page[limit]=10&page[offset]=0'

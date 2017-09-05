@@ -24,7 +24,11 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              includePaths: ['styles', 'node_modules']
+              includePaths: [
+                'styles',
+                'node_modules',
+                'node_modules/@material/*'
+              ]
                 .map(d => path.join(__dirname, d))
                 .map(g => glob.sync(g))
                 .reduce((a, c) => a.concat(c), [])

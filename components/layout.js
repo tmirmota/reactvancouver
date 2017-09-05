@@ -92,5 +92,6 @@ export default ({ children, title = 'React Vancouver' }) => (
     <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
 
     <footer />
+    <script>mdc.autoInit()</script>
   </div>
 )
