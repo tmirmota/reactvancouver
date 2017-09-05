@@ -67,7 +67,6 @@ export default class extends Component {
     return (
       <Layout title="React September Meetup | React Vancouver">
         <div className="app-img" style={style}>
-          {stylesheet}
           <div className="app-overlay" />
           <section className="container">
             <section className="hero-content">

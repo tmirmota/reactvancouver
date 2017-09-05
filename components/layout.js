@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import stylesheet from 'styles/index.scss'
 
 import {
   MuiThemeProvider,
@@ -83,6 +84,8 @@ export default ({ children, title = 'React Vancouver' }) => (
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
       />
+
+      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     </Head>
     <header />
 
