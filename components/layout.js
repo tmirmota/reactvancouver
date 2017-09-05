@@ -1,5 +1,5 @@
-import Link from 'next/Link'
-import Head from 'next/Head'
+import Head from 'next/head'
+import Link from 'next/link'
 
 import {
   MuiThemeProvider,
@@ -7,65 +7,54 @@ import {
   createPalette,
   createTypography
 } from 'material-ui/styles'
+import { pink } from 'material-ui/colors'
 
-let theme = createMuiTheme()
-
-const typography = createTypography(theme.palette, {
-  // System font
-  fontFamily:
-    '-apple-system,system-ui,BlinkMacSystemFont,' +
-    '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif'
-})
-
-theme = {
-  ...theme,
-  palette: createPalette({
-    ...theme.palette,
-    primary: pink
-    // secondary: green['A400'],
-  }),
-  typography: {
-    ...typography,
-    display3: {
-      ...typography.display3,
-      textTransform: 'uppercase',
-      color: '#FFFFFF',
-      fontWeight: 100,
-      fontSize: '48px',
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '18px'
+const theme = () =>
+  createMuiTheme({
+    palette: {
+      primary: pink
+      // secondary: green['A400'],
+    },
+    typography: {
+      fontFamily:
+        '-apple-system,system-ui,BlinkMacSystemFont,' +
+        '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+      display3: {
+        textTransform: 'uppercase',
+        color: '#FFFFFF',
+        fontWeight: 100,
+        fontSize: '48px'
+        // [theme.breakpoints.down('sm')]: {
+        //   fontSize: '18px'
+        // }
+      },
+      display1: {
+        color: '#F5F5F5',
+        fontWeight: 300
+        // [theme.breakpoints.down('sm')]: {
+        //   fontSize: '14px',
+        //   lineHeight: '10px'
+        // }
+      },
+      headline: {
+        textTransform: 'uppercase',
+        color: '#F5F5F5'
+      },
+      caption: {
+        color: '#F5F5F5',
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px'
       }
     },
-    display1: {
-      ...typography.display1,
-      color: '#F5F5F5',
-      fontWeight: 300,
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '14px',
-        lineHeight: '10px'
-      }
-    },
-    headline: {
-      ...typography.headline,
-      textTransform: 'uppercase',
-      color: '#F5F5F5'
-    },
-    caption: {
-      ...typography.caption,
-      color: '#F5F5F5',
-      position: 'fixed',
-      bottom: '20px',
-      right: '20px'
-    }
-  },
-  overrides: {
-    MuiButton: {
-      raisedPrimary: {
-        margin: '10px'
+    overrides: {
+      MuiButton: {
+        raisedPrimary: {
+          margin: '10px'
+        }
       }
     }
-  }
-}
+  })
 
 export default ({ children, title = 'React Vancouver' }) => (
   <div>
@@ -101,10 +90,10 @@ export default ({ children, title = 'React Vancouver' }) => (
 
     <footer />
     {/* Picatic Anywhere */}
-    <script
+    {/* <script
       src="https://widget.picatic.com/latest/js/embed.min.js"
       id="picatic-widget-script"
       async
-    />
+    /> */}
   </div>
 )

@@ -7,14 +7,9 @@
     "material-ui": "^1.0.0-beta.1",
     "moment": "^2.18.1",
     "next": "^3.2.1",
-    "particles.js": "^2.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.10",
-    "react-tap-event-plugin": "^2.0.1",
-    "styled-jsx": "^1.0.10",
-    "typeface-roboto": "0.0.31"
+    "react-tap-event-plugin": "^2.0.1"
   },
   "scripts": {
     "dev": "next",

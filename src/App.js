@@ -257,16 +257,6 @@ class App extends Component {
       </MuiThemeProvider>
     )
   }
-  componentDidUpdate() {
-    console.log('script');
-    const script = document.createElement('script')
 
-    script.src = 'https://widget.picatic.com/latest/js/embed.min.js'
-    script.async = true
-    script.id = 'picatic-widget-script'
-
-    return document.body.appendChild(script)
-  }
-}
 
 export default App
