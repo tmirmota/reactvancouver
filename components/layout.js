@@ -32,9 +32,8 @@ export default ({ children, title = 'React Vancouver' }) => (
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
       />
-
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     </Head>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
 
     <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
 
