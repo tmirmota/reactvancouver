@@ -39,9 +39,11 @@ export default class extends Component {
     const { picture, event, sponsors } = this.props
 
     // Pass new image to background
-    const style = {
-      backgroundImage: `url(${picture})`,
-      backgroundSize: 'cover'
+    const styles = {
+      eventBackground: {
+        backgroundImage: `url(${picture})`,
+        backgroundSize: 'cover'
+      }
     }
 
     const noEvent = event === undefined
@@ -61,14 +63,32 @@ export default class extends Component {
 
     const hasSponsors = sponsors.length !== 0
 
+    const renderSponsors = (
+      <div className="col sponsors">
+        {sponsors.map(sponsor => {
+          const { name, external_url, image_uri } = sponsor.attributes
+          return (
+            <a
+              key={sponsor.id}
+              href={external_url}
+              target="_blank"
+              className="mdl-button mdl-js-button mdl-js-ripple-effect"
+            >
+              <img src={image_uri} alt={name} className="img-fluid" />
+            </a>
+          )
+        })}
+      </div>
+    )
+
     return (
       <Layout title="React September Meetup | React Vancouver">
-        <div className="app-img" style={style}>
-          <div className="app-overlay" />
+        <div className="event event-img" style={styles.eventBackground}>
+          <div className="event-overlay" />
           <section className="container">
             <Nav />
-            <section className="hero-content">
-              <div className="row align-items-start">
+            <section className="event-content">
+              <div className="row">
                 <div className="col-12">
                   <h1>{event.attributes.title}</h1>
                 </div>
@@ -76,37 +96,14 @@ export default class extends Component {
                   <h3>{eventDay}</h3>
                 </div>
                 <div className="col-12">
-                  <div className="mdl-button mdl-js-button mdl-button--raised">
-                    <a href={`https://www.picatic.com/${event.id}`}>
-                      Get Tickets
-                    </a>
-                  </div>
+                  <a
+                    href={`https://www.picatic.com/${event.id}`}
+                    className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored event-button"
+                  >
+                    Get Tickets
+                  </a>
                 </div>
-                {hasSponsors && (
-                  <div className="col">
-                    {sponsors.map(sponsor => {
-                      const {
-                        name,
-                        external_url,
-                        image_uri
-                      } = sponsor.attributes
-                      return (
-                        <div
-                          key={sponsor.id}
-                          className="mdl-button mdl-js-button mdl-js-ripple-effect"
-                        >
-                          <a href={external_url} target="_blank">
-                            <img
-                              src={image_uri}
-                              alt={name}
-                              className="img-fluid"
-                            />
-                          </a>
-                        </div>
-                      )
-                    })}
-                  </div>
-                )}
+                {hasSponsors && renderSponsors}
               </div>
             </section>
           </section>

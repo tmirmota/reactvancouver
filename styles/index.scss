@@ -1,4 +1,14 @@
 @import 'normalize.css';
 
+/* Variables */
+@import 'colors.scss';
+
 /* Pages */
 @import 'pages/home.scss';
+
+.mdl-button {
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+}
