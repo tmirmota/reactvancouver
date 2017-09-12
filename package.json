@@ -21,18 +21,8 @@
     "sass-loader": "^6.0.6"
   },
   "scripts": {
-<<<<<<< HEAD
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "now": {
-    "alias": "reactvancouver.now.sh"
-=======
     "dev": "next dev",
     "start": "next start",
     "build": "next build"
->>>>>>> hackathon-lp
   }
 }
