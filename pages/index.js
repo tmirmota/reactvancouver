@@ -8,9 +8,6 @@ import Nav from 'components/Nav'
 
 // Material UI Components
 import { CircularProgress } from 'material-ui/Progress'
-import Button from 'material-ui/Button'
-import Typography from 'material-ui/Typography'
-import Grid from 'material-ui/Grid'
 
 // Picatic Requests
 const picaticHost = 'https://api.picatic.com/v2'
@@ -51,7 +48,7 @@ export default class extends Component {
     if (noEvent) {
       return (
         <div className="hero-content">
-          <CircularProgress className="mx-auto" size={50} />
+          <div className="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" />
         </div>
       )
     }
@@ -71,30 +68,22 @@ export default class extends Component {
           <section className="container">
             <Nav />
             <section className="hero-content">
-              <Grid container>
-                <Grid item xs={12}>
+              <div className="row align-items-start">
+                <div className="col-12">
                   <h1>{event.attributes.title}</h1>
-                </Grid>
-                <Grid item xs={12}>
+                </div>
+                <div className="col-12">
                   <h3>{eventDay}</h3>
-                </Grid>
-                <Grid item xs={12}>
-                  <Button
-                    href={`https://www.picatic.com/${event.id}`}
-                    raised
-                    color="primary"
-                  >
-                    Get Tickets
-                  </Button>
-                </Grid>
-
+                </div>
+                <div className="col-12">
+                  <div className="mdl-button mdl-js-button mdl-button--raised">
+                    <a href={`https://www.picatic.com/${event.id}`}>
+                      Get Tickets
+                    </a>
+                  </div>
+                </div>
                 {hasSponsors && (
-                  <Grid
-                    container
-                    align="center"
-                    justify="center"
-                    className="sponsors"
-                  >
+                  <div className="col">
                     {sponsors.map(sponsor => {
                       const {
                         name,
@@ -102,20 +91,23 @@ export default class extends Component {
                         image_uri
                       } = sponsor.attributes
                       return (
-                        <Grid item key={sponsor.id}>
-                          <Button href={external_url} target="_blank">
+                        <div
+                          key={sponsor.id}
+                          className="mdl-button mdl-js-button mdl-js-ripple-effect"
+                        >
+                          <a href={external_url} target="_blank">
                             <img
                               src={image_uri}
                               alt={name}
                               className="img-fluid"
                             />
-                          </Button>
-                        </Grid>
+                          </a>
+                        </div>
                       )
                     })}
-                  </Grid>
+                  </div>
                 )}
-              </Grid>
+              </div>
             </section>
           </section>
         </div>
@@ -123,6 +115,7 @@ export default class extends Component {
     )
   }
   componentDidMount() {
+    // Insert Picatic widget script
     const script = document.createElement('script')
     script.src = 'https://widget.picatic.com/latest/js/embed.min.js'
     script.id = 'picatic-widget-script'
