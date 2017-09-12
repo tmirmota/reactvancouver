@@ -19,8 +19,9 @@
     color: $white-100;
     font-weight: 100;
     font-size: 48px;
+    margin-bottom: 0px;
     text-transform: uppercase;
-
+    
     @media (max-width: 576px) {
       font-size: 18px;
     }
@@ -28,6 +29,7 @@
   h3 {
     color: $white-off;
     font-weight: 300;
+    margin-top: 12px;
 
     @media (max-width: 576px) {
       font-size: 14px;
@@ -37,6 +39,8 @@
   .sponsors {
     .mdl-button {
       height: auto;
+      padding-top: 5px;
+      padding-bottom: 5px;
     }
     @media (min-width: 800px) {
       position: absolute;
@@ -44,7 +48,7 @@
       left: 0;
     }
 
-    @media (max-width: 750px) {
+    @media (max-width: 800px) {
       padding-top: 3rem;
     }
   }

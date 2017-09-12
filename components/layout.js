@@ -34,7 +34,7 @@ export default ({ children, title = 'React Vancouver' }) => (
       {/* Google Roboto Font */}
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+        href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500"
       />
     </Head>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
