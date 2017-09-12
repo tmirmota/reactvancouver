@@ -1,30 +1,26 @@
 import React from 'react'
 
-// Material UI Components
-import Button from 'material-ui/Button'
-
-const Nav = () =>
+export default () => (
   <ul className="nav justify-content-center pt-2">
     <li className="nav-item pr-3">
-      <Button
+      <a
         href="https://www.meetup.com/ReactJS-Vancouver-Meetup/"
         target="_blank"
-        className="text-white"
+        className="mdl-button mdl-js-button mdl-js-ripple-effect text-white"
       >
         <i className="fa fa-meetup pr-2" />
         Meetup Page
-      </Button>
+      </a>
     </li>
     <li className="nav-item pr-3">
-      <Button
+      <a
         href="https://reactvancouver-slack.now.sh/"
         target="_blank"
-        className="text-white"
+        className="mdl-button mdl-js-button mdl-js-ripple-effect text-white"
       >
         <i className="fa fa-slack pr-2" />
         Slack Group
-      </Button>
+      </a>
     </li>
   </ul>
-
-export default Nav
+)
