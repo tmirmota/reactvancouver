@@ -21,7 +21,7 @@
     font-size: 48px;
     margin-bottom: 0px;
     text-transform: uppercase;
-    
+
     @media (max-width: 576px) {
       font-size: 18px;
     }
@@ -59,6 +59,17 @@
     @media (max-width: 750px) {
       max-height: 25px;
       max-width: 100px;
+    }
+  }
+  &-map {
+    color: $white-100;
+    bottom: 10px;
+    right: 10px;
+    position: fixed;
+    &:hover,
+    &:active {
+      color: $white-off;
+      text-decoration: none;
     }
   }
 }

@@ -106,6 +106,11 @@ export default class extends Component {
                 {hasSponsors && renderSponsors}
               </div>
             </section>
+            <div className="">
+            <a href={googleMapsLink} target="_blank" className="event-map">
+              {event.attributes.venue_name} | {event.attributes.venue_street}
+            </a>
+          </div>
           </section>
         </div>
       </Layout>
