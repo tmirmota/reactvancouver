@@ -20,7 +20,7 @@ export default class extends Component {
     )
     const picture = unsplashRandom.url
 
-    const eventId = 119444
+    const eventId = 133893
 
     const getEvent = await fetch(`${picaticHost}/event/${eventId}`)
     const eventJSON = await getEvent.json()
@@ -80,9 +80,8 @@ export default class extends Component {
         })}
       </div>
     )
-
     return (
-      <Layout title="React September Meetup | React Vancouver">
+      <Layout title="React October Meetup | React Vancouver">
         <div className="event event-img" style={styles.eventBackground}>
           <div className="event-overlay" />
           <section className="container">
@@ -90,10 +89,14 @@ export default class extends Component {
             <section className="event-content">
               <div className="row">
                 <div className="col-12">
-                  <h1>{event.attributes.title}</h1>
+                  <h1>
+                    {event.attributes.title}
+                  </h1>
                 </div>
                 <div className="col-12">
-                  <h3>{eventDay}</h3>
+                  <h3>
+                    {eventDay}
+                  </h3>
                 </div>
                 <div className="col-12">
                   <a
@@ -107,10 +110,10 @@ export default class extends Component {
               </div>
             </section>
             <div className="">
-            <a href={googleMapsLink} target="_blank" className="event-map">
-              {event.attributes.venue_name} | {event.attributes.venue_street}
-            </a>
-          </div>
+              <a href={googleMapsLink} target="_blank" className="event-map">
+                {event.attributes.venue_name} | {event.attributes.venue_street}
+              </a>
+            </div>
           </section>
         </div>
       </Layout>
