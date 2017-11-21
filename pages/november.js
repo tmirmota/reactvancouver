@@ -101,12 +101,13 @@ export default class extends Component {
                   >
                     Get Tickets
                   </a>
-                  <a
-                    href="https://selfie.reactvancouver.com/"
+                  <button
+                    // href="https://selfie.reactvancouver.com/"
                     className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent event-button mb-3"
+                    disabled
                   >
-                    Try Selfie Regististion
-                  </a>
+                    {`Selfie Reg. (coming soon)`}
+                  </button>
                 </div>
                 {hasSponsors && renderSponsors}
               </div>
