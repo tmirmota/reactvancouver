@@ -5,7 +5,7 @@ export default class extends React.Component {
   static async getInitialProps({ res }) {
     if (res) {
       res.writeHead(301, {
-        Location: '/november'
+        Location: '/january'
       })
       res.end()
       res.finished = true

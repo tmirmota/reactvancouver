@@ -20,7 +20,7 @@ export default class extends Component {
     )
     const picture = unsplashRandom.url
 
-    const eventId = 137536
+    const eventId = 142136
 
     const getEvent = await fetch(`${picaticHost}/event/${eventId}`)
     const eventJSON = await getEvent.json()
@@ -81,7 +81,7 @@ export default class extends Component {
       </div>
     )
     return (
-      <Layout title="React November Meetup | React Vancouver">
+      <Layout title="React January Meetup | React Vancouver">
         <div className="event event-img" style={styles.eventBackground}>
           <div className="event-overlay" />
           <section className="container">
@@ -100,12 +100,6 @@ export default class extends Component {
                     className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored event-button mx-3 mb-3"
                   >
                     Get Tickets
-                  </a>
-                  <a
-                    href="https://selfie.reactvancouver.com/"
-                    className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent event-button mb-3"
-                  >
-                    Selfie Registration
                   </a>
                 </div>
                 {hasSponsors && renderSponsors}
