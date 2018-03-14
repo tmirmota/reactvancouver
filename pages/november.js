@@ -4,8 +4,8 @@ import Router from 'next/router'
 export default class extends React.Component {
   static async getInitialProps({ res }) {
     if (res) {
-      res.writeHead(301, {
-        Location: '/january'
+      res.writeHead(302, {
+        Location: '/february'
       })
       res.end()
       res.finished = true
