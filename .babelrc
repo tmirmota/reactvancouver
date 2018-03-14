@@ -11,12 +11,6 @@
         },
         "cwd": "babelrc"
       }
-    ],
-    [
-      "wrap-in-js",
-      {
-        "extensions": ["css$", "scss$"]
-      }
     ]
   ],
   "presets": ["next/babel"],
