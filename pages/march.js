@@ -88,7 +88,7 @@ export default class extends Component {
           <section className="container">
             <Nav />
             <section className="event-content">
-              <div className="row">
+              <div className="row mx-auto">
                 <div className="col-12">
                   <h1>{event.attributes.title}</h1>
                 </div>
