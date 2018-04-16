@@ -5,12 +5,12 @@ export default class extends React.Component {
   static async getInitialProps({ res }) {
     if (res) {
       res.writeHead(302, {
-        Location: '/march',
+        Location: '/april',
       })
       res.end()
       res.finished = true
     } else {
-      Router.replace('/january')
+      Router.replace('/february')
     }
     return {}
   }
