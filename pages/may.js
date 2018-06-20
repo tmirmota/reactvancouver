@@ -11,7 +11,7 @@ export default class extends React.Component {
       res.end()
       res.finished = true
     } else {
-      Router.replace('/march')
+      Router.replace('/may')
     }
     return {}
   }
