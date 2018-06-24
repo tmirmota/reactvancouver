@@ -3,6 +3,7 @@ import { css } from 'emotion'
 
 export default class RVSwitch extends React.Component {
   render() {
-    return <div>RVSwitch</div>
+    const { children } = this.props
+    return <div>{children}</div>
   }
 }
