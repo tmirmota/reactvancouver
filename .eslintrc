@@ -11,7 +11,9 @@
       "react/prop-types": "off",
       "no-debugger": "off",
       "react/display-name": "off",
-      "no-unused-vars": "off"
+      "no-unused-vars": "off",
+        "indent": [2, 2],
+        "semi": [2, "never"]
     },
     "extends": [
       "eslint:recommended",
