@@ -13,7 +13,6 @@ export const font = {
 
 export default {
   font,
-  fontWeight,
   title: css({
     fontFamily: font.title,
     fontSize: Layout.calcSpace(9),

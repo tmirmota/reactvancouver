@@ -49,7 +49,7 @@ export default {
   ),
   card: css({
     borderRadius: radius,
-    boxShadow: Shadows.boxShadow,
+    boxShadow: Shadows.shadow,
     border: Shadows.border,
     backgroundColor: Colors.grey.white,
   }),

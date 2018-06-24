@@ -28,22 +28,22 @@ const calcSize = size => {
     case 'small':
       return css({
         height: Layout.calcSpace(4),
-        borderRadius: Layut.calcSpace(4) / 2,
+        borderRadius: Layout.calcSpace(4) / 2,
       })
     case 'medium':
       return css({
         height: Layout.calcSpace(6),
-        borderRadius: Layut.calcSpace(6) / 2,
+        borderRadius: Layout.calcSpace(6) / 2,
       })
     case 'large':
       return css({
         height: Layout.calcSpace(8),
-        borderRadius: Layut.calcSpace(8) / 2,
+        borderRadius: Layout.calcSpace(8) / 2,
       })
     default:
       return css({
         height: Layout.calcSpace(4),
-        borderRadius: Layut.calcSpace(4) / 2,
+        borderRadius: Layout.calcSpace(4) / 2,
       })
   }
 }
