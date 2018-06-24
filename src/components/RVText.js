@@ -8,12 +8,15 @@ export default class RVText extends React.Component {
       style: customStyle,
       ...props
     } = this.props
+    const restProps = {}
     // 1. Apply base style
     const style = [styles.baseStyle]
     // 2. Apply prop styles
     Object.keys(props).map(key => {
-      if (props[key] === true) {
+      if (props[key] === true && styles[key]) {
         style.push(styles[key])
+      } else {
+        restProps[key] = props[key]
       }
     })
     // 3. Apply className and customStyle
@@ -21,7 +24,7 @@ export default class RVText extends React.Component {
     style.push(customStyle)
     const className = css(style)
     return (
-      <div {...props} className={className}>
+      <div {...restProps} className={className}>
         {children}
       </div>
     )
