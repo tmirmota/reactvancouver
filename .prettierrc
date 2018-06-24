@@ -1,0 +1,8 @@
+{
+  "useTabs": false,
+  "trailingComma": "es5",
+  "semi": false,
+  "parser": "babylon",
+  "tabWidth": 2,
+  "singleQuote": true
+}
