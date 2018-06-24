@@ -1,7 +1,7 @@
 import { css } from 'emotion'
 import facepaint from 'facepaint'
 import Colors from './Colors'
-import Shadows from './Shadows'
+import * as Shadows from './Shadows'
 
 export const rootFontSize = '16px'
 export const maxWidth = '80rem' // 1280px

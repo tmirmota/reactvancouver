@@ -6,10 +6,18 @@
         "node": true
     },
     "rules": {
-      "strict": 0
+      "strict": 0,
+      "no-console": "off",
+      "react/prop-types": "off",
+      "no-debugger": "off",
+      "react/display-name": "off",
+      "no-unused-vars": "off"
     },
     "extends": [
       "eslint:recommended",
       "plugin:react/recommended"
-    ]
+    ],
+    "globals": {
+      "graphql": true
+    }
   }

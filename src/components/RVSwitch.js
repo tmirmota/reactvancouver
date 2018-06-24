@@ -7,3 +7,9 @@ export default class RVSwitch extends React.Component {
     return <div>{children}</div>
   }
 }
+
+const styles = {
+  baseStyle: css({
+    
+  })
+}
