@@ -6,10 +6,15 @@
         "node": true
     },
     "rules": {
-      "strict": 0
+        "strict": 0,
+        "indent": [2, 2],
+        "semi": [2, "never"]
     },
     "extends": [
       "eslint:recommended",
       "plugin:react/recommended"
-    ]
+    ],
+    "globals": {
+        "graphql": true
+    }
   }
