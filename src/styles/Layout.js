@@ -3,12 +3,12 @@ import facepaint from 'facepaint'
 import Colors from './Colors'
 import Shadows from './Shadows'
 
-const rootFontSize = '16px'
-const maxWidth = '80rem' // 1280px
-const step = 0.5 // 8px
-const radius = '6px'
+export const rootFontSize = '16px'
+export const maxWidth = '80rem' // 1280px
+export const step = 0.5 // 8px
+export const radius = '6px'
 
-const mq = facepaint([
+export const breakpoints = facepaint([
   `@media(min-width: 420px)`,
   `@media(min-width: 920px)`,
   `@media(min-width: ${maxWidth})`,
@@ -18,7 +18,7 @@ export default {
   rootFontSize,
   maxWidth,
   radius,
-  breakpoints: mq,
+  breakpoints,
   container: css(
     {
       maxWidth,
