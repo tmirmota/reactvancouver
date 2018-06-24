@@ -31,7 +31,7 @@ injectGlobal`
 
   h1 {
     font-family: ${Typography.font.title};
-    font-weight: ${Typography.fontWeight.regular};
+    font-weight: ${Typography.font.weight.regular};
     margin: ${Layout.calcSpace(2)} 0;
   }
 
@@ -41,7 +41,7 @@ injectGlobal`
   h5,
   h6 {
     font-family: ${Typography.font.base};
-    font-weight: ${Typography.fontWeight.bold};
+    font-weight: ${Typography.font.weight.bold};
     margin: ${Layout.calcSpace(2)} 0;
   }
 
@@ -52,7 +52,7 @@ injectGlobal`
 
   a {
     font-family: ${Typography.font.base};
-    font-weight: ${Typography.fontWeight.bold};
+    font-weight: ${Typography.font.weight.bold};
     color: ${Colors.theme.primary};
     text-decoration: none;
   }
@@ -82,7 +82,7 @@ injectGlobal`
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     -webkit-font-smoothing: antialiased;
-    font-weight: ${Typography.fontWeight.bold};
+    font-weight: ${Typography.font.weight.bold};
     line-height: 1;
     padding: ${Layout.calcSpace(2)} ${Layout.calcSpace(4)};
     text-decoration: none;

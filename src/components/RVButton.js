@@ -14,7 +14,7 @@ export default class RVButton extends React.Component {
     } = this.props
     const restProps = {}
     // 1. Apply base style
-    const style = [Buttons.base]
+    const style = [Buttons.base, Buttons.fill, Buttons.medium]
     // 2. Apply prop Buttons
     Object.keys(props).map(key => {
       if (props[key] === true && Buttons[key]) {
