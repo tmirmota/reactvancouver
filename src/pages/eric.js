@@ -3,7 +3,7 @@ import { RVText } from 'components'
 import { css } from 'emotion'
 
 const EricTestPage = () => (
-  <RVText h1 h3 className={css({ color: 'red' })} style={{ color: 'blue' }}>
+  <RVText h1 h3 className={styles.custom}>
     You can style using props, className, or style.<br />
     Text will be styled as following with styles coming later overriding styles
     preceeding it.<br />
@@ -11,5 +11,11 @@ const EricTestPage = () => (
     Styles can be either emotion style obj, or style object.
   </RVText>
 )
+
+const styles = {
+  custom: css({
+    color: 'red',
+  }),
+}
 
 export default EricTestPage
