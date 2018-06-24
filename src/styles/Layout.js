@@ -24,12 +24,12 @@ export default {
       maxWidth,
       margin: '0 auto',
     },
-    mq({
+    breakpoints({
       padding: [`0 2rem`, `0 2rem`, `0`],
     })
   ),
   padding: css(
-    mq({
+    breakpoints({
       paddingLeft: [`2rem`, `2rem`, 0],
       paddingRight: [`2rem`, `2rem`, 0],
     })
@@ -39,7 +39,7 @@ export default {
       display: 'grid',
       gridGap: '2rem',
     },
-    mq({
+    breakpoints({
       gridTemplateColumns: [
         'repeat(1, 1fr)',
         'repeat(2, 1fr)',
