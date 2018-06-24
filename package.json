@@ -22,5 +22,13 @@
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^8.2.5",
+    "eslint": "^5.0.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-react": "^7.9.1",
+    "gatsby-plugin-eslint": "^1.0.3"
+  }
 }

@@ -12,12 +12,13 @@ module.exports = {
     //   },
     // },
     {
-      resolve: `gatsby-plugin-emotion`,
+      resolve: 'gatsby-plugin-emotion',
       options: {
-          // Accepts all options defined by `babel-plugin-emotion` plugin.
-      }
+        // Accepts all options defined by `babel-plugin-emotion` plugin.
+      },
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-resolve-src',
+    'gatsby-plugin-eslint',
   ],
 }
