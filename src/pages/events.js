@@ -1,35 +1,53 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import Link from 'gatsby-link'
 
-const PICATIC_HOST = 'https://api.picatic.com/v2'
-const PICATIC_TEAM_ID = 1004
-const PICATIC_API_KEY = 'sk_live_67c2aa1275dbb5e0822ba9bfa97ea132'
+const Event = ({ id, title, description }) => (
+  <Link to={`/event/${id}`}>
+    <h3>{title}</h3>
+    <div
+      dangerouslySetInnerHTML={{
+        __html: description.childMarkdownRemark.html,
+      }}
+    />
+  </Link>
+)
 
-class Events extends Component {
-  state = {
-    events: [],
-  }
-  componentDidMount() {
-    const url = `${PICATIC_HOST}/event?filter[team_id]=${PICATIC_TEAM_ID}&page[limit]=100&page[offset]=0`
-    fetch(url, {
-      headers: {
-        Authorization: `Bearer ${PICATIC_API_KEY}`,
-      },
-    })
-      .then(res => res.json())
-      .then(json => this.setState({ events: json.data }))
-      .catch(err => console.log(err))
-  }
-  render() {
-    const { events } = this.state
+const Events = ({ data }) => {
+  const events = data.allContentfulEvents.edges
 
-    return (
-      <div>
-        {events.map(event => (
-          <div key={event.id}>{event.attributes.title}</div>
-        ))}
-      </div>
-    )
+  if (events.length <= 0) {
+    return <div>No Events</div>
   }
+
+  return (
+    <div>
+      <h2>Events</h2>
+      {events.map(({ node }) => <Event key={node.id} {...node} />)}
+    </div>
+  )
 }
 
 export default Events
+
+Events.PropTypes = {
+  data: PropTypes.object.isRequired,
+}
+
+export const query = graphql`
+  query eventsQuery {
+    allContentfulEvents(limit: 1000) {
+      edges {
+        node {
+          id
+          title
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
+      }
+    }
+  }
+`
