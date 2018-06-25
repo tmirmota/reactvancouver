@@ -27,7 +27,7 @@ export default {
   }),
   subheading: css({
     fontFamily: font.title,
-    fontSize: Layout.calcSpace(5),
+    fontSize: Layout.calcSpace(3),
     fontWeight: font.weight.black,
     margin: `0 0 ${Layout.calcSpace(4)} 0`,
   }),

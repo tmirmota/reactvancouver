@@ -19,6 +19,9 @@ injectGlobal`
     color: ${Colors.grey.dark};
     font-family: ${Typography.font.base};
     font-size: ${Layout.rootFontSize};
+
+    // TODO: Review use of line-height
+    line-height: normal;
   }
 
   .root {

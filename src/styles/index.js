@@ -1,8 +1,7 @@
-import Buttons from './Buttons'
-import Colors from './Colors'
-import Forms from './Forms'
-import Layout from './Layout'
-import Shadows from './Shadows'
-import Typography from './Typography'
-
-export { Buttons, Colors, Forms, Layout, Shadows, Typography }
+export { default as Buttons } from './Buttons'
+export { default as Colors } from './Colors'
+export { default as Forms } from './Forms'
+export { default as Layout } from './Layout'
+export { default as Shadows } from './Shadows'
+export { default as Typography } from './Typography'
+export { default as Spacing } from './Spacing'
