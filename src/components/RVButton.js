@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from 'emotion'
 import { Buttons } from 'styles'
-import { RVBox } from 'components'
+import { RVBox, RVText } from 'components'
 
 export default class RVButton extends React.Component {
   render() {
@@ -9,11 +9,13 @@ export default class RVButton extends React.Component {
       onClick,
       onPress,
       className: customClassName,
+      title,
+      children,
       ...props
     } = this.props
 
     const restProps = {}
-    const style = [Buttons.base, Buttons.fill, Buttons.medium]
+    const style = [Buttons.base, Buttons.medium]
 
     Object.keys(props).map(key => {
       if (props[key] === true && Buttons[key]) {
@@ -27,11 +29,10 @@ export default class RVButton extends React.Component {
     const className = css(style)
 
     return (
-      <RVBox
-        {...restProps}
-        className={className}
-        onClick={onClick || onPress}
-      />
+      <RVBox {...restProps} className={className} onClick={onClick || onPress}>
+        {title ? <RVText>{title}</RVText> : null}
+        {children}
+      </RVBox>
     )
   }
 }

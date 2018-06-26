@@ -8,11 +8,13 @@ export default class RVText extends React.Component {
     const { className: customClassName, ...props } = this.props
 
     const restProps = {}
-    const style = []
+    const style = [styles.base]
 
     Object.keys(props).map(key => {
       if (props[key] === true && Typography[key]) {
         style.push(Typography[key])
+      } else if (props[key] === true && styles[key]) {
+        style.push(styles[key])
       } else {
         restProps[key] = props[key]
       }
@@ -24,4 +26,11 @@ export default class RVText extends React.Component {
 
     return <RVBox {...restProps} className={className} />
   }
+}
+
+const styles = {
+  base: {},
+  h1: {
+    fontSize: 48,
+  },
 }
