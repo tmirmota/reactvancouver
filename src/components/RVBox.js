@@ -1,6 +1,6 @@
 import React from 'react'
 import { css } from 'emotion'
-import { Spacing } from 'styles'
+import { Box } from 'styles'
 
 export default class RVBox extends React.Component {
   render() {
@@ -15,8 +15,8 @@ export default class RVBox extends React.Component {
     const style = []
 
     Object.keys(props).map(key => {
-      if (props[key] === true && Spacing[key]) {
-        style.push(Spacing[key])
+      if (props[key] === true && Box[key]) {
+        style.push(Box[key])
       } else {
         restProps[key] = props[key]
       }

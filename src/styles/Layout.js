@@ -47,6 +47,15 @@ export default {
       ],
     })
   ),
+  grid2: css(
+    breakpoints({
+      gridTemplateColumns: [
+        'repeat(1, 1fr)',
+        'repeat(2, 1fr)',
+        'repeat(2, 1fr)',
+      ],
+    })
+  ),
   card: css({
     borderRadius: radius,
     boxShadow: Shadows.shadow,

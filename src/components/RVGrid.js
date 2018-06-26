@@ -5,10 +5,23 @@ import { RVBox } from 'components'
 
 export default class RVGrid extends React.Component {
   render() {
-    const { className: customClassName, ...otherProps } = this.props
+    const { className: customClassName, ...props } = this.props
 
-    const className = css([Layout.grid, customClassName])
+    const restProps = {}
+    const style = [Layout.grid]
 
-    return <RVBox {...otherProps} className={className} />
+    Object.keys(props).map(key => {
+      if (props[key] === true && Layout[key]) {
+        style.push(Layout[key])
+      } else {
+        restProps[key] = props[key]
+      }
+    })
+
+    style.push(customClassName)
+
+    const className = css(style)
+
+    return <RVBox {...restProps} className={className} />
   }
 }

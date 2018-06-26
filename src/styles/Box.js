@@ -4,8 +4,8 @@ import { css } from 'emotion'
 const sizingMap = {
   1: 1,
   2: 2,
-  3: 3,
-  4: 4,
+  3: 4,
+  4: 8,
 }
 
 const spacingMap = {
@@ -26,21 +26,26 @@ const spacingMap = {
   pb: { cssName: 'padding-bottom' },
 }
 
-const Spacing = {}
+const spacing = {}
 
 Object.entries(sizingMap).forEach(([num, size]) => {
   Object.entries(spacingMap).forEach(([key, value]) => {
     const style = []
 
     if (Array.isArray(value)) {
-      for (let obj in value) {
+      for (let obj of value) {
         style.push({ [obj.cssName]: Layout.calcSpace(size) })
       }
     } else {
       style.push({ [value.cssName]: Layout.calcSpace(size) })
     }
-    Spacing[key + num] = css({ [value.cssName]: Layout.calcSpace(size) })
+    spacing[key + num] = css(style)
   })
 })
 
-export default Spacing
+export default {
+  ...spacing,
+  flex: css({
+    display: 'flex',
+  }),
+}
