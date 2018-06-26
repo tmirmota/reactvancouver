@@ -25,26 +25,26 @@ export const outline = css({
 
 const calcSize = size => {
   switch (size) {
-    case 'small':
-      return css({
-        height: Layout.calcSpace(4),
-        borderRadius: Layout.calcSpace(2),
-      })
-    case 'medium':
-      return css({
-        height: Layout.calcSpace(6),
-        borderRadius: Layout.calcSpace(3),
-      })
-    case 'large':
-      return css({
-        height: Layout.calcSpace(8),
-        borderRadius: Layout.calcSpace(4),
-      })
-    default:
-      return css({
-        height: Layout.calcSpace(4),
-        borderRadius: Layout.calcSpace(2),
-      })
+  case 'small':
+    return css({
+      height: Layout.calcSpace(4),
+      borderRadius: Layout.calcSpace(4) / 2,
+    })
+  case 'medium':
+    return css({
+      height: Layout.calcSpace(6),
+      borderRadius: Layout.calcSpace(6) / 2,
+    })
+  case 'large':
+    return css({
+      height: Layout.calcSpace(8),
+      borderRadius: Layout.calcSpace(8) / 2,
+    })
+  default:
+    return css({
+      height: Layout.calcSpace(4),
+      borderRadius: Layout.calcSpace(4) / 2,
+    })
   }
 }
 
