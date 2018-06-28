@@ -30,7 +30,4 @@ export default class RVText extends React.Component {
 
 const styles = {
   base: {},
-  h1: {
-    fontSize: 48,
-  },
 }

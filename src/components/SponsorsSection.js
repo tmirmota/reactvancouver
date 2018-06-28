@@ -4,18 +4,34 @@ import { css } from 'emotion'
 
 export default class SponsorsSection extends React.Component {
   render() {
+    const { sponsors } = this.props
     return (
       <div className={classes.container}>
         <RVText subheading>Produly sponsored by</RVText>
         <div className={classes.sponsorRow}>
+          {sponsors
+            ? sponsors.map(sponsor => {
+                return <RVImage key={sponsor.id} {...sponsor} />
+              })
+            : null}
           <RVImage
             className={classes.sponsorLogo}
-            src="https://cdn.shopify.com/s/files/1/0892/1446/files/zen_logo.png?6989538583500256853"
+            resolutions={{
+              width: 200,
+              height: 50,
+              src:
+                'https://cdn.shopify.com/s/files/1/0892/1446/files/zen_logo.png?6989538583500256853',
+            }}
             alt="Zenefits"
           />
           <RVImage
             className={classes.sponsorLogo}
-            src="https://portal.caarewards.ca/bcaa/wp-content/uploads/2018/05/PartnerImage72773.png"
+            resolutions={{
+              width: 200,
+              height: 97,
+              src:
+                'https://portal.caarewards.ca/bcaa/wp-content/uploads/2018/05/PartnerImage72773.png',
+            }}
             alt=""
           />
         </div>

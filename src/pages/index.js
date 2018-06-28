@@ -9,3 +9,23 @@ const IndexPage = () => (
 )
 
 export default IndexPage
+
+// export const query = graphql`
+//   query sponsorsQuery {
+//     allContentfulSponsors(limit: 1000) {
+//       edges {
+//         node {
+//           id
+//           companyName
+//           companyLogoDark {
+//             resolutions(width: 200) {
+//               width
+//               height
+//               src
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
