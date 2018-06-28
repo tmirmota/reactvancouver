@@ -9,6 +9,10 @@ export const theme = {
 export const grey = {
   black: '#000000',
   dark: '#4A4A4A',
+
+  // TODO: Review this color.
+  lightDark: '#EBEDEF',
+
   light: '#FAFAFA',
   white: '#FFFFFF',
   calc: value => `hsl(230, 20%, ${value}%)`,

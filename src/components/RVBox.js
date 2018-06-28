@@ -14,6 +14,8 @@ export default class RVBox extends React.Component {
     const restProps = {}
     const style = []
 
+    style.push(classNameProp)
+
     Object.keys(props).map(key => {
       if (props[key] === true && Box[key]) {
         style.push(Box[key])
@@ -22,7 +24,6 @@ export default class RVBox extends React.Component {
       }
     })
 
-    style.push(classNameProp)
     style.push(customStyle)
 
     const className = css(style)
