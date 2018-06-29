@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
-import moment from 'moment'
 import {
   RVCard,
   RVText,
@@ -21,7 +20,7 @@ const styles = {
 
 const Event = ({ id, startDate }) => (
   <li key={id}>
-    <Link to={`/event/${id}`}>{moment(startDate).format('MMMM Do, Y')}</Link>
+    <Link to={`/event/${id}`}>{startDate}</Link>
   </li>
 )
 
@@ -116,7 +115,7 @@ export const query = graphql`
               html
             }
           }
-          startDate
+          startDate(formatString: "MMMM Do, Y")
           talks {
             id
             title

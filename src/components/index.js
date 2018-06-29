@@ -1,5 +1,6 @@
 export { default as header } from './header'
 export { default as footer } from './footer'
+export { default as MeetupGroup } from './MeetupGroup'
 
 // RV Components
 export { default as RVBox } from './RVBox'
