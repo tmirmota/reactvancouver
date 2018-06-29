@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class MeetupGroup extends React.Component {
   state = {
@@ -12,4 +13,8 @@ export default class MeetupGroup extends React.Component {
   render() {
     return this.props.children(this.state.group)
   }
+}
+
+MeetupGroup.propTypes = {
+  children: PropTypes.func.isRequired,
 }
