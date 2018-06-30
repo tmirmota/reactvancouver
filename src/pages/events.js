@@ -7,7 +7,7 @@ import {
   RVButton,
   RVGrid,
   RVBox,
-  RVFavicon,
+  RVAvatar,
   RVIcon,
 } from 'components'
 
@@ -55,7 +55,7 @@ const Events = ({ data }) => {
                 {talk.speakers &&
                   talk.speakers.map(speaker => (
                     <RVBox key={speaker.id} flex>
-                      <RVFavicon
+                      <RVAvatar
                         img={{
                           resolutions: speaker.profilePicture.resolutions,
                         }}
@@ -134,7 +134,7 @@ export const query = graphql`
               jobTitle
               company
               profilePicture {
-                resolutions(height: 40, width: 40) {
+                resolutions(height: 50, width: 50) {
                   base64
                   tracedSVG
                   aspectRatio

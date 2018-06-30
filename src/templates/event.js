@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { RVText, RVBox, RVFavicon, RVCard, RVIcon, RVGrid } from 'components'
+import { RVText, RVBox, RVAvatar, RVCard, RVIcon, RVGrid } from 'components'
 import { Layout, Colors } from 'styles'
 import Img from 'gatsby-image'
 import Link from 'gatsby-link'
@@ -25,7 +25,7 @@ const renderTalk = talk => (
 
     {talk.speakers.map(speaker => (
       <RVBox key={speaker.id} flex>
-        <RVFavicon
+        <RVAvatar
           img={{ resolutions: speaker.profilePicture.resolutions }}
           mr2
         />
@@ -177,7 +177,7 @@ export const pageQuery = graphql`
           jobTitle
           company
           profilePicture {
-            resolutions(height: 40, width: 40) {
+            resolutions(height: 50, width: 50) {
               base64
               tracedSVG
               aspectRatio
