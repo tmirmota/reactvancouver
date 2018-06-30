@@ -39,45 +39,53 @@ const Events = ({ data }) => {
           <Link to={`/event/${event.id}`}>
             <RVText tag="h3">{event.title}</RVText>
           </Link>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: event.description.childMarkdownRemark.html,
-            }}
-          />
-          {event.talks.map(talk => (
-            <RVGrid key={talk.id} grid2 mb3>
-              <RVText subheading>{talk.title}</RVText>
-              {talk.speakers.map(speaker => (
-                <RVBox key={speaker.id} flex>
-                  <RVFavicon
-                    img={{ resolutions: speaker.profilePicture.resolutions }}
-                    mr2
-                  />
-                  <RVBox>
-                    <RVText>
-                      {speaker.firstName} {speaker.lastName}
-                    </RVText>
-                    <RVText mb1>
-                      {speaker.jobTitle} at {speaker.company}
-                    </RVText>
-                    <RVBox flex>
-                      <RVIcon
-                        fontAwesomeIcon={{
-                          icon: ['fab', 'github'],
+          {event.description && (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: event.description.childMarkdownRemark.html,
+              }}
+            />
+          )}
+
+          {event.talks &&
+            event.talks.map(talk => (
+              <RVGrid key={talk.id} grid2 mb3>
+                <RVText subheading>{talk.title}</RVText>
+
+                {talk.speakers &&
+                  talk.speakers.map(speaker => (
+                    <RVBox key={speaker.id} flex>
+                      <RVFavicon
+                        img={{
+                          resolutions: speaker.profilePicture.resolutions,
                         }}
-                        mr1
+                        mr2
                       />
-                      <RVIcon
-                        fontAwesomeIcon={{
-                          icon: ['fab', 'linkedin'],
-                        }}
-                      />
+                      <RVBox>
+                        <RVText>
+                          {speaker.firstName} {speaker.lastName}
+                        </RVText>
+                        <RVText mb1>
+                          {speaker.jobTitle} at {speaker.company}
+                        </RVText>
+                        <RVBox flex>
+                          <RVIcon
+                            fontAwesomeIcon={{
+                              icon: ['fab', 'github'],
+                            }}
+                            mr1
+                          />
+                          <RVIcon
+                            fontAwesomeIcon={{
+                              icon: ['fab', 'linkedin'],
+                            }}
+                          />
+                        </RVBox>
+                      </RVBox>
                     </RVBox>
-                  </RVBox>
-                </RVBox>
-              ))}
-            </RVGrid>
-          ))}
+                  ))}
+              </RVGrid>
+            ))}
         </RVCard>
       </RVBox>
       <RVCard center my4>
