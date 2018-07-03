@@ -49,6 +49,7 @@ const Events = ({ data }) => {
 
           {event.talks &&
             event.talks.map(talk => (
+              // TODO: Remove mb3
               <RVGrid key={talk.id} grid2 mb3>
                 <RVText subheading>{talk.title}</RVText>
 

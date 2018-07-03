@@ -8,6 +8,7 @@ const Footer = () => (
     <Link to="/talks">Talks</Link>
     <Link to="/jobs">Jobs</Link>
     <Link to="/sponsors">Sponsors</Link>
+    <Link to="/contact-us">Contact Us</Link>
   </footer>
 )
 

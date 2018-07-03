@@ -8,7 +8,7 @@ export default class RVGrid extends React.Component {
     const { className: customClassName, ...props } = this.props
 
     const restProps = {}
-    const style = [Layout.grid]
+    const style = [Layout.grid.root]
 
     Object.keys(props).map(key => {
       if (props[key] === true && Layout[key]) {

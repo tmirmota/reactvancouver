@@ -34,37 +34,39 @@ export default {
       paddingRight: [`2rem`, `2rem`, 0],
     })
   ),
-  grid: css(
-    {
+  grid: {
+    root: css({
       display: 'grid',
       gridGap: '2rem',
-    },
-    breakpoints({
-      gridTemplateColumns: [
-        'repeat(1, 1fr)',
-        'repeat(2, 1fr)',
-        'repeat(4, 1fr)',
-      ],
-    })
-  ),
-  grid2: css(
-    breakpoints({
-      gridTemplateColumns: [
-        'repeat(1, 1fr)',
-        'repeat(2, 1fr)',
-        'repeat(2, 1fr)',
-      ],
-    })
-  ),
-  grid3: css(
-    breakpoints({
-      gridTemplateColumns: [
-        'repeat(1, 1fr)',
-        'repeat(3, 1fr)',
-        'repeat(3, 1fr)',
-      ],
-    })
-  ),
+    }),
+    columns2: css(
+      breakpoints({
+        gridTemplateColumns: [
+          'repeat(1, 1fr)',
+          'repeat(2, 1fr)',
+          'repeat(2, 1fr)',
+        ],
+      })
+    ),
+    columns3: css(
+      breakpoints({
+        gridTemplateColumns: [
+          'repeat(1, 1fr)',
+          'repeat(3, 1fr)',
+          'repeat(3, 1fr)',
+        ],
+      })
+    ),
+    columns4: css(
+      breakpoints({
+        gridTemplateColumns: [
+          'repeat(1, 1fr)',
+          'repeat(2, 1fr)',
+          'repeat(4, 1fr)',
+        ],
+      })
+    ),
+  },
   card: css({
     borderRadius: radius,
     boxShadow: Shadows.shadow,
