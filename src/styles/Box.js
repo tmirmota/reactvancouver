@@ -56,6 +56,9 @@ export default {
   flex: css({
     display: 'flex',
   }),
+  inline: css({
+    display: 'inline-flex',
+  }),
   center: css({
     justifyContent: 'center',
   }),
