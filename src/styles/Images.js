@@ -1,5 +1,7 @@
 import { css } from 'emotion'
 
-const favicon = css({ borderRadius: '50%' })
+const avatar = css({
+  borderRadius: '50%',
+})
 
-export default { favicon }
+export default { avatar }

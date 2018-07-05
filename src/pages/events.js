@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
-import moment from 'moment'
 import {
   RVCard,
   RVText,
   RVButton,
   RVGrid,
   RVBox,
-  RVFavicon,
+  RVAvatar,
   RVIcon,
 } from 'components'
 
@@ -21,7 +20,7 @@ const styles = {
 
 const Event = ({ id, startDate }) => (
   <li key={id}>
-    <Link to={`/event/${id}`}>{moment(startDate).format('MMMM Do, Y')}</Link>
+    <Link to={`/event/${id}`}>{startDate}</Link>
   </li>
 )
 
@@ -40,45 +39,54 @@ const Events = ({ data }) => {
           <Link to={`/event/${event.id}`}>
             <RVText tag="h3">{event.title}</RVText>
           </Link>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: event.description.childMarkdownRemark.html,
-            }}
-          />
-          {event.talks.map(talk => (
-            <RVGrid key={talk.id} grid2 mb3>
-              <RVText subheading>{talk.title}</RVText>
-              {talk.speakers.map(speaker => (
-                <RVBox key={speaker.id} flex>
-                  <RVFavicon
-                    img={{ resolutions: speaker.profilePicture.resolutions }}
-                    mr2
-                  />
-                  <RVBox>
-                    <RVText>
-                      {speaker.firstName} {speaker.lastName}
-                    </RVText>
-                    <RVText mb1>
-                      {speaker.jobTitle} at {speaker.company}
-                    </RVText>
-                    <RVBox flex>
-                      <RVIcon
-                        fontAwesomeIcon={{
-                          icon: ['fab', 'github'],
+          {event.description && (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: event.description.childMarkdownRemark.html,
+              }}
+            />
+          )}
+
+          {event.talks &&
+            event.talks.map(talk => (
+              // TODO: Remove mb3
+              <RVGrid key={talk.id} grid2 mb3>
+                <RVText subheading>{talk.title}</RVText>
+
+                {talk.speakers &&
+                  talk.speakers.map(speaker => (
+                    <RVBox key={speaker.id} flex>
+                      <RVAvatar
+                        img={{
+                          resolutions: speaker.profilePicture.resolutions,
                         }}
-                        mr1
+                        mr2
                       />
-                      <RVIcon
-                        fontAwesomeIcon={{
-                          icon: ['fab', 'linkedin'],
-                        }}
-                      />
+                      <RVBox>
+                        <RVText>
+                          {speaker.firstName} {speaker.lastName}
+                        </RVText>
+                        <RVText mb1>
+                          {speaker.jobTitle} at {speaker.company}
+                        </RVText>
+                        <RVBox flex>
+                          <RVIcon
+                            fontAwesomeIcon={{
+                              icon: ['fab', 'github'],
+                            }}
+                            mr1
+                          />
+                          <RVIcon
+                            fontAwesomeIcon={{
+                              icon: ['fab', 'linkedin'],
+                            }}
+                          />
+                        </RVBox>
+                      </RVBox>
                     </RVBox>
-                  </RVBox>
-                </RVBox>
-              ))}
-            </RVGrid>
-          ))}
+                  ))}
+              </RVGrid>
+            ))}
         </RVCard>
       </RVBox>
       <RVCard center my4>
@@ -116,7 +124,7 @@ export const query = graphql`
               html
             }
           }
-          startDate
+          startDate(formatString: "MMMM Do, Y")
           talks {
             id
             title
@@ -127,7 +135,7 @@ export const query = graphql`
               jobTitle
               company
               profilePicture {
-                resolutions(height: 40, width: 40) {
+                resolutions(height: 50, width: 50) {
                   base64
                   tracedSVG
                   aspectRatio

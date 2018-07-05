@@ -1,11 +1,20 @@
 import { Layout } from 'styles'
 import { css } from 'emotion'
 
+const space = size => {
+  if (typeof size !== 'number') {
+    return size
+  }
+  return Layout.calcSpace(size)
+}
+
 const sizingMap = {
+  0: 0,
   1: 1,
   2: 2,
   3: 4,
   4: 8,
+  '-auto': 'auto',
 }
 
 const spacingMap = {
@@ -34,10 +43,10 @@ Object.entries(sizingMap).forEach(([num, size]) => {
 
     if (Array.isArray(value)) {
       for (let obj of value) {
-        style.push({ [obj.cssName]: Layout.calcSpace(size) })
+        style.push({ [obj.cssName]: space(size) })
       }
     } else {
-      style.push({ [value.cssName]: Layout.calcSpace(size) })
+      style.push({ [value.cssName]: space(size) })
     }
     spacing[key + num] = css(style)
   })
@@ -47,5 +56,23 @@ export default {
   ...spacing,
   flex: css({
     display: 'flex',
+  }),
+  center: css({
+    justifyContent: 'center',
+  }),
+  itemsCenter: css({
+    alignItems: 'center',
+  }),
+  spaceAround: css({
+    justifyContent: 'space-around',
+  }),
+  spaceEvenly: css({
+    justifyContent: 'space-evenly',
+  }),
+  alignRight: css({
+    textAlign: 'right',
+  }),
+  alignCenter: css({
+    textAlign: 'center',
   }),
 }

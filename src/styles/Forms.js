@@ -9,6 +9,7 @@ export const label = css({
   fontSize: Layout.calcSpace(2),
   fontWeight: Typography.font.weight.bold,
   margin: `${Layout.calcSpace(2)} 0 ${Layout.calcSpace(1)} 0`,
+  paddingLeft: Layout.calcSpace(4),
 })
 
 export const placeholder = css({
@@ -30,6 +31,7 @@ export const input = css(text, {
   backgroundColor: 'transparent',
   border: 'none',
   boxSizing: 'border-box',
+  display: 'block',
   margin: `0 0 ${Layout.calcSpace(2)} 0`,
   padding: `${Layout.calcSpace(2)} ${Layout.calcSpace(4)}`,
   transition: `border-color 0.2s ease`,
@@ -43,4 +45,6 @@ export const input = css(text, {
 export default {
   label,
   placeholder,
+  text,
+  input,
 }
