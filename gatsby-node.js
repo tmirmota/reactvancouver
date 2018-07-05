@@ -1,8 +1,8 @@
 const path = require(`path`)
 const slash = require(`slash`)
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ actions, graphql }) => {
+  const { createPage } = actions
 
   return new Promise((resolve, reject) => {
     resolve(
@@ -170,5 +170,13 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           })
         })
     )
+  })
+}
+
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    },
   })
 }

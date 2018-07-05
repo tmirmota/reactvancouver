@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
 import moment from 'moment'
 import {
@@ -9,6 +10,7 @@ import {
   RVButton,
   MeetupGroup,
 } from 'components'
+import Layout from 'layouts'
 
 const renderStats = data => {
   const talksThisYear = data.allContentfulEvents.edges.reduce(
@@ -68,30 +70,32 @@ const IndexPage = ({ data }) => {
   )[0]
 
   return (
-    <div>
-      <h1>Join one of the biggest tech communities in Vancouver</h1>
-      {renderStats(data)}
-      <RVGrid grid2>
-        <RVCard>
-          <RVText subheading>Upcoming Event</RVText>
-          <RVText>{upcomingEvent.node.title}</RVText>
-          <RVButton>Get Tickets</RVButton>
-        </RVCard>
-        <RVCard>
-          <RVText subheading>Past Events</RVText>
-          {data.allContentfulEvents.edges.map(({ node: event }) => {
-            if (moment(event.startDate).isAfter()) {
-              return null
-            }
-            return (
-              <Link to={`/event/${event.id}`} key={event.id}>
-                <RVText mb1>{event.title}</RVText>
-              </Link>
-            )
-          })}
-        </RVCard>
-      </RVGrid>
-    </div>
+    <Layout>
+      <div>
+        <h1>Join one of the biggest tech communities in Vancouver</h1>
+        {renderStats(data)}
+        <RVGrid grid2>
+          <RVCard>
+            <RVText subheading>Upcoming Event</RVText>
+            <RVText>{upcomingEvent.node.title}</RVText>
+            <RVButton>Get Tickets</RVButton>
+          </RVCard>
+          <RVCard>
+            <RVText subheading>Past Events</RVText>
+            {data.allContentfulEvents.edges.map(({ node: event }) => {
+              if (moment(event.startDate).isAfter()) {
+                return null
+              }
+              return (
+                <Link to={`/event/${event.id}`} key={event.id}>
+                  <RVText mb1>{event.title}</RVText>
+                </Link>
+              )
+            })}
+          </RVCard>
+        </RVGrid>
+      </div>
+    </Layout>
   )
 }
 

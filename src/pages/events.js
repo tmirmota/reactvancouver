@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import {
@@ -58,7 +59,7 @@ const Events = ({ data }) => {
                     <RVBox key={speaker.id} flex>
                       <RVAvatar
                         img={{
-                          resolutions: speaker.profilePicture.resolutions,
+                          fixed: speaker.profilePicture.fixed,
                         }}
                         mr2
                       />
@@ -135,16 +136,8 @@ export const query = graphql`
               jobTitle
               company
               profilePicture {
-                resolutions(height: 50, width: 50) {
-                  base64
-                  tracedSVG
-                  aspectRatio
-                  width
-                  height
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
+                fixed(height: 50, width: 50) {
+                  ...GatsbyContentfulFixed
                 }
               }
             }

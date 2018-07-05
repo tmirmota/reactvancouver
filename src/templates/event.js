@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import { RVText, RVBox, RVAvatar, RVCard, RVIcon, RVGrid } from 'components'
 import { Layout, Colors } from 'styles'
@@ -25,10 +26,7 @@ const renderTalk = talk => (
 
     {talk.speakers.map(speaker => (
       <RVBox key={speaker.id} flex>
-        <RVAvatar
-          img={{ resolutions: speaker.profilePicture.resolutions }}
-          mr2
-        />
+        <RVAvatar img={{ fixed: speaker.profilePicture.fixed }} mr2 />
         <RVBox>
           <RVText>
             {speaker.firstName} {speaker.lastName}
@@ -58,9 +56,7 @@ const renderTalk = talk => (
 const renderSponsor = sponsor => (
   <RVBox key={sponsor.id}>
     <RVBox tag="a" href={sponsor.companyUrl} target="_blank" mr2>
-      {sponsor.companyLogoDark && (
-        <Img resolutions={sponsor.companyLogoDark.resolutions} />
-      )}
+      {sponsor.companyLogoDark && <Img fixed={sponsor.companyLogoDark.fixed} />}
     </RVBox>
   </RVBox>
 )
@@ -177,16 +173,8 @@ export const pageQuery = graphql`
           jobTitle
           company
           profilePicture {
-            resolutions(height: 50, width: 50) {
-              base64
-              tracedSVG
-              aspectRatio
-              width
-              height
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
+            fixed(height: 50, width: 50) {
+              ...GatsbyContentfulFixed
             }
           }
         }
@@ -195,16 +183,8 @@ export const pageQuery = graphql`
         id
         companyUrl
         companyLogoDark {
-          resolutions(width: 160) {
-            base64
-            tracedSVG
-            aspectRatio
-            width
-            height
-            src
-            srcSet
-            srcWebp
-            srcSetWebp
+          fixed(width: 160) {
+            ...GatsbyContentfulFixed
           }
         }
       }

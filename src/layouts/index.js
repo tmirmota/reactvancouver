@@ -7,16 +7,16 @@ import Footer from '../components/footer'
 import './index.css'
 import 'styles/Global'
 
-const Layout = ({ children, data }) => (
+const Layout = ({ children, title }) => (
   <div>
     <Helmet
-      title={data.site.siteMetadata.title}
+      title={title}
       meta={[
         { name: 'description', content: 'Sample' },
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
-    <Header siteTitle={data.site.siteMetadata.title} />
+    <Header siteTitle={title} />
     <div
       style={{
         margin: '0 auto',
@@ -25,7 +25,7 @@ const Layout = ({ children, data }) => (
         paddingTop: 0,
       }}
     >
-      {children()}
+      {children}
     </div>
     <Footer />
   </div>
@@ -36,13 +36,3 @@ Layout.propTypes = {
 }
 
 export default Layout
-
-export const query = graphql`
-  query SiteTitleQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`
