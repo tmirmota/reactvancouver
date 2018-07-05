@@ -11,7 +11,8 @@ export default class SponsorsSection extends React.Component {
         <div className={classes.sponsorRow}>
           {sponsors
             ? sponsors.map(sponsor => {
-                return <RVImage key={sponsor.id} {...sponsor} />
+                if (sponsor.src)
+                  return <RVImage key={sponsor.id} {...sponsor} />
               })
             : null}
           <RVImage

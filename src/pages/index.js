@@ -72,7 +72,7 @@ const IndexPage = ({ data }) => {
     <div>
       <h1>Join one of the biggest tech communities in Vancouver</h1>
       {renderStats(data)}
-      <SponsorsSection />
+      <SponsorsSection sponsors={data.allContentfulSponsors.edges} />
       <RVGrid grid2>
         <RVCard>
           <RVText subheading>Upcoming Event</RVText>
@@ -112,6 +112,21 @@ export const query = graphql`
           startDate
           talks {
             id
+          }
+        }
+      }
+    }
+    allContentfulSponsors(limit: 1000) {
+      edges {
+        node {
+          id
+          companyName
+          companyLogoDark {
+            resolutions(width: 200) {
+              width
+              height
+              src
+            }
           }
         }
       }
