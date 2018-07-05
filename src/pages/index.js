@@ -8,6 +8,7 @@ import {
   RVText,
   RVButton,
   MeetupGroup,
+  SponsorsSection,
 } from 'components'
 
 const renderStats = data => {
@@ -71,6 +72,7 @@ const IndexPage = ({ data }) => {
     <div>
       <h1>Join one of the biggest tech communities in Vancouver</h1>
       {renderStats(data)}
+      <SponsorsSection />
       <RVGrid grid2>
         <RVCard>
           <RVText subheading>Upcoming Event</RVText>
