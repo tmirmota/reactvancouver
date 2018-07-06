@@ -1,5 +1,5 @@
 export { default as header } from './header'
-export { default as footer } from './footer'
+export { default as Footer } from './footer'
 export { default as MeetupGroup } from './MeetupGroup'
 export { default as Nav } from './Nav'
 
@@ -23,4 +23,3 @@ export { default as RVLabel } from './RVLabel'
 
 // Sections
 export { default as SponsorsSection } from './SponsorsSection'
-
