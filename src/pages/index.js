@@ -9,6 +9,7 @@ import {
   RVText,
   RVButton,
   MeetupGroup,
+  SponsorsSection,
 } from 'components'
 import Layout from 'layouts'
 
@@ -71,31 +72,33 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <div>
-        <h1>Join one of the biggest tech communities in Vancouver</h1>
-        {renderStats(data)}
-        <RVGrid grid2>
-          <RVCard>
-            <RVText subheading>Upcoming Event</RVText>
-            <RVText>{upcomingEvent.node.title}</RVText>
-            <RVButton>Get Tickets</RVButton>
-          </RVCard>
-          <RVCard>
-            <RVText subheading>Past Events</RVText>
-            {data.allContentfulEvents.edges.map(({ node: event }) => {
-              if (moment(event.startDate).isAfter()) {
-                return null
-              }
-              return (
-                <Link to={`/event/${event.id}`} key={event.id}>
-                  <RVText mb1>{event.title}</RVText>
-                </Link>
-              )
-            })}
-          </RVCard>
-        </RVGrid>
-      </div>
+    <div>
+      <h1>Join one of the biggest tech communities in Vancouver</h1>
+      {renderStats(data)}
+      <SponsorsSection sponsors={data.allContentfulSponsors.edges} />
+      <RVGrid grid2>
+        <RVCard>
+          <RVText subheading>Upcoming Event</RVText>
+          <RVText>{upcomingEvent.node.title}</RVText>
+          <RVButton>Get Tickets</RVButton>
+        </RVCard>
+        <RVCard>
+          <RVText subheading>Past Events</RVText>
+          {data.allContentfulEvents.edges.map(({ node: event }) => {
+            if (moment(event.startDate).isAfter()) {
+              return null
+            }
+            return (
+              <Link to={`/event/${event.id}`} key={event.id}>
+                <RVText mb1>{event.title}</RVText>
+              </Link>
+            )
+          })}
+        </RVCard>
+      </RVGrid>
+    </div>
     </Layout>
+
   )
 }
 
@@ -114,6 +117,21 @@ export const query = graphql`
           startDate
           talks {
             id
+          }
+        }
+      }
+    }
+    allContentfulSponsors(limit: 1000) {
+      edges {
+        node {
+          id
+          companyName
+          companyLogoDark {
+            resolutions(width: 200) {
+              width
+              height
+              src
+            }
           }
         }
       }

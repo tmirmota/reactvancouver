@@ -10,17 +10,23 @@ export const base = css({
   cursor: 'pointer',
   borderWidth: '1px',
   borderStyle: 'solid',
-  background: 'transparent',
-})
-
-export const fill = css({
   backgroundColor: Colors.theme.primary,
   color: Colors.grey.white,
 })
 
 export const outline = css({
+  backgroundColor: Colors.grey.light,
   borderColor: Colors.theme.primary,
   color: Colors.theme.primary,
+})
+
+export const link = css({
+  backgroundColor: Colors.grey.light,
+  borderWidth: 0,
+  color: Colors.theme.primary,
+  fontStyle: 'italic',
+  textTransform: 'none',
+  outline: 'none',
 })
 
 const calcSize = size => {
@@ -28,22 +34,22 @@ const calcSize = size => {
     case 'small':
       return css({
         height: Layout.calcSpace(4),
-        borderRadius: Layout.calcSpace(2),
+        borderRadius: Layout.calcSpace(4 / 2),
       })
     case 'medium':
       return css({
         height: Layout.calcSpace(6),
-        borderRadius: Layout.calcSpace(3),
+        borderRadius: Layout.calcSpace(6 / 2),
       })
     case 'large':
       return css({
         height: Layout.calcSpace(8),
-        borderRadius: Layout.calcSpace(4),
+        borderRadius: Layout.calcSpace(8 / 2),
       })
     default:
       return css({
         height: Layout.calcSpace(4),
-        borderRadius: Layout.calcSpace(2),
+        borderRadius: Layout.calcSpace(4 / 2),
       })
   }
 }
@@ -57,6 +63,6 @@ export default {
   small,
   medium,
   large,
-  fill,
   outline,
+  link,
 }
