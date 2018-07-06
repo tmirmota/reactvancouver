@@ -4,7 +4,7 @@ import Colors from './Colors'
 import * as Shadows from './Shadows'
 
 export const rootFontSize = '16px'
-export const maxWidth = '80rem' // 1280px
+export const maxWidth = '60rem' // 960px
 export const step = 0.5 // 8px
 export const radius = '6px'
 
@@ -14,20 +14,23 @@ export const breakpoints = facepaint([
   `@media(min-width: ${maxWidth})`,
 ])
 
+export const container = css(
+  {
+    maxWidth,
+    margin: '0 auto',
+  },
+  breakpoints({
+    paddingLeft: [`2rem`, `2rem`, `0`],
+    paddingRight: [`2rem`, `2rem`, `0`],
+  })
+)
+
 export default {
   rootFontSize,
   maxWidth,
   radius,
   breakpoints,
-  container: css(
-    {
-      maxWidth,
-      margin: '0 auto',
-    },
-    breakpoints({
-      padding: [`0 2rem`, `0 2rem`, `0`],
-    })
-  ),
+  container,
   padding: css(
     breakpoints({
       paddingLeft: [`2rem`, `2rem`, 0],

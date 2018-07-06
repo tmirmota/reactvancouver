@@ -12,7 +12,7 @@ injectGlobal`
   html,
   body {
     height: 100%;
-    position: realtive;
+    position: relative;
     background-color: ${Colors.grey.light};
     margin: 0;
     padding: 0;

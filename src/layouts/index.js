@@ -2,12 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
-import Header from '../components/header'
 import Footer from '../components/footer'
+import Nav from '../components/Nav'
 import './index.css'
 import 'styles/Global'
+import { container } from 'styles/Layout'
+import styled from 'react-emotion'
 
+<<<<<<< HEAD
 const Layout = ({ children, title }) => (
+=======
+const Container = styled.div(container)
+const Layout = ({ children, data }) => (
+>>>>>>> ria-styles
   <div>
     <Helmet
       title={title}
@@ -16,6 +23,7 @@ const Layout = ({ children, title }) => (
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
+<<<<<<< HEAD
     <Header siteTitle={title} />
     <div
       style={{
@@ -27,6 +35,10 @@ const Layout = ({ children, title }) => (
     >
       {children}
     </div>
+=======
+    <Nav siteTitle={data.site.siteMetadata.title} />
+    <Container>{children()}</Container>
+>>>>>>> ria-styles
     <Footer />
   </div>
 )
