@@ -4,11 +4,12 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import moment from 'moment'
 import { RVText, RVCard, RVBox } from 'components'
+import Layout from 'layouts'
 
 const Job = ({ id, title, companyName }) => (
   <RVCard mb2>
     <Link to={`/job/${id}`}>
-      <RVText tag='h3'>{title}</RVText>
+      <RVText tag="h3">{title}</RVText>
       <RVText>{companyName}</RVText>
     </Link>
   </RVCard>
@@ -33,10 +34,12 @@ const Jobs = ({ data }) => {
   }
 
   return (
-    <RVBox>
-      <RVText tag='h2'>Jobs</RVText>
-      {activeJobs.map(({ node }) => <Job key={node.id} {...node} />)}
-    </RVBox>
+    <Layout>
+      <RVBox>
+        <RVText tag="h2">Jobs</RVText>
+        {activeJobs.map(({ node }) => <Job key={node.id} {...node} />)}
+      </RVBox>
+    </Layout>
   )
 }
 

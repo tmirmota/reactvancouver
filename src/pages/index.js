@@ -40,7 +40,7 @@ const renderStats = data => {
   )
 
   return (
-    <RVGrid grid3 alignCenter>
+    <RVGrid columns3 alignCenter>
       <RVText>
         <MeetupGroup>
           {group => (
@@ -72,33 +72,35 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-    <div>
-      <h1>Join one of the biggest tech communities in Vancouver</h1>
-      {renderStats(data)}
-      <SponsorsSection sponsors={data.allContentfulSponsors.edges} />
-      <RVGrid grid2>
-        <RVCard>
-          <RVText subheading>Upcoming Event</RVText>
-          <RVText>{upcomingEvent.node.title}</RVText>
-          <RVButton>Get Tickets</RVButton>
-        </RVCard>
-        <RVCard>
-          <RVText subheading>Past Events</RVText>
-          {data.allContentfulEvents.edges.map(({ node: event }) => {
-            if (moment(event.startDate).isAfter()) {
-              return null
-            }
-            return (
-              <Link to={`/event/${event.id}`} key={event.id}>
-                <RVText mb1>{event.title}</RVText>
-              </Link>
-            )
-          })}
-        </RVCard>
-      </RVGrid>
-    </div>
+      <div>
+        <h1>Join one of the biggest tech communities in Vancouver</h1>
+        {renderStats(data)}
+        <SponsorsSection sponsors={data.allContentfulSponsors.edges} />
+        <RVGrid
+          columns2
+          gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']}
+        >
+          <RVCard>
+            <RVText subheading>Upcoming Event</RVText>
+            <RVText>{upcomingEvent.node.title}</RVText>
+            <RVButton>Get Tickets</RVButton>
+          </RVCard>
+          <RVCard>
+            <RVText subheading>Past Events</RVText>
+            {data.allContentfulEvents.edges.map(({ node: event }) => {
+              if (moment(event.startDate).isAfter()) {
+                return null
+              }
+              return (
+                <Link to={`/event/${event.id}`} key={event.id}>
+                  <RVText mb1>{event.title}</RVText>
+                </Link>
+              )
+            })}
+          </RVCard>
+        </RVGrid>
+      </div>
     </Layout>
-
   )
 }
 

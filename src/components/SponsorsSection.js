@@ -7,7 +7,7 @@ export default class SponsorsSection extends React.Component {
     const { sponsors } = this.props
     return (
       <div className={classes.container}>
-        <RVText subheading>Produly sponsored by</RVText>
+        <RVText subheading>Proudly sponsored by</RVText>
         <div className={classes.sponsorRow}>
           {sponsors
             ? sponsors.map(sponsor => {

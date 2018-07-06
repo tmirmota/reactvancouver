@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import Layout from 'layouts'
 
 const Speaker = ({ id, firstName, lastName }) => (
   <Link to={`/speaker/${id}`}>
@@ -21,10 +22,12 @@ const Speakers = ({ data }) => {
   }
 
   return (
-    <div>
-      <h2>Speakers</h2>
-      {speakers.map(({ node }) => <Speaker key={node.id} {...node} />)}
-    </div>
+    <Layout>
+      <div>
+        <h2>Speakers</h2>
+        {speakers.map(({ node }) => <Speaker key={node.id} {...node} />)}
+      </div>
+    </Layout>
   )
 }
 

@@ -1,15 +1,18 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
+import Layout from 'layouts'
 
 const TalkTemplate = ({ data }) => {
   const sponsor = data.contentfulTalks
   const { title } = sponsor
 
   return (
-    <div>
-      <h4>{title}</h4>
-    </div>
+    <Layout>
+      <div>
+        <h4>{title}</h4>
+      </div>
+    </Layout>
   )
 }
 

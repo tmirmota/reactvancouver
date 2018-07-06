@@ -1,16 +1,23 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
+import Layout from 'layouts'
 
 const JobTemplate = ({ data }) => {
   const job = data.contentfulJobs
   const { title, description } = job
 
   return (
-    <div>
-      <h4>{title}</h4>
-      <div dangerouslySetInnerHTML={{__html: description.childMarkdownRemark.html}} />
-    </div>
+    <Layout>
+      <div>
+        <h4>{title}</h4>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: description.childMarkdownRemark.html,
+          }}
+        />
+      </div>
+    </Layout>
   )
 }
 
@@ -22,18 +29,20 @@ JobTemplate.propTypes = {
 
 export const pageQuery = graphql`
   query jobQuery($id: String!) {
-  contentfulJobs(id: {eq: $id}) {
-    title
-    location {
-      lon
-      lat
-    }
-    urlToJobApplication
-    companyName
-    companyWebsiteUrl
-    description {
-      childMarkdownRemark {html}
+    contentfulJobs(id: { eq: $id }) {
+      title
+      location {
+        lon
+        lat
+      }
+      urlToJobApplication
+      companyName
+      companyWebsiteUrl
+      description {
+        childMarkdownRemark {
+          html
+        }
+      }
     }
   }
-}
 `

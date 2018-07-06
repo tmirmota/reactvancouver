@@ -5,6 +5,7 @@ import { RVText, RVBox, RVAvatar, RVCard, RVIcon, RVGrid } from 'components'
 import { Layout, Colors } from 'styles'
 import Img from 'gatsby-image'
 import Link from 'gatsby-link'
+import LayoutComponent from 'layouts'
 
 const styles = {
   container: {
@@ -92,47 +93,49 @@ const EventTemplate = ({ data }) => {
   const nextEvent = getEvent({ id, events, type: 'next' })
 
   return (
-    <div>
-      <RVGrid grid3>
-        {renderEventLink({ event: previousEvent, label: 'Previous' })}
-        <RVText subheading tag="h1" mx-auto>
-          {title}
-        </RVText>
-        {renderEventLink({
-          event: nextEvent,
-          textProps: { alignRight: true },
-          label: 'Next',
-        })}
-      </RVGrid>
+    <LayoutComponent>
+      <div>
+        <RVGrid columns3>
+          {renderEventLink({ event: previousEvent, label: 'Previous' })}
+          <RVText subheading tag="h1" mx-auto>
+            {title}
+          </RVText>
+          {renderEventLink({
+            event: nextEvent,
+            textProps: { alignRight: true },
+            label: 'Next',
+          })}
+        </RVGrid>
 
-      <RVBox style={styles.container} p3 mb3>
-        <RVText subheading>Talks</RVText>
-        {talks ? (
-          talks.map(talk => renderTalk(talk))
-        ) : (
-          <RVText>No Talks</RVText>
-        )}
-      </RVBox>
-
-      <RVBox>
-        <RVText flex center subheading>
-          Proudly sponsored by
-        </RVText>
-        <RVBox style={styles.container} flex spaceEvenly itemsCenter p3 mb3>
-          {sponsors ? (
-            sponsors.map(sponsor => renderSponsor(sponsor))
+        <RVBox style={styles.container} p3 mb3>
+          <RVText subheading>Talks</RVText>
+          {talks ? (
+            talks.map(talk => renderTalk(talk))
           ) : (
-            <RVText>No Sponsors</RVText>
+            <RVText>No Talks</RVText>
           )}
         </RVBox>
 
-        <Link to="/">
-          <RVText flex center>
-            Become a Sponsor
+        <RVBox>
+          <RVText flex center subheading>
+            Proudly sponsored by
           </RVText>
-        </Link>
-      </RVBox>
-    </div>
+          <RVBox style={styles.container} flex spaceEvenly itemsCenter p3 mb3>
+            {sponsors ? (
+              sponsors.map(sponsor => renderSponsor(sponsor))
+            ) : (
+              <RVText>No Sponsors</RVText>
+            )}
+          </RVBox>
+
+          <Link to="/">
+            <RVText flex center>
+              Become a Sponsor
+            </RVText>
+          </Link>
+        </RVBox>
+      </div>
+    </LayoutComponent>
   )
 }
 
