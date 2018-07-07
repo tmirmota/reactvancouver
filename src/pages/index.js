@@ -7,6 +7,7 @@ import {
   RVGrid,
   RVCard,
   RVText,
+  RVInput,
   RVButton,
   MeetupGroup,
   SponsorsSection,
@@ -40,7 +41,7 @@ const renderStats = data => {
   )
 
   return (
-    <RVGrid columns3 alignCenter>
+    <RVGrid columns3 alignCenter mb2>
       <RVText>
         <MeetupGroup>
           {group => (
@@ -59,7 +60,7 @@ const renderStats = data => {
       </RVBox>
       <RVBox>
         <RVText title>{totalEvents.toLocaleString()}</RVText>
-        <RVText subheading>Meetups since Jan 2016</RVText>
+        <RVText subheading>Events since Jan 2016</RVText>
       </RVBox>
     </RVGrid>
   )
@@ -69,28 +70,32 @@ const IndexPage = ({ data }) => {
   const upcomingEvent = data.allContentfulEvents.edges.filter(
     ({ node: event }) => moment(event.startDate).isAfter()
   )[0]
+  const pastEvents = data.allContentfulEvents.edges.filter(({ node: event }) =>
+    moment(event.startDate).isBefore()
+  )
 
   return (
     <Layout>
       <div>
-        <h1>Join one of the biggest tech communities in Vancouver</h1>
+        <RVText tag="h1" my4 alignCenter>
+          Join one of the biggest tech communities in Vancouver
+        </RVText>
         {renderStats(data)}
         <SponsorsSection sponsors={data.allContentfulSponsors.edges} />
+
         <RVGrid
-          columns2
           gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']}
+          my4
         >
-          <RVCard>
+          <RVCard p3>
             <RVText subheading>Upcoming Event</RVText>
-            <RVText>{upcomingEvent.node.title}</RVText>
-            <RVButton>Get Tickets</RVButton>
+            <RVText mb2>{upcomingEvent.node.title}</RVText>
+            <RVButton style={{ alignSelf: 'bottom' }}>Get Tickets</RVButton>
           </RVCard>
-          <RVCard>
+          <RVCard p3>
             <RVText subheading>Past Events</RVText>
-            {data.allContentfulEvents.edges.map(({ node: event }) => {
-              if (moment(event.startDate).isAfter()) {
-                return null
-              }
+            {pastEvents.map(({ node: event }, index) => {
+              if (index >= 8) return null
               return (
                 <Link to={`/event/${event.id}`} key={event.id}>
                   <RVText mb1>{event.title}</RVText>
@@ -98,6 +103,24 @@ const IndexPage = ({ data }) => {
               )
             })}
           </RVCard>
+        </RVGrid>
+
+        <RVGrid gridTemplateColumns={['repeat(1,1fr)', '1fr 2fr', '1fr 2fr']}>
+          <div>
+            <RVText heading>Contact Us</RVText>
+            <RVText>or email us at: </RVText>
+          </div>
+          <form>
+            <RVBox flex>
+              <RVInput placeholder="Name" />
+              <RVInput placeholder="Email" />
+            </RVBox>
+
+            <RVInput tag="textarea" placeholder="Message" rows="9" />
+            <RVButton style={{ float: 'right' }} mt2>
+              Submit
+            </RVButton>
+          </form>
         </RVGrid>
       </div>
     </Layout>

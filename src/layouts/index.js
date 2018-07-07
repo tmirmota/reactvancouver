@@ -25,7 +25,7 @@ const Layout = ({ children, title }) => (
 )
 
 Layout.propTypes = {
-  children: PropTypes.func,
+  title: PropTypes.string,
 }
 
 export default Layout

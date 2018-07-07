@@ -94,4 +94,20 @@ injectGlobal`
     white-space: nowrap;
   }
 
+  @-webkit-keyframes autofill {
+    to {
+      color: ${Colors.grey.calc(70)};
+      background: transparent;
+    }
+}
+
+  input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+  }
+
+  textarea {
+    resize: none;
+  }
+
 `

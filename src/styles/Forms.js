@@ -27,18 +27,35 @@ export const text = css({
   fontWeight: Typography.font.weight.bold,
 })
 
+export const inputWrapper = css({
+  background: Colors.grey.white,
+  borderRadius: Layout.radius,
+  flex: '1 1 auto',
+  margin: Layout.calcSpace(1),
+})
+
 export const input = css(text, {
   backgroundColor: 'transparent',
-  border: 'none',
+  borderWidth: 2,
+  borderColor: 'transparent',
+  borderStyle: 'solid',
+  borderRadius: Layout.radius,
   boxSizing: 'border-box',
   display: 'block',
-  margin: `0 0 ${Layout.calcSpace(2)} 0`,
+  outline: 'none',
   padding: `${Layout.calcSpace(2)} ${Layout.calcSpace(4)}`,
   transition: `border-color 0.2s ease`,
+  width: '100%',
 
   ':disabled': {
     backgroundColor: 'transparent',
     cursor: 'not-allowed',
+  },
+  ':hover': {
+    borderColor: Colors.grey.calc(80),
+  },
+  ':focus, :active': {
+    borderColor: Colors.theme.secondary,
   },
 })
 
@@ -47,4 +64,5 @@ export default {
   placeholder,
   text,
   input,
+  inputWrapper,
 }
