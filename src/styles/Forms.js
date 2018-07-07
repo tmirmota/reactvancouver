@@ -44,6 +44,7 @@ export const input = css(text, {
   display: 'block',
   outline: 'none',
   padding: `${Layout.calcSpace(2)} ${Layout.calcSpace(4)}`,
+  resize: 'none',
   transition: `border-color 0.2s ease`,
   width: '100%',
 

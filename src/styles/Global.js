@@ -106,8 +106,4 @@ injectGlobal`
     -webkit-animation-fill-mode: both;
   }
 
-  textarea {
-    resize: none;
-  }
-
 `

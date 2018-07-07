@@ -12,6 +12,7 @@ import {
   MeetupGroup,
   SponsorsSection,
 } from 'components'
+import { contactUsSection } from 'pages/contact-us'
 import Layout from 'layouts'
 
 const renderStats = data => {
@@ -105,23 +106,26 @@ const IndexPage = ({ data }) => {
           </RVCard>
         </RVGrid>
 
-        <RVGrid gridTemplateColumns={['repeat(1,1fr)', '1fr 2fr', '1fr 2fr']}>
-          <div>
-            <RVText heading>Contact Us</RVText>
-            <RVText>or email us at: </RVText>
-          </div>
-          <form>
-            <RVBox flex>
-              <RVInput placeholder="Name" />
-              <RVInput placeholder="Email" />
-            </RVBox>
+        <RVBox mb4>
+          <RVText heading alignCenter>
+            About Us
+          </RVText>
 
-            <RVInput tag="textarea" placeholder="Message" rows="9" />
-            <RVButton style={{ float: 'right' }} mt2>
-              Submit
-            </RVButton>
-          </form>
-        </RVGrid>
+          <RVText>
+            Join us if you are developers who want to learn more about React
+            and/or is looking for a job, recruiters who want to hire React
+            developers, or entrepreneurs who wish to meet new people. We host
+            monthly meetups which starts off with presentations about
+            React/React Native, and end with social time for people to get to
+            know each other. We also host workshops and hack nights for people
+            from any level of React/React Native. The organizers are React
+            enthusiasts who have been working with React since its early stages.
+            This community has been, and will continue to be one of the best
+            ReactJS meetups in Vancouver.
+          </RVText>
+        </RVBox>
+
+        {contactUsSection}
       </div>
     </Layout>
   )

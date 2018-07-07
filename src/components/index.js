@@ -16,10 +16,8 @@ export { default as RVNav } from './RVNav'
 export { default as RVSwitch } from './RVSwitch'
 export { default as RVAvatar } from './RVAvatar'
 export { default as RVText } from './RVText'
-export { default as RVForm } from './RVForm'
 export { default as RVImage } from './RVImage'
 export { default as RVInput } from './RVInput'
-export { default as RVLabel } from './RVLabel'
 
 // Sections
 export { default as SponsorsSection } from './SponsorsSection'

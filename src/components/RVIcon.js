@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'gatsby-link'
 import { RVBox } from 'components'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -9,11 +10,13 @@ library.add(fab)
 
 export default class RVIcon extends React.Component {
   render() {
-    const { fontAwesomeIcon, ...otherProps } = this.props
+    const { href, fontAwesomeIcon, ...otherProps } = this.props
     return (
-      <RVBox {...otherProps}>
-        <FontAwesomeIcon {...fontAwesomeIcon} />
-      </RVBox>
+      <a href={href} target="_blank">
+        <RVBox {...otherProps}>
+          <FontAwesomeIcon {...fontAwesomeIcon} />
+        </RVBox>
+      </a>
     )
   }
 }

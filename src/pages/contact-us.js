@@ -1,31 +1,29 @@
 import React from 'react'
-import { RVForm, RVInput, RVLabel, RVCard } from 'components'
+import { RVBox, RVInput, RVGrid, RVText, RVButton } from 'components'
 import Layout from 'layouts'
+
+export const contactUsSection = (
+  <RVGrid gridTemplateColumns={['repeat(1,1fr)', '1fr 2fr', '1fr 2fr']} mb3>
+    <div>
+      <RVText heading>Contact Us</RVText>
+      <RVText>or email us at: </RVText>
+    </div>
+    <form>
+      <RVBox flex>
+        <RVInput placeholder="Name" />
+        <RVInput placeholder="Email" />
+      </RVBox>
+
+      <RVInput tag="textarea" placeholder="Message" rows="9" />
+      <RVButton style={{ float: 'right' }} mt2>
+        Submit
+      </RVButton>
+    </form>
+  </RVGrid>
+)
 
 export default class ContactUs extends React.Component {
   render() {
-    return (
-      <Layout>
-        <div>
-          <RVForm>
-            <RVInput />
-          </RVForm>
-          <form>
-            <RVCard mb2 p0 pt2>
-              <RVLabel htmlFor="company">Company Name</RVLabel>
-              <RVInput id="company" placeholder="ReactJS Vancouver" />
-            </RVCard>
-            <RVCard mb2 p0 pt2>
-              <RVLabel htmlFor="email">Email Address</RVLabel>
-              <RVInput id="email" placeholder="name@email.com" />
-            </RVCard>
-            <RVCard mb2 p0 pt2>
-              <RVLabel htmlFor="message">Message</RVLabel>
-              <RVInput id="message" placeholder="Enter your message here" />
-            </RVCard>
-          </form>
-        </div>
-      </Layout>
-    )
+    return <Layout>{contactUsSection}</Layout>
   }
 }

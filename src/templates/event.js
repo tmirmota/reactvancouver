@@ -15,7 +15,7 @@ const styles = {
 }
 
 const renderTalk = talk => (
-  <RVCard key={talk.id} mb3>
+  <RVCard key={talk.id} mb3 p3>
     <RVText subheading>{talk.title}</RVText>
     {talk.description && (
       <RVBox
@@ -25,32 +25,43 @@ const renderTalk = talk => (
       />
     )}
 
-    {talk.speakers.map(speaker => (
-      <RVBox key={speaker.id} flex>
-        <RVAvatar img={{ fixed: speaker.profilePicture.fixed }} mr2 />
-        <RVBox>
-          <RVText>
-            {speaker.firstName} {speaker.lastName}
-          </RVText>
-          <RVText mb1>
-            {speaker.jobTitle} at {speaker.company}
-          </RVText>
-          <RVBox flex>
-            <RVIcon
-              fontAwesomeIcon={{
-                icon: ['fab', 'github'],
-              }}
-              mr1
-            />
-            <RVIcon
-              fontAwesomeIcon={{
-                icon: ['fab', 'linkedin'],
-              }}
-            />
+    {talk.speakers &&
+      talk.speakers.map(speaker => (
+        <RVBox key={speaker.id} flex>
+          {speaker.profilePicture && (
+            <RVAvatar img={{ fixed: speaker.profilePicture.fixed }} mr2 />
+          )}
+          <RVBox>
+            <RVText>
+              {speaker.firstName} {speaker.lastName}
+            </RVText>
+            <RVText mb1>
+              {speaker.jobTitle}
+              {speaker.company && ' at '}
+              {speaker.company}
+            </RVText>
+            <RVBox flex>
+              {speaker.githubLink && (
+                <RVIcon
+                  href={speaker.githubLink}
+                  fontAwesomeIcon={{
+                    icon: ['fab', 'github'],
+                  }}
+                  mr1
+                />
+              )}
+              {speaker.linkedInLink && (
+                <RVIcon
+                  href={speaker.linkedInLink}
+                  fontAwesomeIcon={{
+                    icon: ['fab', 'linkedin'],
+                  }}
+                />
+              )}
+            </RVBox>
           </RVBox>
         </RVBox>
-      </RVBox>
-    ))}
+      ))}
   </RVCard>
 )
 
@@ -95,7 +106,7 @@ const EventTemplate = ({ data }) => {
   return (
     <LayoutComponent>
       <div>
-        <RVGrid columns3>
+        <RVGrid columns3 mt3>
           {renderEventLink({ event: previousEvent, label: 'Previous' })}
           <RVText subheading tag="h1" mx-auto>
             {title}
@@ -175,6 +186,8 @@ export const pageQuery = graphql`
           lastName
           jobTitle
           company
+          githubLink
+          linkedInLink
           profilePicture {
             fixed(height: 50, width: 50) {
               ...GatsbyContentfulFixed

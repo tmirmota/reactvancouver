@@ -66,11 +66,17 @@ export default {
   itemsCenter: css({
     alignItems: 'center',
   }),
+  itemsBottom: css({
+    alignItems: 'baseline',
+  }),
   spaceAround: css({
     justifyContent: 'space-around',
   }),
   spaceEvenly: css({
     justifyContent: 'space-evenly',
+  }),
+  spaceBetween: css({
+    justifyContent: 'space-between',
   }),
   alignRight: css({
     textAlign: 'right',

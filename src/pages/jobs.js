@@ -7,7 +7,7 @@ import { RVText, RVCard, RVBox } from 'components'
 import Layout from 'layouts'
 
 const Job = ({ id, title, companyName }) => (
-  <RVCard mb2>
+  <RVCard mb2 px3 pt2 pb3>
     <Link to={`/job/${id}`}>
       <RVText tag="h3">{title}</RVText>
       <RVText>{companyName}</RVText>
@@ -36,7 +36,12 @@ const Jobs = ({ data }) => {
   return (
     <Layout>
       <RVBox>
-        <RVText tag="h2">Jobs</RVText>
+        <RVBox flex itemsBottom spaceBetween>
+          <RVText tag="h2">Jobs</RVText>
+          <a href="https://tmirmota.seeker.company/submit/job" target="_blank">
+            Post a job
+          </a>
+        </RVBox>
         {activeJobs.map(({ node }) => <Job key={node.id} {...node} />)}
       </RVBox>
     </Layout>
