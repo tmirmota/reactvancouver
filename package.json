@@ -16,6 +16,7 @@
     "gatsby-image": "next",
     "gatsby-link": "next",
     "gatsby-plugin-emotion": "next",
+    "gatsby-plugin-google-analytics": "^1.0.31",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-source-contentful": "next",
     "gatsby-transformer-remark": "next",
