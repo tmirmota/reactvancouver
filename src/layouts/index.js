@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { Nav, Footer } from 'components'
 
 import './index.css'
@@ -11,13 +11,13 @@ import styled from 'react-emotion'
 const Container = styled.div(container)
 const Layout = ({ children, title }) => (
   <div>
-    <Helmet
-      title={title}
-      meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
-      ]}
-    />
+    <Helmet>
+      <title>{title}</title>
+      <link
+        href="https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css"
+        rel="stylesheet"
+      />
+    </Helmet>
     <Nav siteTitle={title} />
     <Container>{children}</Container>
     <Footer />

@@ -3,16 +3,35 @@ import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import moment from 'moment'
-import { RVText, RVCard, RVBox } from 'components'
+import { Colors } from 'styles'
+import { RVGrid, RVText, RVCard, RVBox, RVImage } from 'components'
 import Layout from 'layouts'
 
-const Job = ({ id, title, companyName }) => (
-  <RVCard mb2 px3 pt2 pb3>
-    <Link to={`/job/${id}`}>
-      <RVText tag="h3">{title}</RVText>
-      <RVText>{companyName}</RVText>
-    </Link>
-  </RVCard>
+const Job = ({ id, title, companyName, logo, startDate }) => (
+  <Link to={`/job/${id}`}>
+    <RVCard mb2 px3 pt2 pb3>
+      <RVGrid
+        gridTemplateColumns={[
+          'repeat(1,1fr)',
+          '100px 3fr 1fr',
+          '100px 3fr 1fr',
+        ]}
+      >
+        <RVBox style={{ alignSelf: 'center' }}>
+          {logo ? <RVImage fixed={logo.fixed} /> : null}
+        </RVBox>
+        <RVBox>
+          <RVText tag="h3">{title}</RVText>
+          <RVText label style={{ color: Colors.grey.medium }}>
+            {companyName}
+          </RVText>
+        </RVBox>
+        <RVBox style={{ alignSelf: 'end', color: Colors.grey.medium }}>
+          Posted: {moment(startDate).format('MMM Do, Y')}
+        </RVBox>
+      </RVGrid>
+    </RVCard>
+  </Link>
 )
 
 // An active job starts before now and ends after now
@@ -37,7 +56,7 @@ const Jobs = ({ data }) => {
     <Layout>
       <RVBox>
         <RVBox flex itemsBottom spaceBetween>
-          <RVText tag="h2">Jobs</RVText>
+          <RVText tag="h2">Job Opportunities</RVText>
           <a href="https://tmirmota.seeker.company/submit/job" target="_blank">
             Post a job
           </a>
@@ -68,6 +87,11 @@ export const query = graphql`
           location {
             lon
             lat
+          }
+          logo {
+            fixed(width: 100) {
+              ...GatsbyContentfulFixed
+            }
           }
         }
       }

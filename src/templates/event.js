@@ -139,11 +139,14 @@ const EventTemplate = ({ data }) => {
             )}
           </RVBox>
 
-          <Link to="/">
-            <RVText flex center>
+          <RVText flex center>
+            <a
+              href="https://reactvancouver.typeform.com/to/D7KXgd"
+              target="_blank"
+            >
               Become a Sponsor
-            </RVText>
-          </Link>
+            </a>
+          </RVText>
         </RVBox>
       </div>
     </LayoutComponent>

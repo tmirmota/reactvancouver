@@ -36,7 +36,9 @@ export default class SponsorsSection extends React.Component {
             alt=""
           />
         </div>
-        <RVText link>Become a sponsor</RVText>
+        <a href="https://reactvancouver.typeform.com/to/D7KXgd" target="_blank">
+          Become a sponsor
+        </a>
       </div>
     )
   }
