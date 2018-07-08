@@ -117,6 +117,7 @@ exports.createPages = ({ actions, graphql }) => {
                   edges {
                     node {
                       id
+                      slug
                     }
                   }
                 }
@@ -129,15 +130,18 @@ exports.createPages = ({ actions, graphql }) => {
 
             const jobTemplate = path.resolve(`./src/templates/job.js`)
 
-            result.data.allContentfulJobs.edges.forEach(({ node }) => {
-              createPage({
-                path: `/job/${node.id}`,
-                component: slash(jobTemplate),
-                context: {
-                  id: node.id,
-                },
-              })
-            })
+            result.data.allContentfulJobs.edges.forEach(
+              ({ node: { id, slug } }) => {
+                createPage({
+                  path: `/job/${slug}`,
+                  component: slash(jobTemplate),
+                  context: {
+                    id,
+                    slug,
+                  },
+                })
+              }
+            )
           })
         })
 

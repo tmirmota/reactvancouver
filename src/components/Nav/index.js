@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'react-emotion'
 import { RVButton, RVNav, RVLogo, RVLink } from 'components'
 import { navStyles } from './style'
+import Link from 'gatsby-link'
 
 const Nav = ({ siteTitle, className }) => {
   return (
@@ -26,7 +27,9 @@ const Nav = ({ siteTitle, className }) => {
         <RVLink pr2 inline navigate="/jobs">
           Jobs
         </RVLink>
-        <RVButton navigate="/">Get Involved</RVButton>
+        <Link to="/contact-us">
+          <RVButton>Get Involved</RVButton>
+        </Link>
       </section>
     </RVNav>
   )

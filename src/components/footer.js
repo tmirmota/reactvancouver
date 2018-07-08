@@ -3,11 +3,8 @@ import { RVBox, RVLink, RVText, RVGrid, RVIcon } from 'components'
 
 const links = [
   { navigate: '/jobs', title: 'Jobs' },
-  { navigate: '/talks', title: 'Talks' },
   { navigate: '/events', title: 'Events' },
   { navigate: '/speakers', title: 'Speakers' },
-  { navigate: '/sponsors', title: 'Sponsors' },
-  { navigate: '/about-us', title: 'About Us' },
   { navigate: '/contact-us', title: 'Contact Us' },
 ]
 

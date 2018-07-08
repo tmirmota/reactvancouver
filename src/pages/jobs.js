@@ -7,8 +7,8 @@ import { Colors } from 'styles'
 import { RVGrid, RVText, RVCard, RVBox, RVImage } from 'components'
 import Layout from 'layouts'
 
-const Job = ({ id, title, companyName, logo, startDate }) => (
-  <Link to={`/job/${id}`}>
+const Job = ({ id, slug, title, companyName, logo, startDate }) => (
+  <Link to={`/job/${slug}`}>
     <RVCard mb2 px3 pt2 pb3>
       <RVGrid
         gridTemplateColumns={[
@@ -79,6 +79,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slug
           title
           companyName
           urlToJobApplication
