@@ -80,7 +80,7 @@ const renderEventLink = ({ event, textProps, label }) => {
   if (!event) return <div />
 
   return (
-    <Link to={`/event/${event.node.id}`}>
+    <Link to={`/event/${event.node.slug}`}>
       <RVText {...textProps}>
         {label}: {event.node.title}
       </RVText>
@@ -133,7 +133,7 @@ EventTemplate.propTypes = {
 }
 
 export const pageQuery = graphql`
-  query eventQuery($id: String!) {
+  query eventQuery($slug: String!) {
     allContentfulEvents(
       limit: 1000
       sort: { fields: [startDate], order: DESC }
@@ -141,12 +141,14 @@ export const pageQuery = graphql`
       edges {
         node {
           id
+          slug
           title
         }
       }
     }
-    contentfulEvents(id: { eq: $id }) {
+    contentfulEvents(slug: { eq: $slug }) {
       id
+      slug
       title
       talks {
         id

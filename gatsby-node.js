@@ -47,6 +47,7 @@ exports.createPages = ({ actions, graphql }) => {
                   edges {
                     node {
                       id
+                      slug
                     }
                   }
                 }
@@ -59,15 +60,18 @@ exports.createPages = ({ actions, graphql }) => {
 
             const eventTemplate = path.resolve(`./src/templates/event.js`)
 
-            result.data.allContentfulEvents.edges.forEach(({ node }) => {
-              createPage({
-                path: `/event/${node.id}`,
-                component: slash(eventTemplate),
-                context: {
-                  id: node.id,
-                },
-              })
-            })
+            result.data.allContentfulEvents.edges.forEach(
+              ({ node: { slug, id } }) => {
+                createPage({
+                  path: `/event/${slug}`,
+                  component: slash(eventTemplate),
+                  context: {
+                    id,
+                    slug,
+                  },
+                })
+              }
+            )
           })
         })
 

@@ -6,6 +6,7 @@ export default class RVBox extends React.Component {
   render() {
     const {
       className: classNameProp,
+      boxRef,
       style: customStyle,
       tag: Component,
       ...props
@@ -28,7 +29,7 @@ export default class RVBox extends React.Component {
 
     const className = css(style)
 
-    return <Component {...restProps} className={className} />
+    return <Component {...restProps} className={className} ref={boxRef} />
   }
 }
 

@@ -20,9 +20,9 @@ const styles = {
   },
 }
 
-const Event = ({ id, startDate }) => (
+const Event = ({ id, slug, startDate }) => (
   <li key={id}>
-    <Link to={`/event/${id}`}>{startDate}</Link>
+    <Link to={`/event/${slug}`}>{startDate}</Link>
   </li>
 )
 
@@ -59,7 +59,7 @@ class Events extends React.Component {
             </RVBox>
 
             <RVCard px3 py2>
-              <Link to={`/event/${event.id}`}>
+              <Link to={`/event/${event.slug}`}>
                 <RVText tag="h3">{event.title}</RVText>
               </Link>
               {event.description && (
@@ -151,6 +151,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slug
           title
           description {
             childMarkdownRemark {

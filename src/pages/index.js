@@ -102,6 +102,9 @@ class IndexPage extends React.Component {
         .addTo(this.map)
     }
   }
+  scrollToEvents = () => {
+    this.events.scrollIntoView({ behavior: 'smooth' })
+  }
   render() {
     const { data } = this.props
     const upcomingEvent = data.allContentfulEvents.edges.filter(
@@ -120,7 +123,7 @@ class IndexPage extends React.Component {
               Join one of the biggest tech communities in Vancouver
             </RVText>
 
-            <RVButton>Upcoming Meetup</RVButton>
+            <RVButton onClick={this.scrollToEvents}>Upcoming Meetup</RVButton>
           </RVBox>
 
           {renderStats(data)}
@@ -128,6 +131,7 @@ class IndexPage extends React.Component {
 
           <RVGrid
             gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']}
+            boxRef={node => (this.events = node)}
             my4
           >
             <RVCard p3>
@@ -141,7 +145,7 @@ class IndexPage extends React.Component {
               {pastEvents.map(({ node: event }, index) => {
                 if (index >= 8) return null
                 return (
-                  <Link to={`/event/${event.id}`} key={event.id}>
+                  <Link to={`/event/${event.slug}`} key={event.id}>
                     <RVText mb1>{event.title}</RVText>
                   </Link>
                 )
@@ -193,6 +197,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slug
           title
           venueName
           venueAddress

@@ -12,6 +12,7 @@ export const base = css({
   borderStyle: 'solid',
   backgroundColor: Colors.theme.primary,
   color: Colors.grey.white,
+  outline: 'none',
 })
 
 export const outline = css({
