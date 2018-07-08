@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
+import Img from 'gatsby-image'
 import moment from 'moment'
 import {
   RVBox,
@@ -10,6 +11,7 @@ import {
   RVButton,
   MeetupGroup,
   Sponsors,
+  Speaker,
   ContactUs,
 } from 'components'
 import Layout from 'layouts'
@@ -79,6 +81,10 @@ class IndexPage extends React.Component {
       ({ node: event }) => moment(event.startDate).isBefore()
     )
     const sponsors = data.allContentfulSponsors.edges
+    const talks = data.allContentfulTalks.edges || []
+    const speakers = talks.map(({ node: talk }) => talk.speakers[0])
+    const assets = data.allContentfulAsset.edges || []
+    const rvIdenticon = assets && assets[0].node.fixed
 
     return (
       <Layout>
@@ -117,6 +123,30 @@ class IndexPage extends React.Component {
               })}
             </RVCard>
           </RVGrid>
+
+          <RVBox mb4>
+            <RVText heading mx-auto alignCenter style={{ maxWidth: 700 }}>
+              Latest speakers who share their 💞 and knowledge
+            </RVText>
+            <RVGrid columns4>
+              {speakers.map(speaker => (
+                <Speaker
+                  key={speaker.id}
+                  fixed={
+                    speaker.profilePicture
+                      ? speaker.profilePicture.fixed
+                      : rvIdenticon
+                  }
+                  {...speaker}
+                />
+              ))}
+            </RVGrid>
+            <RVBox alignCenter>
+              <Link to="/speakers">
+                <RVButton>Discover All Speakers</RVButton>
+              </Link>
+            </RVBox>
+          </RVBox>
 
           <RVBox mb4>
             <RVText heading alignCenter>
@@ -179,6 +209,46 @@ export const query = graphql`
             fixed(width: 200) {
               ...GatsbyContentfulFixed
             }
+          }
+        }
+      }
+    }
+    allContentfulTalks(
+      limit: 4
+      sort: { fields: [date], order: DESC }
+      filter: { date: { ne: null } }
+    ) {
+      edges {
+        node {
+          id
+          speakers {
+            id
+            firstName
+            lastName
+            jobTitle
+            company
+            profilePicture {
+              fixed(width: 200, height: 200) {
+                ...GatsbyContentfulFixed
+              }
+            }
+            talks {
+              id
+              title
+              date(formatString: "MMM Do, Y")
+            }
+          }
+        }
+      }
+    }
+    allContentfulAsset(
+      filter: { id: { eq: "675b334c-a913-5403-bbe3-e354fdca27d9" } }
+    ) {
+      edges {
+        node {
+          id
+          fixed(width: 200, height: 200) {
+            ...GatsbyContentfulFixed
           }
         }
       }

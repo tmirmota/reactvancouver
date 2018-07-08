@@ -16,8 +16,10 @@ export { default as RVAvatar } from './RVAvatar'
 export { default as RVText } from './RVText'
 export { default as RVImage } from './RVImage'
 export { default as RVInput } from './RVInput'
+export { default as RVBadge } from './RVBadge'
 
 // Other
 export { default as MeetupGroup } from './MeetupGroup'
 export { default as Sponsors } from './Sponsors'
 export { default as ContactUs } from './ContactUs'
+export { default as Speaker } from './Speaker'

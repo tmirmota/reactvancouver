@@ -75,6 +75,7 @@ export default {
     boxShadow: Shadows.shadow,
     border: Shadows.border,
     backgroundColor: Colors.grey.white,
+    overflow: 'hidden',
   }),
   calcSpace: units => `${units * step}rem`,
 }
