@@ -23,6 +23,6 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-remark',
-    'gatsby-plugin-eslint',
+    // 'gatsby-plugin-eslint',
   ],
 }

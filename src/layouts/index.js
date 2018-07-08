@@ -13,10 +13,6 @@ const Layout = ({ children, title }) => (
   <div>
     <Helmet>
       <title>{title}</title>
-      <link
-        href="https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css"
-        rel="stylesheet"
-      />
     </Helmet>
     <Nav siteTitle={title} />
     <Container>{children}</Container>

@@ -16,13 +16,13 @@
     "gatsby-image": "next",
     "gatsby-link": "next",
     "gatsby-plugin-emotion": "next",
-    "gatsby-plugin-google-analytics": "^1.0.31",
+    "gatsby-plugin-google-analytics": "next",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-source-contentful": "next",
     "gatsby-transformer-remark": "next",
-    "mapbox-gl": "^0.46.0",
     "moment": "^2.22.2",
     "path": "^0.12.7",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.4",
@@ -42,7 +42,6 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-react": "^7.9.1",
-    "gatsby-plugin-eslint": "^1.0.3",
-    "prop-types": "^15.6.2"
+    "gatsby-plugin-eslint": "^1.0.3"
   }
 }

@@ -8,20 +8,11 @@ import {
   RVCard,
   RVText,
   RVButton,
-  RVImage,
   MeetupGroup,
   Sponsors,
   ContactUs,
 } from 'components'
-import { Layout, Colors } from 'styles'
-import { contactUsSection } from 'pages/contact-us'
-import LayoutComponent from 'layouts'
-import mapboxgl from 'mapbox-gl'
-
-const MAPBOX_ACCESS_TOKEN =
-  'pk.eyJ1IjoidG1pcm1vdGEiLCJhIjoiY2phenpkeHl1MW5xcTJ2bWsxa2J2c3B1NCJ9.VzfA7MRGj7E8mdTSBdA4Rw'
-
-mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN
+import Layout from 'layouts'
 
 const renderStats = data => {
   const talksThisYear = data.allContentfulEvents.edges.reduce(
@@ -76,32 +67,6 @@ const renderStats = data => {
 }
 
 class IndexPage extends React.Component {
-  componentDidMount() {
-    const upcomingEvent = this.props.data.allContentfulEvents.edges.filter(
-      ({ node: event }) => moment(event.startDate).isAfter()
-    )[0]
-    const { lat, lon } = upcomingEvent.node.location
-    if (upcomingEvent.node.location) {
-      this.map = new mapboxgl.Map({
-        container: this.mapContainer,
-        style: 'mapbox://styles/mapbox/streets-v10',
-        center: [lon, lat],
-        zoom: 12,
-      })
-
-      new mapboxgl.Marker({ color: Colors.theme.primary })
-        .setLngLat([lon, lat])
-        .setPopup(
-          new mapboxgl.Popup({ offset: 30 }) // add popups
-            .setHTML(
-              `<h3>${upcomingEvent.node.venueName}</h3><p>${
-                upcomingEvent.node.title
-              }<br />${upcomingEvent.node.venueAddress}</p>`
-            )
-        )
-        .addTo(this.map)
-    }
-  }
   scrollToEvents = () => {
     this.events.scrollIntoView({ behavior: 'smooth' })
   }
@@ -116,7 +81,7 @@ class IndexPage extends React.Component {
     const sponsors = data.allContentfulSponsors.edges
 
     return (
-      <LayoutComponent>
+      <Layout>
         <div>
           <RVBox alignCenter my4>
             <RVText tag="h1" title mb3>
@@ -153,13 +118,6 @@ class IndexPage extends React.Component {
             </RVCard>
           </RVGrid>
 
-          <RVCard style={{ overflow: 'hidden' }} mb4>
-            <div
-              ref={el => (this.mapContainer = el)}
-              style={{ width: '100%', height: 450 }}
-            />
-          </RVCard>
-
           <RVBox mb4>
             <RVText heading alignCenter>
               About Us
@@ -181,7 +139,7 @@ class IndexPage extends React.Component {
 
           <ContactUs />
         </div>
-      </LayoutComponent>
+      </Layout>
     )
   }
 }
