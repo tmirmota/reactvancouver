@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Layout from 'layouts'
+import { RVContainer } from 'components'
 
 const TalkTemplate = ({ data }) => {
   const sponsor = data.contentfulTalks
@@ -9,9 +10,9 @@ const TalkTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <div>
+      <RVContainer pt8>
         <h4>{title}</h4>
-      </div>
+      </RVContainer>
     </Layout>
   )
 }

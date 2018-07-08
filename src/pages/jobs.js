@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import moment from 'moment'
-import { RVText, RVCard, RVBox } from 'components'
+import { RVText, RVCard, RVBox, RVContainer } from 'components'
 import Layout from 'layouts'
 
 const Job = ({ id, title, companyName }) => (
@@ -35,15 +35,19 @@ const Jobs = ({ data }) => {
 
   return (
     <Layout>
-      <RVBox>
+      <RVContainer pt8>
         <RVBox flex itemsBottom spaceBetween>
           <RVText tag="h2">Jobs</RVText>
-          <a href="https://tmirmota.seeker.company/submit/job" target="_blank">
+          <a
+            href="https://tmirmota.seeker.company/submit/job"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Post a job
           </a>
         </RVBox>
         {activeJobs.map(({ node }) => <Job key={node.id} {...node} />)}
-      </RVBox>
+      </RVContainer>
     </Layout>
   )
 }
