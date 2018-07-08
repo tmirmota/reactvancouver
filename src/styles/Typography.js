@@ -15,7 +15,7 @@ export default {
   font,
   title: css({
     fontFamily: font.title,
-    fontSize: Layout.calcSpace(9),
+    fontSize: Layout.calcSpace(12),
     fontWeight: font.weight.black,
     margin: `0 0 ${Layout.calcSpace(4)} 0`,
   }),

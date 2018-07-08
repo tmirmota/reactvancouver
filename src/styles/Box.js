@@ -14,6 +14,7 @@ const sizingMap = {
   2: 2,
   3: 4,
   4: 8,
+  8: 16,
   '-auto': 'auto',
 }
 

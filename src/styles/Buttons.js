@@ -1,6 +1,7 @@
 import { css } from 'emotion'
 import Layout from './Layout'
 import Colors from './Colors'
+import Shadows from './Shadows'
 
 export const base = css({
   margin: 0,
@@ -10,12 +11,13 @@ export const base = css({
   cursor: 'pointer',
   borderWidth: '1px',
   borderStyle: 'solid',
-  backgroundColor: Colors.theme.primary,
+  borderColor: Colors.theme.primary,
+  background: Colors.theme.primary,
   color: Colors.grey.white,
 })
 
 export const outline = css({
-  backgroundColor: Colors.grey.light,
+  backgroundColor: 'transparent',
   borderColor: Colors.theme.primary,
   color: Colors.theme.primary,
 })
@@ -27,6 +29,10 @@ export const link = css({
   fontStyle: 'italic',
   textTransform: 'none',
   outline: 'none',
+})
+
+export const halo = css({
+  boxShadow: Shadows.halo,
 })
 
 const calcSize = size => {
@@ -65,4 +71,5 @@ export default {
   large,
   outline,
   link,
+  halo,
 }

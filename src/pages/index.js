@@ -3,13 +3,14 @@ import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
 import moment from 'moment'
 import {
-  RVBox,
-  RVGrid,
-  RVCard,
-  RVText,
-  RVInput,
-  RVButton,
+  Hero,
   MeetupGroup,
+  RVBox,
+  RVButton,
+  RVCard,
+  RVGrid,
+  RVInput,
+  RVText,
   SponsorsSection,
 } from 'components'
 import { contactUsSection } from 'pages/contact-us'
@@ -76,57 +77,49 @@ const IndexPage = ({ data }) => {
   )
 
   return (
-    <Layout>
-      <div>
-        <RVText tag="h1" my4 alignCenter>
-          Join one of the biggest tech communities in Vancouver
+    <Layout theme="dark">
+      <Hero />
+      {renderStats(data)}
+      <SponsorsSection sponsors={data.allContentfulSponsors.edges} />
+
+      <RVGrid gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']} my4>
+        <RVCard p3>
+          <RVText subheading>Upcoming Event</RVText>
+          <RVText mb2>{upcomingEvent.node.title}</RVText>
+          <RVButton style={{ alignSelf: 'bottom' }}>Get Tickets</RVButton>
+        </RVCard>
+        <RVCard p3>
+          <RVText subheading>Past Events</RVText>
+          {pastEvents.map(({ node: event }, index) => {
+            if (index >= 8) return null
+            return (
+              <Link to={`/event/${event.id}`} key={event.id}>
+                <RVText mb1>{event.title}</RVText>
+              </Link>
+            )
+          })}
+        </RVCard>
+      </RVGrid>
+
+      <RVBox mb4>
+        <RVText heading alignCenter>
+          About Us
         </RVText>
-        {renderStats(data)}
-        <SponsorsSection sponsors={data.allContentfulSponsors.edges} />
 
-        <RVGrid
-          gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']}
-          my4
-        >
-          <RVCard p3>
-            <RVText subheading>Upcoming Event</RVText>
-            <RVText mb2>{upcomingEvent.node.title}</RVText>
-            <RVButton style={{ alignSelf: 'bottom' }}>Get Tickets</RVButton>
-          </RVCard>
-          <RVCard p3>
-            <RVText subheading>Past Events</RVText>
-            {pastEvents.map(({ node: event }, index) => {
-              if (index >= 8) return null
-              return (
-                <Link to={`/event/${event.id}`} key={event.id}>
-                  <RVText mb1>{event.title}</RVText>
-                </Link>
-              )
-            })}
-          </RVCard>
-        </RVGrid>
+        <RVText>
+          Join us if you are developers who want to learn more about React
+          and/or is looking for a job, recruiters who want to hire React
+          developers, or entrepreneurs who wish to meet new people. We host
+          monthly meetups which starts off with presentations about React/React
+          Native, and end with social time for people to get to know each other.
+          We also host workshops and hack nights for people from any level of
+          React/React Native. The organizers are React enthusiasts who have been
+          working with React since its early stages. This community has been,
+          and will continue to be one of the best ReactJS meetups in Vancouver.
+        </RVText>
+      </RVBox>
 
-        <RVBox mb4>
-          <RVText heading alignCenter>
-            About Us
-          </RVText>
-
-          <RVText>
-            Join us if you are developers who want to learn more about React
-            and/or is looking for a job, recruiters who want to hire React
-            developers, or entrepreneurs who wish to meet new people. We host
-            monthly meetups which starts off with presentations about
-            React/React Native, and end with social time for people to get to
-            know each other. We also host workshops and hack nights for people
-            from any level of React/React Native. The organizers are React
-            enthusiasts who have been working with React since its early stages.
-            This community has been, and will continue to be one of the best
-            ReactJS meetups in Vancouver.
-          </RVText>
-        </RVBox>
-
-        {contactUsSection}
-      </div>
+      {contactUsSection}
     </Layout>
   )
 }
