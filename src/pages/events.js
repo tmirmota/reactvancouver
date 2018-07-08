@@ -157,7 +157,7 @@ export const query = graphql`
               html
             }
           }
-          startDate
+          startDate(formatString: "MMMM Do, Y")
           talks {
             id
             title

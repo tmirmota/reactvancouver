@@ -7,7 +7,7 @@ import { Layout } from 'styles'
 //TODO: Add theme provider
 const RVNav = ({ children, className, ...otherProps }) => {
   return (
-    <RVBox {...otherProps}>
+    <RVBox tag="header" {...otherProps}>
       <nav className={className}>{children}</nav>
     </RVBox>
   )

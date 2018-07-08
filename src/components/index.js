@@ -1,6 +1,5 @@
-export { default as Footer } from './footer'
-export { default as MeetupGroup } from './MeetupGroup'
 export { default as Nav } from './Nav'
+export { default as Footer } from './Footer'
 
 // RV Components
 export { default as RVBox } from './RVBox'
@@ -20,3 +19,6 @@ export { default as RVInput } from './RVInput'
 
 // Sections
 export { default as SponsorsSection } from './SponsorsSection'
+
+// Other
+export { default as MeetupGroup } from './MeetupGroup'

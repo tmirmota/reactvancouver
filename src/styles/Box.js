@@ -57,6 +57,9 @@ export default {
   flex: css({
     display: 'flex',
   }),
+  column: css({
+    flexDirection: 'column',
+  }),
   inline: css({
     display: 'inline-flex',
   }),
@@ -84,4 +87,5 @@ export default {
   alignCenter: css({
     textAlign: 'center',
   }),
+  container: Layout.container,
 }
