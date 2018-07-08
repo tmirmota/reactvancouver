@@ -1,18 +1,19 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
-import { RVText, RVBox, RVAvatar, RVCard, RVIcon, RVGrid } from 'components'
+import {
+  RVText,
+  RVBox,
+  RVAvatar,
+  RVCard,
+  RVIcon,
+  RVGrid,
+  Sponsors,
+} from 'components'
 import { Layout, Colors } from 'styles'
 import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 import LayoutComponent from 'layouts'
-
-const styles = {
-  container: {
-    background: Colors.grey.lightDark,
-    borderRadius: Layout.radius,
-  },
-}
 
 const renderTalk = talk => (
   <RVCard key={talk.id} mb3 p3>
@@ -65,14 +66,6 @@ const renderTalk = talk => (
   </RVCard>
 )
 
-const renderSponsor = sponsor => (
-  <RVBox key={sponsor.id}>
-    <RVBox tag="a" href={sponsor.companyUrl} target="_blank" mr2>
-      {sponsor.companyLogoDark && <Img fixed={sponsor.companyLogoDark.fixed} />}
-    </RVBox>
-  </RVBox>
-)
-
 const getEvent = ({ id, events, type }) => {
   const index = events.findIndex(event => event.node.id === id)
   const changeIndex = type === 'next' ? -1 : 1
@@ -118,7 +111,7 @@ const EventTemplate = ({ data }) => {
           })}
         </RVGrid>
 
-        <RVBox style={styles.container} p3 mb3>
+        <RVBox grey radius p3 mb3>
           <RVText subheading>Talks</RVText>
           {talks ? (
             talks.map(talk => renderTalk(talk))
@@ -127,27 +120,7 @@ const EventTemplate = ({ data }) => {
           )}
         </RVBox>
 
-        <RVBox>
-          <RVText flex center subheading>
-            Proudly sponsored by
-          </RVText>
-          <RVBox style={styles.container} flex spaceEvenly itemsCenter p3 mb3>
-            {sponsors ? (
-              sponsors.map(sponsor => renderSponsor(sponsor))
-            ) : (
-              <RVText>No Sponsors</RVText>
-            )}
-          </RVBox>
-
-          <RVText flex center>
-            <a
-              href="https://reactvancouver.typeform.com/to/D7KXgd"
-              target="_blank"
-            >
-              Become a Sponsor
-            </a>
-          </RVText>
-        </RVBox>
+        <Sponsors sponsors={sponsors} />
       </div>
     </LayoutComponent>
   )

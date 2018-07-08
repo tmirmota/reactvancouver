@@ -8,12 +8,14 @@ import {
   RVCard,
   RVText,
   RVButton,
+  RVImage,
   MeetupGroup,
-  SponsorsSection,
+  Sponsors,
+  ContactUs,
 } from 'components'
-import { Colors } from 'styles'
+import { Layout, Colors } from 'styles'
 import { contactUsSection } from 'pages/contact-us'
-import Layout from 'layouts'
+import LayoutComponent from 'layouts'
 import mapboxgl from 'mapbox-gl'
 
 const MAPBOX_ACCESS_TOKEN =
@@ -52,7 +54,7 @@ const renderStats = data => {
       <RVText>
         <MeetupGroup>
           {group => (
-            <RVText title>
+            <RVText heading>
               {group ? group.members.toLocaleString() : 'A few'}
             </RVText>
           )}
@@ -62,11 +64,11 @@ const renderStats = data => {
 
       {/* https://github.com/gatsbyjs/gatsby/issues/4033 */}
       <RVBox>
-        <RVText title>{talksThisYear.toLocaleString()}</RVText>
+        <RVText heading>{talksThisYear.toLocaleString()}</RVText>
         <RVText subheading>Talks This Year</RVText>
       </RVBox>
       <RVBox>
-        <RVText title>{totalEvents.toLocaleString()}</RVText>
+        <RVText heading>{totalEvents.toLocaleString()}</RVText>
         <RVText subheading>Events since Jan 2016</RVText>
       </RVBox>
     </RVGrid>
@@ -108,15 +110,21 @@ class IndexPage extends React.Component {
     const pastEvents = data.allContentfulEvents.edges.filter(
       ({ node: event }) => moment(event.startDate).isBefore()
     )
+    const sponsors = data.allContentfulSponsors.edges
 
     return (
-      <Layout>
+      <LayoutComponent>
         <div>
-          <RVText tag="h1" my4 alignCenter>
-            Join one of the biggest tech communities in Vancouver
-          </RVText>
+          <RVBox alignCenter my4>
+            <RVText tag="h1" title mb3>
+              Join one of the biggest tech communities in Vancouver
+            </RVText>
+
+            <RVButton>Upcoming Meetup</RVButton>
+          </RVBox>
+
           {renderStats(data)}
-          <SponsorsSection sponsors={data.allContentfulSponsors.edges} />
+          <Sponsors sponsors={sponsors} />
 
           <RVGrid
             gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']}
@@ -167,9 +175,9 @@ class IndexPage extends React.Component {
             </RVText>
           </RVBox>
 
-          {contactUsSection}
+          <ContactUs />
         </div>
-      </Layout>
+      </LayoutComponent>
     )
   }
 }
@@ -199,16 +207,14 @@ export const query = graphql`
         }
       }
     }
-    allContentfulSponsors(limit: 1000) {
+    allContentfulSponsors(limit: 1000, filter: { featured: { eq: true } }) {
       edges {
         node {
           id
           companyName
           companyLogoDark {
-            resolutions(width: 200) {
-              width
-              height
-              src
+            fixed(width: 200) {
+              ...GatsbyContentfulFixed
             }
           }
         }

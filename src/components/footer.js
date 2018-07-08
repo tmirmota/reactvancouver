@@ -23,16 +23,19 @@ const Footer = () => (
         <RVText mb2 subheading>
           ReactVancouver
         </RVText>
-
         {links.map(({ navigate, title }) => (
-          <RVLink navigate={navigate}>{title}</RVLink>
+          <RVLink key={title} navigate={navigate}>
+            {title}
+          </RVLink>
         ))}
 
         <RVText mt1>2018</RVText>
       </RVBox>
+
       <RVBox style={{ alignSelf: 'end', justifySelf: 'end' }}>
         {icons.map(({ icon, link }) => (
           <RVIcon
+            key={icon}
             href={link}
             fontAwesomeIcon={{ icon: ['fab', icon], size: '3x' }}
             m2

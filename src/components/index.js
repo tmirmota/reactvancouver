@@ -17,8 +17,7 @@ export { default as RVText } from './RVText'
 export { default as RVImage } from './RVImage'
 export { default as RVInput } from './RVInput'
 
-// Sections
-export { default as SponsorsSection } from './SponsorsSection'
-
 // Other
 export { default as MeetupGroup } from './MeetupGroup'
+export { default as Sponsors } from './Sponsors'
+export { default as ContactUs } from './ContactUs'

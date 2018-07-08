@@ -1,4 +1,4 @@
-import { Layout } from 'styles'
+import { Layout, Colors } from 'styles'
 import { css } from 'emotion'
 
 const space = size => {
@@ -88,4 +88,10 @@ export default {
     textAlign: 'center',
   }),
   container: Layout.container,
+  radius: css({
+    borderRadius: Layout.radius,
+  }),
+  grey: css({
+    background: Colors.grey.lightDark,
+  }),
 }
