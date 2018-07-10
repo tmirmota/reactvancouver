@@ -27,6 +27,7 @@ export default class RVBox extends React.Component {
 
     style.push(customStyle)
 
+    // TODO: Don't create new class every re-render
     const className = css(style)
 
     return <Component {...restProps} className={className} ref={boxRef} />

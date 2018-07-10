@@ -57,7 +57,11 @@ const Jobs = ({ data }) => {
       <RVBox>
         <RVBox flex itemsBottom spaceBetween>
           <RVText tag="h2">Job Opportunities</RVText>
-          <a href="https://tmirmota.seeker.company/submit/job" target="_blank">
+          <a
+            href="https://tmirmota.seeker.company/submit/job"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Post a job
           </a>
         </RVBox>
