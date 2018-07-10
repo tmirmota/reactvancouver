@@ -13,7 +13,7 @@ const Speaker = ({
   talks = [],
 }) => (
   <RVBox>
-    <Img fixed={fixed} imgStyle={{ borderRadius: 6 }} />
+    {fixed && <Img fixed={fixed} imgStyle={{ borderRadius: 6 }} />}
     <RVBox className={styles.nameBox}>
       <RVText subheading>
         {firstName} {lastName}
@@ -32,33 +32,37 @@ const Speaker = ({
 )
 
 const _renderTalks = talks => {
-  const lastTalk = sortBy(talks, 'date').reverse()[0]
-  const { id, title, date } = lastTalk
-  return (
-    <RVBox key={id} className={styles.talkBox}>
-      <RVBadge className={styles.talkDateBadge}>{date}</RVBadge>
-      <RVText className={styles.titleText}>{title}</RVText>
-      {talks.length > 1 && (
-        <RVText>
-          And {talks.length - 1} more talk{talks.length > 2 && 's'}...
-        </RVText>
-      )}
-    </RVBox>
-  )
+  const sortedTalks = sortBy(talks, 'date').reverse()
+  return sortedTalks.map(_renderTalk)
 }
+
+const _renderTalk = ({ id, title, date }) => (
+  <RVBox key={id} className={styles.talkBox}>
+    <RVBadge className={styles.talkDateBadge}>{date || 'Unknown'}</RVBadge>
+    <RVText className={styles.titleText}>{title}</RVText>
+  </RVBox>
+)
 
 const styles = {
   nameBox: css({
     height: 80,
   }),
   titleBox: css({
-    height: 60,
+    minHeight: 50,
+    marginBottom: 10,
   }),
   talkBox: css({
-    minHeight: 120,
+    minHeight: 90,
+    marginBottom: 10,
   }),
   talkDateBadge: css({
-    marginBottom: 20,
+    float: 'left',
+    marginBottom: 10,
+    height: 30,
+    fontSize: '60%',
+    minWidth: 105,
+    textAlign: 'center',
+    marginRight: 10,
   }),
   titleText: {
     minHeight: 50,

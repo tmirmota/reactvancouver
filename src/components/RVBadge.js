@@ -11,7 +11,7 @@ const styles = {
 
 const RVBadge = props => {
   const { className: customClassName, ...other } = props
-  const className = [customClassName, styles]
+  const className = [styles, customClassName]
   return <RVBox className={className} px2 py1 {...other} />
 }
 
