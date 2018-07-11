@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
-import Img from 'gatsby-image'
+import { get } from 'lodash'
 import moment from 'moment'
 import {
   RVBox,
@@ -84,7 +84,7 @@ class IndexPage extends React.Component {
     const talks = data.allContentfulTalks.edges || []
     const speakers = talks.map(({ node: talk }) => talk.speakers[0])
     const assets = data.allContentfulAsset.edges || []
-    const rvIdenticon = assets && assets[0].node.fixed
+    const rvIdenticon = assets && get(assets[0], 'node.fixed')
 
     return (
       <Layout>

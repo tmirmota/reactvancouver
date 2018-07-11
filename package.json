@@ -12,7 +12,7 @@
     "emotion": "^9.2.4",
     "emotion-server": "^9.2.4",
     "facepaint": "^1.2.1",
-    "gatsby": "next",
+    "gatsby": "^2.0.0-beta.23",
     "gatsby-image": "next",
     "gatsby-link": "next",
     "gatsby-plugin-emotion": "next",
