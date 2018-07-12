@@ -4,13 +4,17 @@ import Link from 'gatsby-link'
 import { get } from 'lodash'
 import moment from 'moment'
 import {
+  Hero,
   RVBox,
-  RVGrid,
-  RVCard,
-  RVText,
   RVButton,
+  RVCard,
+  RVContainer,
+  RVGrid,
+  RVText,
+  RVInput,
   MeetupGroup,
   Sponsors,
+  
   Speaker,
   ContactUs,
 } from 'components'
@@ -38,40 +42,42 @@ const renderStats = data => {
       }
       return sum
     },
-    // 6 Meetups that are not in Contentful
-    6
+0
   )
 
   return (
-    <RVGrid columns3 alignCenter mb2>
-      <RVText>
-        <MeetupGroup>
-          {group => (
-            <RVText heading>
-              {group ? group.members.toLocaleString() : 'A few'}
-            </RVText>
-          )}
-        </MeetupGroup>
-        <RVText subheading>React Lovers in Vancouver</RVText>
-      </RVText>
+    <RVContainer my8>
+      <RVGrid columns3 alignCenter mb2>
+        <RVText>
+          <MeetupGroup>
+            {group => (
+              <RVText title>
+                {group ? group.members.toLocaleString() : 'A few'}
+              </RVText>
+            )}
+          </MeetupGroup>
+          <RVText subheading>React Lovers in Vancouver</RVText>
+        </RVText>
 
-      {/* https://github.com/gatsbyjs/gatsby/issues/4033 */}
-      <RVBox>
-        <RVText heading>{talksThisYear.toLocaleString()}</RVText>
-        <RVText subheading>Talks This Year</RVText>
-      </RVBox>
-      <RVBox>
-        <RVText heading>{totalEvents.toLocaleString()}</RVText>
-        <RVText subheading>Events since Jan 2016</RVText>
-      </RVBox>
-    </RVGrid>
+        {/* https://github.com/gatsbyjs/gatsby/issues/4033 */}
+        <RVBox>
+          <RVText title>{talksThisYear.toLocaleString()}</RVText>
+          <RVText subheading>Talks This Year</RVText>
+        </RVBox>
+        <RVBox>
+          <RVText title>{totalEvents.toLocaleString()}</RVText>
+          <RVText subheading>Events since Jan 2016</RVText>
+        </RVBox>
+      </RVGrid>
+    </RVContainer>
   )
 }
 
-class IndexPage extends React.Component {
+export default class IndexPage extends React.Component {
   scrollToEvents = () => {
     this.events.scrollIntoView({ behavior: 'smooth' })
   }
+
   render() {
     const { data } = this.props
     const upcomingEvent = data.allContentfulEvents.edges.filter(
@@ -87,18 +93,11 @@ class IndexPage extends React.Component {
     const rvIdenticon = assets && get(assets[0], 'node.fixed')
 
     return (
-      <Layout>
-        <div>
-          <RVBox alignCenter my4>
-            <RVText tag="h1" title mb3>
-              Join one of the biggest tech communities in Vancouver
-            </RVText>
-
-            <RVButton onClick={this.scrollToEvents}>Upcoming Meetup</RVButton>
-          </RVBox>
-
-          {renderStats(data)}
-          <Sponsors sponsors={sponsors} />
+      <Layout theme="dark">
+        <Hero/>
+        {renderStats(data)}
+        <RVContainer>
+          <Sponsors sponsors={sponsors}/>
 
           <RVGrid
             gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']}
@@ -167,14 +166,13 @@ class IndexPage extends React.Component {
             </RVText>
           </RVBox>
 
-          <ContactUs />
-        </div>
+          <ContactUs/>
+        </RVContainer>
       </Layout>
     )
   }
 }
 
-export default IndexPage
 
 export const query = graphql`
   query homeQuery {

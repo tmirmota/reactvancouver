@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import moment from 'moment'
 import { Colors } from 'styles'
-import { RVGrid, RVText, RVCard, RVBox, RVImage } from 'components'
+import { RVContainer, RVGrid, RVText, RVCard, RVBox, RVImage } from 'components'
 import Layout from 'layouts'
 
 const Job = ({ id, slug, title, companyName, logo, startDate }) => (
@@ -54,7 +54,7 @@ const Jobs = ({ data }) => {
 
   return (
     <Layout>
-      <RVBox>
+      <RVContainer pt8>
         <RVBox flex itemsBottom spaceBetween>
           <RVText tag="h2">Job Opportunities</RVText>
           <a
@@ -66,7 +66,7 @@ const Jobs = ({ data }) => {
           </a>
         </RVBox>
         {activeJobs.map(({ node }) => <Job key={node.id} {...node} />)}
-      </RVBox>
+      </RVContainer>
     </Layout>
   )
 }

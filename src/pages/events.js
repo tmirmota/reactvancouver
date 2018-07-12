@@ -3,13 +3,14 @@ import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import {
-  RVCard,
-  RVText,
-  RVButton,
-  RVGrid,
-  RVBox,
   RVAvatar,
+  RVBox,
+  RVButton,
+  RVCard,
+  RVContainer,
+  RVGrid,
   RVIcon,
+  RVText,
 } from 'components'
 import Layout from 'layouts'
 
@@ -43,7 +44,7 @@ class Events extends React.Component {
 
     return (
       <Layout>
-        <div>
+        <RVContainer pt8>
           <RVBox flex>
             <RVBox tag="ul" style={styles.list}>
               {events.map(({ node }, index) => {
@@ -130,7 +131,7 @@ class Events extends React.Component {
               projects or tips to share.
             </RVText>
           </RVCard>
-        </div>
+        </RVContainer>
       </Layout>
     )
   }

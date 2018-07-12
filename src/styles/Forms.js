@@ -56,7 +56,7 @@ export const input = css(text, {
     borderColor: Colors.grey.calc(80),
   },
   ':focus, :active': {
-    borderColor: Colors.theme.secondary,
+    borderColor: Colors.theme.primary,
   },
 })
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
-import { RVGrid, Speaker } from 'components'
+import { RVGrid, RVContainer, Speaker } from 'components'
 import Layout from 'layouts'
 
 const Speakers = ({ data }) => {
@@ -12,7 +12,7 @@ const Speakers = ({ data }) => {
   }
   return (
     <Layout>
-      <div>
+      <RVContainer pt8>
         <h2>Speakers</h2>
         <RVGrid columns4>
           {speakers.map(({ node: speaker }) => (
@@ -23,7 +23,7 @@ const Speakers = ({ data }) => {
             />
           ))}
         </RVGrid>
-      </div>
+      </RVContainer>
     </Layout>
   )
 }

@@ -8,6 +8,7 @@ import {
   RVCard,
   RVIcon,
   RVGrid,
+  RVContainer,
   Sponsors,
 } from 'components'
 import { Layout, Colors } from 'styles'
@@ -98,7 +99,7 @@ const EventTemplate = ({ data }) => {
 
   return (
     <LayoutComponent>
-      <div>
+      <RVContainer pt8>
         <RVGrid columns3 mt3>
           {renderEventLink({ event: previousEvent, label: 'Previous' })}
           <RVText subheading tag="h1" mx-auto>
@@ -121,7 +122,7 @@ const EventTemplate = ({ data }) => {
         </RVBox>
 
         <Sponsors sponsors={sponsors} />
-      </div>
+      </RVContainer>
     </LayoutComponent>
   )
 }

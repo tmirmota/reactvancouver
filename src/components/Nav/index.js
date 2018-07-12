@@ -5,31 +5,32 @@ import { RVButton, RVNav, RVLogo, RVLink } from 'components'
 import { navStyles } from './style'
 import Link from 'gatsby-link'
 
+const NavLogo = ({ navigate, title }) => (
+  <RVLogo
+    inline
+    itemsCenter
+    style={{ height: '100%' }}
+    navigate={navigate}
+    title={title}
+  />
+)
+const NavLink = ({ navigate, children }) => (
+  <RVLink pr2 inline itemsCenter style={{ height: '100%' }} navigate={navigate}>
+    {children}
+  </RVLink>
+)
+
 const Nav = ({ siteTitle, className }) => {
   return (
-    <RVNav py2 className={className}>
+    <RVNav className={className}>
       <section>
-        <RVLogo
-          inline
-          itemsCenter
-          style={{ height: '100%' }}
-          navigate="/"
-          title={siteTitle}
-        />
+        <NavLogo title={siteTitle} navigate="/" />
       </section>
       <section>
-        <RVLink pr2 inline navigate="/events">
-          Events
-        </RVLink>
-        <RVLink pr2 inline navigate="/speakers">
-          Speakers
-        </RVLink>
-        <RVLink pr2 inline navigate="/jobs">
-          Jobs
-        </RVLink>
-        <Link to="/contact-us">
-          <RVButton>Get Involved</RVButton>
-        </Link>
+        <NavLink navigate="/events">Events</NavLink>
+        <NavLink navigate="/speakers">Speakers</NavLink>
+        <NavLink navigate="/jobs">Jobs</NavLink>
+        <RVButton navigate="/contact-us">Get Involved</RVButton>
       </section>
     </RVNav>
   )
@@ -38,13 +39,14 @@ Nav.propTypes = {
   siteTitle: PropTypes.string,
   className: PropTypes.string,
   /*
-    [default] To use on light backgrounds
-  */
-  light: PropTypes.bool,
+    light: [default] to use on light backgrounds
+    dark: to use on dark backgrounds
+ */
+  theme: PropTypes.oneOf(['light', 'dark']),
   /*
-     To use on dark backgrounds
+    Navigation height is offset on <Main /> in the layout
   */
-  dark: PropTypes.bool,
+  height: PropTypes.string,
 }
 
 export default styled(Nav)(navStyles)
