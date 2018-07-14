@@ -4,6 +4,7 @@ export { default as Hero } from './Hero'
 
 // RV Components
 export { default as RVAvatar } from './RVAvatar'
+export { default as RVBadge } from './RVBadge'
 export { default as RVBox } from './RVBox'
 export { default as RVButton } from './RVButton'
 export { default as RVCard } from './RVCard'
@@ -18,10 +19,9 @@ export { default as RVLogo } from './RVLogo'
 export { default as RVNav } from './RVNav'
 export { default as RVSwitch } from './RVSwitch'
 export { default as RVText } from './RVText'
-export { default as RVBadge } from './RVBadge'
 
 // Other
+export { default as ContactUs } from './ContactUs'
 export { default as MeetupGroup } from './MeetupGroup'
 export { default as Sponsors } from './Sponsors'
-export { default as ContactUs } from './ContactUs'
 export { default as Speaker } from './Speaker'

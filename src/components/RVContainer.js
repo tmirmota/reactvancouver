@@ -1,14 +1,11 @@
 import React from 'react'
 import { RVBox } from 'components'
-import { container } from 'styles/Layout'
-import styled from 'react-emotion'
+import { Layout } from 'styles'
+import classNames from 'classnames'
 
-const Container = styled.div(container)
-
-const RVContainer = ({ className, children, ...otherProps }) => (
-  <RVBox {...otherProps}>
-    <Container className={className}>{children}</Container>
-  </RVBox>
-)
+const RVContainer = ({ className: classNameProp, ...otherProps }) => {
+  const className = classNames(Layout.container, classNameProp)
+  return <RVBox className={className} {...otherProps} />
+}
 
 export default RVContainer

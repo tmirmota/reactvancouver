@@ -2,12 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { Nav, Footer } from 'components'
+import styled from 'react-emotion'
 
+// Global Styles
 import './index.css'
 import 'styles/Global'
 
 const navHeight = '4rem'
-import styled from 'react-emotion'
+
 const Main = styled.main({
   minHeight: '100vw',
   marginTop: `-${navHeight}`,

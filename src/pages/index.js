@@ -14,7 +14,6 @@ import {
   RVInput,
   MeetupGroup,
   Sponsors,
-  
   Speaker,
   ContactUs,
 } from 'components'
@@ -42,7 +41,7 @@ const renderStats = data => {
       }
       return sum
     },
-0
+    0
   )
 
   return (
@@ -94,11 +93,9 @@ export default class IndexPage extends React.Component {
 
     return (
       <Layout theme="dark">
-        <Hero/>
+        <Hero onClickCTA={this.scrollToEvents} />
         {renderStats(data)}
         <RVContainer>
-          <Sponsors sponsors={sponsors}/>
-
           <RVGrid
             gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']}
             boxRef={node => (this.events = node)}
@@ -122,6 +119,7 @@ export default class IndexPage extends React.Component {
               })}
             </RVCard>
           </RVGrid>
+          <Sponsors sponsors={sponsors} />
 
           <RVBox mb4>
             <RVText heading mx-auto alignCenter style={{ maxWidth: 700 }}>
@@ -166,13 +164,12 @@ export default class IndexPage extends React.Component {
             </RVText>
           </RVBox>
 
-          <ContactUs/>
+          <ContactUs />
         </RVContainer>
       </Layout>
     )
   }
 }
-
 
 export const query = graphql`
   query homeQuery {

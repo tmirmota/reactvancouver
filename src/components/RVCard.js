@@ -1,19 +1,17 @@
 import React from 'react'
-import { css } from 'emotion'
+import PropTypes from 'prop-types'
 import { Layout } from 'styles'
 import { RVBox } from 'components'
-import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
-export default class RVCard extends React.Component {
-  render() {
-    const { className: customClassName, ...props } = this.props
+const RVCard = ({ className: classNameProp, ...otherProps }) => {
+  const className = classNames(Layout.card, classNameProp)
 
-    const className = css([Layout.card, customClassName])
-
-    return <RVBox {...props} className={className} />
-  }
+  return <RVBox className={className} {...otherProps} />
 }
 
 RVCard.propTypes = {
   className: PropTypes.string,
 }
+
+export default RVCard

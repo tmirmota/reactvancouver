@@ -1,16 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import { Images } from 'styles'
 import { RVBox } from 'components'
 
-export default class RVAvatar extends React.Component {
-  render() {
-    const { img, ...otherProps } = this.props
+const RVAvatar = ({ img, ...otherProps }) => (
+  <RVBox {...otherProps}>
+    <Img className={Images.avatar} {...img} />
+  </RVBox>
+)
 
-    return (
-      <RVBox {...otherProps}>
-        <Img className={Images.avatar} {...img} />
-      </RVBox>
-    )
-  }
+RVAvatar.propTypes = {
+  img: PropTypes.object.isRequired,
 }
+
+export default RVAvatar

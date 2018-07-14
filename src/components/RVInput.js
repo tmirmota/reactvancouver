@@ -1,25 +1,23 @@
 import React from 'react'
 import { Forms } from 'styles'
-import { css } from 'emotion'
+import classNames from 'classnames'
 
-export default class RVInput extends React.Component {
-  render() {
-    const {
-      className: customClassName,
-      tag: Component,
-      type,
-      ...other
-    } = this.props
+const RVInput = ({
+  className: classNameProp,
+  tag: Component,
+  type,
+  ...otherProps
+}) => {
+  const className = classNames([Forms.input, classNameProp])
 
-    const className = css([Forms.input, customClassName])
-
-    return (
-      <div className={Forms.inputWrapper}>
-        <Component {...other} type={type} className={className} />
-      </div>
-    )
-  }
+  return (
+    <div className={Forms.inputWrapper}>
+      <Component type={type} className={className} {...otherProps} />
+    </div>
+  )
 }
+
+export default RVInput
 
 RVInput.defaultProps = {
   type: 'text',

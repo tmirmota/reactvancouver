@@ -1,4 +1,4 @@
-import { css } from 'emotion'
+import { css } from 'react-emotion'
 import Layout from './Layout'
 
 export const font = {

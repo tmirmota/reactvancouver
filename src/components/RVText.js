@@ -1,33 +1,25 @@
 import React from 'react'
-import { css } from 'emotion'
 import { Typography } from 'styles'
 import { RVBox } from 'components'
+import classNames from 'classnames'
 
 export default class RVText extends React.Component {
   render() {
-    const { className: customClassName, ...props } = this.props
+    const { className: classNameProp, ...props } = this.props
 
     const restProps = {}
-    const style = [styles.base]
+    const componentClasses = []
 
     Object.keys(props).map(key => {
       if (props[key] === true && Typography[key]) {
-        style.push(Typography[key])
-      } else if (props[key] === true && styles[key]) {
-        style.push(styles[key])
+        componentClasses.push(Typography[key])
       } else {
         restProps[key] = props[key]
       }
     })
 
-    style.push(customClassName)
-
-    const className = css(style)
+    const className = classNames(classNameProp)
 
     return <RVBox {...restProps} className={className} />
   }
-}
-
-const styles = {
-  base: {},
 }

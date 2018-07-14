@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export default class MeetupGroup extends React.Component {
+export default class MeetupGroup extends Component {
   state = {
     group: null,
   }

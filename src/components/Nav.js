@@ -1,9 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'react-emotion'
+import styled, { css } from 'react-emotion'
 import { RVButton, RVNav, RVLogo, RVLink } from 'components'
-import { navStyles } from './style'
-import Link from 'gatsby-link'
+import { Colors } from 'styles'
+
+const styles = {
+  nav: props =>
+    css({
+      display: 'flex',
+      justifyContent: 'space-between',
+      height: props.height || '4rem',
+      zIndex: '100',
+      a: {
+        color:
+          (props.theme === 'light' && Colors.theme.primary) ||
+          (props.theme === 'dark' && Colors.grey.white),
+      },
+    }),
+}
 
 const NavLogo = ({ navigate, title }) => (
   <RVLogo
@@ -49,4 +63,4 @@ Nav.propTypes = {
   height: PropTypes.string,
 }
 
-export default styled(Nav)(navStyles)
+export default styled(Nav)(styles.nav)
