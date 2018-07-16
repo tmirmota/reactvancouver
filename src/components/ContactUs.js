@@ -7,7 +7,13 @@ const ContactUs = () => (
       <RVText heading>Contact Us</RVText>
       <RVText>or email us at: </RVText>
     </div>
-    <form>
+    <form
+      name="contact"
+      method="post"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="bot-field" />
       <RVBox flex>
         <RVInput placeholder="Name" />
         <RVInput placeholder="Email" />
