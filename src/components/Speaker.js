@@ -26,8 +26,7 @@ const Speaker = ({
         {!!company && ` at ${company}`}
       </RVText>
     </RVBox>
-
-    {_renderTalks(talks)}
+    <div className={styles.talksBox}>{_renderTalks(talks)}</div>
   </RVBox>
 )
 
@@ -50,6 +49,14 @@ const styles = {
   titleBox: css({
     minHeight: 50,
     marginBottom: 10,
+  }),
+  talksBox: css({
+    maskImage: 'linear-gradient(to bottom, black 90%, transparent)',
+    overflowX: 'hidden',
+    overflowY: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    maxHeight: 220,
+    '@media (max-width: 420px)': {},
   }),
   talkBox: css({
     minHeight: 90,

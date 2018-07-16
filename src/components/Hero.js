@@ -20,9 +20,11 @@ const styles = {
   }),
   title: css({
     color: Colors.grey.white,
+    maxWidth: 750,
   }),
   description: css({
     color: Colors.grey.white,
+    maxWidth: 750,
   }),
 }
 
@@ -36,20 +38,22 @@ const Hero = ({ onClickCTA, className }) => {
           py2
           pt4
           flex
+          column
+          center
           itemsCenter
           alignCenter
           style={{ height: '100%' }}
         >
-          <RVText tag="h1" my4 heading className={styles.title}>
+          <RVText tag="h1" mb4 heading className={styles.title}>
             Join one of the biggest tech communities in Vancouver
           </RVText>
-          <RVText tag="p" my4 className={styles.description}>
+          <RVText tag="p" mb4 className={styles.description}>
             You’re a developer who wants to learn more about React or is looking
             for a job, a recruiter who wants to find talent, or an entrepreneur
             who wishes to connect with new people? You’re in the right place.
           </RVText>
           <RVButton halo onClick={onClickCTA}>
-            Get your ticket for July meetup
+            July Meetup
           </RVButton>
         </RVContainer>
       </Background>
@@ -57,7 +61,7 @@ const Hero = ({ onClickCTA, className }) => {
   )
 }
 Hero.propTypes = {
-  onClickCTA: PropTypes.object.isRequired,
+  onClickCTA: PropTypes.func.isRequired,
 }
 
 export default styled(Hero)(styles.hero)

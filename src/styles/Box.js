@@ -58,6 +58,9 @@ export default {
   flex: css({
     display: 'flex',
   }),
+  flexWrap: css({
+    flexWrap: 'wrap',
+  }),
   column: css({
     flexDirection: 'column',
   }),

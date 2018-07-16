@@ -5,9 +5,7 @@ import { Buttons } from 'styles'
 import { RVBox } from 'components'
 import { injectStyles } from 'utils'
 
-const RVButton = () => {
-  const { className: classNameProp, ...otherProps } = this.props
-
+const RVButton = ({ className: classNameProp, ...otherProps }) => {
   const className = classNames(Buttons.base, Buttons.medium, classNameProp)
 
   return <RVBox className={className} {...otherProps} />

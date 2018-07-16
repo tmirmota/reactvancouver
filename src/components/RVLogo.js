@@ -2,15 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import styled from 'react-emotion'
-import { RVBox } from 'components'
+import { RVText } from 'components'
 import { Typography } from 'styles'
 
 const RVLogo = ({ className, navigate, title, ...otherProps }) => (
-  <RVBox {...otherProps}>
+  <RVText subheading {...otherProps}>
     <Link className={className} to={navigate} title={title}>
       ReactVancouver
     </Link>
-  </RVBox>
+  </RVText>
 )
 
 RVLogo.propTypes = {

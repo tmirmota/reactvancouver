@@ -97,8 +97,8 @@ export default class IndexPage extends React.Component {
         {renderStats(data)}
         <RVContainer>
           <RVGrid
-            gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']}
             boxRef={node => (this.events = node)}
+            gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']}
             my4
           >
             <RVCard p3>
@@ -119,7 +119,7 @@ export default class IndexPage extends React.Component {
               })}
             </RVCard>
           </RVGrid>
-          <Sponsors sponsors={sponsors} />
+          <Sponsors mb3 sponsors={sponsors} />
 
           <RVBox mb4>
             <RVText heading mx-auto alignCenter style={{ maxWidth: 700 }}>

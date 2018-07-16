@@ -1,12 +1,14 @@
 import React from 'react'
 import Layout from 'layouts'
-import { ContactUs as ContactUsComponent } from 'components'
+import { ContactUs as ContactUsComponent, RVContainer } from 'components'
 
 export default class ContactUs extends React.Component {
   render() {
     return (
       <Layout>
-        <ContactUsComponent />
+        <RVContainer pt8>
+          <ContactUsComponent />
+        </RVContainer>
       </Layout>
     )
   }

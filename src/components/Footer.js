@@ -15,7 +15,13 @@ const icons = [
 
 const Footer = () => (
   <RVBox tag="footer" container py2>
-    <RVGrid columns2>
+    <RVGrid
+      gridTemplateColumns={[
+        'repeat(2, 1fr)',
+        'repeat(2, 1fr)',
+        'repeat(2, 1fr)',
+      ]}
+    >
       <RVBox>
         <RVText mb2 subheading>
           ReactVancouver

@@ -11,7 +11,7 @@ import 'styles/Global'
 const navHeight = '4rem'
 
 const Main = styled.main({
-  minHeight: '100vw',
+  minHeight: `calc(100vh -${navHeight})`,
   marginTop: `-${navHeight}`,
 })
 

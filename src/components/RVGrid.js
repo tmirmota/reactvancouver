@@ -14,7 +14,7 @@ const RVGrid = ({
   const className = classNames(
     Layout.grid.root,
     // TODO: Remove class creation in render
-    css(breakpoints(gridTemplateColumns)),
+    css(breakpoints({ gridTemplateColumns })),
     classNameProp
   )
 

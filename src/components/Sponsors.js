@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import { RVBox, RVText } from 'components'
 import { Layout, Colors } from 'styles'
 
-const Sponsors = ({ sponsors }) => (
-  <RVBox alignCenter>
+const Sponsors = ({ sponsors, ...otherProps }) => (
+  <RVBox alignCenter {...otherProps}>
     <RVText subheading>Proudly sponsored by</RVText>
-    <RVBox flex grey radius spaceEvenly itemsCenter p3 mb3>
+    <RVBox flex flexWrap grey radius spaceEvenly itemsCenter p3 mb3>
       {sponsors ? (
         sponsors.map(sponsor => {
           sponsor = sponsor.node || sponsor
