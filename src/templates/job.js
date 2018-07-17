@@ -23,7 +23,13 @@ const JobTemplate = ({ data }) => {
             }}
           />
           {urlToJobApplication && (
-            <a href={urlToJobApplication}>See Official Posting</a>
+            <a
+              href={urlToJobApplication}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              See Official Posting
+            </a>
           )}
         </RVBox>
       </RVContainer>
