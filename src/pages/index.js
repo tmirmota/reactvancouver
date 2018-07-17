@@ -110,8 +110,7 @@ export default class IndexPage extends React.Component {
             my4
           >
             <RVCard p3>
-              <RVText subheading>Upcoming Event</RVText>
-              <RVText mb2>{upcomingEvent.node.title}</RVText>
+              <RVText subheading>{upcomingEvent.node.title}</RVText>
               {upcomingEvent.node.description && (
                 <div
                   dangerouslySetInnerHTML={{
@@ -155,6 +154,10 @@ export default class IndexPage extends React.Component {
           </RVGrid>
 
           <RVBox mb4>
+            <Sponsors mb3 sponsors={sponsors} />
+          </RVBox>
+
+          <RVBox my8>
             <RVText subheading mx-auto alignCenter style={{ maxWidth: 700 }}>
               Latest speakers
             </RVText>
@@ -177,9 +180,6 @@ export default class IndexPage extends React.Component {
               </Link>
             </RVBox>
           </RVBox>
-          <RVBox mb4>
-            <Sponsors mb3 sponsors={sponsors} />
-          </RVBox>
 
           {/* <RVBox mb4>
             <RVText heading alignCenter>
@@ -200,7 +200,9 @@ export default class IndexPage extends React.Component {
             </RVText>
           </RVBox> */}
 
-          <ContactUs />
+          <section id="contact-us">
+            <ContactUs />
+          </section>
         </RVContainer>
       </Layout>
     )

@@ -55,7 +55,9 @@ const Nav = ({ siteTitle, className }) => {
         <NavLink navigate="/events">Events</NavLink>
         <NavLink navigate="/speakers">Speakers</NavLink>
         <NavLink navigate="/jobs">Jobs</NavLink>
-        <RVButton navigate="/contact-us">Get Involved</RVButton>
+        <NavLink navigate="/#contact-us">
+          <RVButton>Get Involved</RVButton>
+        </NavLink>
       </nav>
     </RVBox>
   )
