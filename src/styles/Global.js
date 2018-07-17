@@ -4,7 +4,6 @@ import Layout from './Layout'
 import Typography from './Typography'
 
 injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900');
   * {
     box-sizing: border-box;
   }

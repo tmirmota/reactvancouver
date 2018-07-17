@@ -15,15 +15,20 @@ const Main = styled.main({
   marginTop: `-${navHeight}`,
 })
 
-const Layout = ({ children, title, theme }) => (
+const Layout = ({ children, title, description, keywords, theme }) => (
   <React.Fragment>
     <Helmet
-      title={title}
+      title={`${title} | React Vancouver`}
       meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
+        { name: 'description', content: description },
+        { name: 'keywords', content: keywords },
       ]}
-    />
+    >
+      <link
+        href="https://fonts.googleapis.com/css?family=Nunito:400,700,900"
+        rel="stylesheet"
+      />
+    </Helmet>
     <Nav siteTitle={title} height={navHeight} theme={theme} />
     <Main>{children}</Main>
     <Footer />
@@ -31,7 +36,9 @@ const Layout = ({ children, title, theme }) => (
 )
 
 Layout.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  keywords: PropTypes.string.isRequired,
 }
 
 export default Layout
