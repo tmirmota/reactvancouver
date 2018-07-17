@@ -31,7 +31,7 @@ const Layout = ({ children, title, description, keywords, theme }) => (
     </Helmet>
     <Nav siteTitle={title} height={navHeight} theme={theme} />
     <Main>{children}</Main>
-    <Footer />
+    {/* <Footer /> */}
   </React.Fragment>
 )
 

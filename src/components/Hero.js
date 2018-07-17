@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'react-emotion'
-import { RVButton, RVContainer, RVText } from 'components'
+import { RVButton, RVContainer, RVText, RVBox, RVIcon } from 'components'
 import { Colors, Layout } from 'styles'
 import background from '../assets/background.jpg'
 
@@ -13,7 +13,6 @@ const styles = {
     backgroundSize: 'cover',
   }),
   background: css({
-    background: Colors.theme.secondary,
     background: Colors.gradient.dark,
     width: '100%',
     height: '100%',
@@ -52,9 +51,24 @@ const Hero = ({ onClickCTA, className }) => {
             for a job, a recruiter who wants to find talent, or an entrepreneur
             who wishes to connect with new people? You’re in the right place.
           </RVText>
-          <RVButton halo onClick={onClickCTA}>
-            July Meetup
-          </RVButton>
+          <RVBox flex row>
+            <RVButton halo onClick={onClickCTA} mr3>
+              July Meetup
+            </RVButton>
+            <RVButton halo link="https://slack.reactvancouver.com/">
+              <RVBox flex>
+                <RVIcon
+                  key={'slack'}
+                  mr1
+                  fontAwesomeIcon={{
+                    icon: ['fab', 'slack'],
+                    size: '1x',
+                    color: 'white',
+                  }}
+                />Join Slack
+              </RVBox>
+            </RVButton>
+          </RVBox>
         </RVContainer>
       </Background>
     </section>
