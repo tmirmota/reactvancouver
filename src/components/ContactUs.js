@@ -35,9 +35,22 @@ const ContactUs = () => (
       </RVBox>
 
       <RVInput tag="textarea" placeholder="Message" rows="9" />
-      <RVButton style={{ float: 'right' }} mt2>
-        Submit
-      </RVButton>
+      <RVButton
+        tag="input"
+        type="submit"
+        value="Submit"
+        style={{
+          float: 'right',
+          textTransform: 'uppercase',
+          letterSpacing: '0.1rem',
+          lineHeight: 1,
+          fontWeight: 700,
+          WebkitFontSmoothing: 'antialiased',
+        }}
+        mt2
+        px2
+        py1
+      />
     </form>
   </RVGrid>
 )
