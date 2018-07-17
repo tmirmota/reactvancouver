@@ -24,7 +24,7 @@ const Layout = ({
 }) => (
   <React.Fragment>
     <Helmet
-      title={`${title} | React Vancouver`}
+      title={`${title && `${title} | `}React Vancouver`}
       meta={[
         { name: 'description', content: description },
         { name: 'keywords', content: keywords },

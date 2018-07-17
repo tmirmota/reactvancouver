@@ -51,7 +51,7 @@ const Hero = ({ onClickCTA, className }) => {
             for a job, a recruiter who wants to find talent, or an entrepreneur
             who wishes to connect with new people? You’re in the right place.
           </RVText>
-          <RVBox flex row>
+          <RVBox flex>
             <RVButton halo onClick={onClickCTA} mr3>
               July Meetup
             </RVButton>

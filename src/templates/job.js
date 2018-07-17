@@ -6,10 +6,14 @@ import { RVBox, RVText, RVContainer } from 'components'
 
 const JobTemplate = ({ data }) => {
   const job = data.contentfulJobs
-  const { title, description, urlToJobApplication } = job
+  const { title, description, urlToJobApplication, companyName } = job
 
   return (
-    <Layout>
+    <Layout
+      title={title}
+      description={`${title} at ${companyName}`}
+      keywords={`${title},${companyName},jobs,react,vancouver,careers`}
+    >
       <RVContainer pt8>
         <RVBox mb4>
           <RVText tag="h1">{title}</RVText>

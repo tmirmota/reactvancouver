@@ -9,7 +9,11 @@ const TalkTemplate = ({ data }) => {
   const { title } = sponsor
 
   return (
-    <Layout>
+    <Layout
+      title={title}
+      description={`React Vancouver talk - ${title}.`}
+      keywords="talks, react, vancouver, speaking"
+    >
       <RVContainer pt8>
         <h4>{title}</h4>
       </RVContainer>

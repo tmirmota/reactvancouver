@@ -7,12 +7,16 @@ const SpeakerTemplate = ({ data }) => {
   const speaker = data.contentfulSpeakers
   const { firstName, lastName } = speaker
 
+  const fullName = `${firstName}${lastName && ` ${lastName}`}`
+
   return (
-    <Layout>
+    <Layout
+      title={`${fullName}`}
+      description={`${fullName}'s involvement with React Vancouver`}
+      keywords="speaker, react, vancouver"
+    >
       <div>
-        <h4>
-          {lastName}, {firstName}
-        </h4>
+        <h4>{fullName}</h4>
       </div>
     </Layout>
   )

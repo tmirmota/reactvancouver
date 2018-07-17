@@ -21,7 +21,11 @@ const Sponsors = ({ data }) => {
   }
 
   return (
-    <Layout>
+    <Layout
+      title="Sponsors"
+      description="List of React Vancouver community sponsors."
+      keywords="sponsors, donation, companies, react, vancouver"
+    >
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         {sponsors.map(({ node }) => <Sponsor key={node.id} {...node} />)}
       </div>

@@ -53,7 +53,11 @@ const Jobs = ({ data }) => {
   }
 
   return (
-    <Layout>
+    <Layout
+      title="React Jobs, Careers, and Contracts in Vancouver"
+      description="List of React jobs, careers and freelance contracts available in Vancouver."
+      keywords="jobs, careers, freelance, react, vancouver"
+    >
       <RVContainer pt8>
         <RVBox flex itemsBottom spaceBetween>
           <RVText tag="h2">Job Opportunities</RVText>

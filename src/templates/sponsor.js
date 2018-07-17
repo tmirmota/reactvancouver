@@ -8,7 +8,11 @@ const SponsorTemplate = ({ data }) => {
   const { companyName } = sponsor
 
   return (
-    <Layout>
+    <Layout
+      title={`${companyName} Sponsorship`}
+      description="React Vancouver sponsor."
+      keywords="react, vancouver, sponsor"
+    >
       <div>
         <h4>{companyName}</h4>
       </div>

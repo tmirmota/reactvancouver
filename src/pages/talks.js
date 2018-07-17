@@ -18,7 +18,11 @@ const Talks = ({ data }) => {
   }
 
   return (
-    <Layout>
+    <Layout
+      title="Talks"
+      description="List of React Vancouver talks."
+      keywords="talks, speakers, react, vancouver"
+    >
       <div>
         <h2>Talks</h2>
         {talks.map(({ node }) => (

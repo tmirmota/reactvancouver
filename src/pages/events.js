@@ -43,7 +43,11 @@ class Events extends React.Component {
     const event = events[0].node
 
     return (
-      <Layout>
+      <Layout
+        title="Events"
+        description="React meetups, hacknights and social events in Vancouver."
+        keywords="events, meetups, hacknights, react, vancouver"
+      >
         <RVContainer pt8>
           <RVBox flex>
             <RVBox tag="ul" style={styles.list}>

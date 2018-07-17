@@ -92,7 +92,12 @@ export default class IndexPage extends React.Component {
     const rvIdenticon = assets && get(assets[0], 'node.fixed')
 
     return (
-      <Layout theme="dark">
+      <Layout
+        theme="dark"
+        title="Everything React in Vancouver"
+        description="React Vancouver is a community of developers, designers, marketers and entrepreneurs that are passionate about React."
+        keywords="react, vancouver, events, developers, frontend, development, frameworks"
+      >
         <Hero onClickCTA={this.scrollToEvents} />
         {renderStats(data)}
         <RVContainer>

@@ -11,7 +11,11 @@ const Speakers = ({ data }) => {
     return <div>No Speakers</div>
   }
   return (
-    <Layout>
+    <Layout
+      title="Speakers"
+      description="Upcoming and past React Vancouver event speakers."
+      keywords="speakers, talks, learning, react, vancouver"
+    >
       <RVContainer pt8>
         <h2>Speakers</h2>
         <RVGrid columns4>

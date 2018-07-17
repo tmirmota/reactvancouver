@@ -98,7 +98,11 @@ const EventTemplate = ({ data }) => {
   const nextEvent = getEvent({ id, events, type: 'next' })
 
   return (
-    <LayoutComponent>
+    <LayoutComponent
+      title={title}
+      description={`React Vancouver ${title}.`}
+      keywords="events, react, vancouver"
+    >
       <RVContainer pt8>
         <RVGrid columns3 mt3>
           {renderEventLink({ event: previousEvent, label: 'Previous' })}
