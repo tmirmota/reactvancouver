@@ -36,6 +36,9 @@ const spacingMap = {
   pb: { cssName: 'padding-bottom' },
 }
 
+// Create spacings m = margin, p = padding, x = horizontal, y = vertical, r = right, l = left, t = top
+// b = bottom, number will be mapped and passed to calcSpace.
+// ex. mr3 = margin-right: calcSpace(4) which resolves to 2rem
 const spacing = {}
 
 Object.entries(sizingMap).forEach(([num, size]) => {
