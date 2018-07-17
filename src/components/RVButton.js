@@ -6,7 +6,7 @@ import { RVBox } from 'components'
 import { injectStyles } from 'utils'
 
 function openInNewTab(url) {
-  var win = window.open(url, '_blank')
+  const win = window.open(url, '_blank')
   win.focus()
 }
 

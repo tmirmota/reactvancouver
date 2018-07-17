@@ -34,6 +34,11 @@ const Layout = ({
         href="https://fonts.googleapis.com/css?family=Nunito:400,700,900"
         rel="stylesheet"
       />
+      <script
+        async
+        src="https://widget.picatic.com/latest/js/embed.min.js"
+        id="picatic-widget-script"
+      />
     </Helmet>
     <Nav siteTitle={title} height={navHeight} theme={theme} />
     <Main>{children}</Main>

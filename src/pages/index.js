@@ -7,6 +7,7 @@ import {
   Hero,
   RVBox,
   RVButton,
+  RVLink,
   RVCard,
   RVContainer,
   RVGrid,
@@ -18,6 +19,8 @@ import {
   ContactUs,
 } from 'components'
 import Layout from 'layouts'
+import { Buttons } from 'styles'
+import classNames from 'classnames'
 
 const renderStats = data => {
   const talksThisYear = data.allContentfulEvents.edges.reduce(
@@ -109,8 +112,34 @@ export default class IndexPage extends React.Component {
             <RVCard p3>
               <RVText subheading>Upcoming Event</RVText>
               <RVText mb2>{upcomingEvent.node.title}</RVText>
+              {upcomingEvent.node.description && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      upcomingEvent.node.description.childMarkdownRemark.html,
+                  }}
+                />
+              )}
 
-              <RVButton style={{ alignSelf: 'bottom' }}>Get Tickets</RVButton>
+              {/*TODO: Move into it's own component*/}
+              <RVBox
+                tag="a"
+                href={`https://www.picatic.com/${
+                  upcomingEvent.node.picaticEventId
+                }`}
+                style={{
+                  alignSelf: 'bottom',
+                  color: 'white',
+                  textTransform: 'uppercase',
+                  fontWeight: 700,
+                  WebkitFontSmoothing: 'antialiased',
+                }}
+                className={classNames(Buttons.base, Buttons.medium)}
+                px2
+                py1
+              >
+                Get Tickets
+              </RVBox>
             </RVCard>
             <RVCard p3>
               <RVText subheading>Past Events</RVText>
@@ -192,6 +221,11 @@ export const query = graphql`
           venueName
           venueAddress
           startDate
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
           location {
             lat
             lon
@@ -199,6 +233,7 @@ export const query = graphql`
           talks {
             id
           }
+          picaticEventId
         }
       }
     }
