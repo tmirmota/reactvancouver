@@ -15,7 +15,13 @@ const Main = styled.main({
   marginTop: `-${navHeight}`,
 })
 
-const Layout = ({ children, title, description, keywords, theme }) => (
+const Layout = ({
+  children,
+  title = '',
+  description = '',
+  keywords = '',
+  theme,
+}) => (
   <React.Fragment>
     <Helmet
       title={`${title} | React Vancouver`}
