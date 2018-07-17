@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'React Vancouver',
+    siteUrl: `https://reactvancouver.com`,
+    description: `Join one of the biggest tech communities in Vancouver`,
   },
   plugins: [
     {
@@ -12,14 +14,17 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-emotion',
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        // Accepts all options defined by `babel-plugin-emotion` plugin.
+        trackingId: 'UA-109965261-1',
+        head: false,
+        anonymize: true,
+        respectDNT: true,
       },
     },
+    'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-resolve-src',
     'gatsby-transformer-remark',
-    'gatsby-plugin-eslint',
+    // 'gatsby-plugin-eslint',
   ],
 }

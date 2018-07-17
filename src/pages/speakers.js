@@ -1,16 +1,8 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
-
-const Speaker = ({ id, firstName, lastName }) => (
-  <Link to={`/speaker/${id}`}>
-    <h3>
-      {lastName}
-      {lastName && ', '}
-      {firstName}
-    </h3>
-  </Link>
-)
+import { RVGrid, RVContainer, Speaker } from 'components'
+import Layout from 'layouts'
 
 const Speakers = ({ data }) => {
   const speakers = data.allContentfulSpeakers.edges
@@ -18,12 +10,25 @@ const Speakers = ({ data }) => {
   if (speakers.length <= 0) {
     return <div>No Speakers</div>
   }
-
   return (
-    <div>
-      <h2>Speakers</h2>
-      {speakers.map(({ node }) => <Speaker key={node.id} {...node} />)}
-    </div>
+    <Layout
+      title="Speakers"
+      description="Upcoming and past React Vancouver event speakers."
+      keywords="speakers, talks, learning, react, vancouver"
+    >
+      <RVContainer pt8>
+        <h2>Speakers</h2>
+        <RVGrid columns4>
+          {speakers.map(({ node: speaker }) => (
+            <Speaker
+              key={speaker.id}
+              fixed={speaker.profilePicture && speaker.profilePicture.fixed}
+              {...speaker}
+            />
+          ))}
+        </RVGrid>
+      </RVContainer>
+    </Layout>
   )
 }
 
@@ -41,6 +46,18 @@ export const query = graphql`
           id
           firstName
           lastName
+          jobTitle
+          company
+          profilePicture {
+            fixed(width: 200, height: 200) {
+              ...GatsbyContentfulFixed
+            }
+          }
+          talks {
+            id
+            title
+            date(formatString: "MMM Do, Y")
+          }
         }
       }
     }

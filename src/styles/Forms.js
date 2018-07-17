@@ -9,6 +9,7 @@ export const label = css({
   fontSize: Layout.calcSpace(2),
   fontWeight: Typography.font.weight.bold,
   margin: `${Layout.calcSpace(2)} 0 ${Layout.calcSpace(1)} 0`,
+  paddingLeft: Layout.calcSpace(4),
 })
 
 export const placeholder = css({
@@ -26,21 +27,43 @@ export const text = css({
   fontWeight: Typography.font.weight.bold,
 })
 
+export const inputWrapper = css({
+  background: Colors.grey.white,
+  borderRadius: Layout.radius,
+  flex: '1 1 auto',
+  margin: Layout.calcSpace(1),
+})
+
 export const input = css(text, {
   backgroundColor: 'transparent',
-  border: 'none',
+  borderWidth: 2,
+  borderColor: 'transparent',
+  borderStyle: 'solid',
+  borderRadius: Layout.radius,
   boxSizing: 'border-box',
-  margin: `0 0 ${Layout.calcSpace(2)} 0`,
+  display: 'block',
+  outline: 'none',
   padding: `${Layout.calcSpace(2)} ${Layout.calcSpace(4)}`,
+  resize: 'none',
   transition: `border-color 0.2s ease`,
+  width: '100%',
 
   ':disabled': {
     backgroundColor: 'transparent',
     cursor: 'not-allowed',
+  },
+  ':hover': {
+    borderColor: Colors.grey.calc(80),
+  },
+  ':focus, :active': {
+    borderColor: Colors.theme.primary,
   },
 })
 
 export default {
   label,
   placeholder,
+  text,
+  input,
+  inputWrapper,
 }

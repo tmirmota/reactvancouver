@@ -1,48 +1,55 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import { Nav, Footer } from 'components'
+import styled from 'react-emotion'
 
-import Header from '../components/header'
-import Footer from '../components/footer'
+// Global Styles
 import './index.css'
 import 'styles/Global'
 
-const Layout = ({ children, data }) => (
-  <div>
+const navHeight = '4rem'
+
+const Main = styled.main({
+  minHeight: `calc(100vh -${navHeight})`,
+  marginTop: `-${navHeight}`,
+})
+
+const Layout = ({
+  children,
+  title = '',
+  description = '',
+  keywords = '',
+  theme,
+}) => (
+  <React.Fragment>
     <Helmet
-      title={data.site.siteMetadata.title}
+      title={`${title && `${title} | `}React Vancouver`}
       meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
+        { name: 'description', content: description },
+        { name: 'keywords', content: keywords },
       ]}
-    />
-    <Header siteTitle={data.site.siteMetadata.title} />
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '0px 1.0875rem 1.45rem',
-        paddingTop: 0,
-      }}
     >
-      {children()}
-    </div>
-    <Footer />
-  </div>
+      <link
+        href="https://fonts.googleapis.com/css?family=Nunito:400,700,900"
+        rel="stylesheet"
+      />
+      <script
+        async
+        src="https://widget.picatic.com/latest/js/embed.min.js"
+        id="picatic-widget-script"
+      />
+    </Helmet>
+    <Nav siteTitle={title} height={navHeight} theme={theme} />
+    <Main>{children}</Main>
+    {/* <Footer /> */}
+  </React.Fragment>
 )
 
 Layout.propTypes = {
-  children: PropTypes.func,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  keywords: PropTypes.string.isRequired,
 }
 
 export default Layout
-
-export const query = graphql`
-  query SiteTitleQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

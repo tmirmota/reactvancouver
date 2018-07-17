@@ -1,6 +1,8 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import Layout from 'layouts'
 
 const Talk = ({ id, title }) => (
   <Link to={`/talk/${id}`}>
@@ -16,14 +18,20 @@ const Talks = ({ data }) => {
   }
 
   return (
-    <div>
-      <h2>Talks</h2>
-      {talks.map(({ node }) => (
-        <div key={node.id}>
-          <Talk {...node} />
-        </div>
-      ))}
-    </div>
+    <Layout
+      title="Talks"
+      description="List of React Vancouver talks."
+      keywords="talks, speakers, react, vancouver"
+    >
+      <div>
+        <h2>Talks</h2>
+        {talks.map(({ node }) => (
+          <div key={node.id}>
+            <Talk {...node} />
+          </div>
+        ))}
+      </div>
+    </Layout>
   )
 }
 

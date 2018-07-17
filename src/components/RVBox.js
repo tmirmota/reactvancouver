@@ -1,36 +1,19 @@
 import React from 'react'
-import { css } from 'emotion'
+import PropTypes from 'prop-types'
+import { injectStyles } from 'utils'
 import { Box } from 'styles'
 
-export default class RVBox extends React.Component {
-  render() {
-    const {
-      className: classNameProp,
-      style: customStyle,
-      tag: Component,
-      ...props
-    } = this.props
+const RVBox = ({ boxRef, tag: Component, ...otherProps }) => (
+  <Component {...otherProps} ref={boxRef} />
+)
 
-    const restProps = {}
-    const style = []
-
-    Object.keys(props).map(key => {
-      if (props[key] === true && Box[key]) {
-        style.push(Box[key])
-      } else {
-        restProps[key] = props[key]
-      }
-    })
-
-    style.push(classNameProp)
-    style.push(customStyle)
-
-    const className = css(style)
-
-    return <Component {...restProps} className={className} />
-  }
+RVBox.propTypes = {
+  boxRef: PropTypes.func,
+  tag: PropTypes.string.isRequired,
 }
 
 RVBox.defaultProps = {
   tag: 'div',
 }
+
+export default injectStyles(Box)(RVBox)

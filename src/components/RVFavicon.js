@@ -2,16 +2,10 @@ import React from 'react'
 import Img from 'gatsby-image'
 import { Images } from 'styles'
 import { RVBox } from 'components'
-import { css } from 'emotion'
+import classNames from 'classnames'
 
-export default class RVFavicon extends React.Component {
-  render() {
-    const { img, ...otherProps } = this.props
+export default ({ className: classNameProp, ...otherProps }) => {
+  const className = classNames(Images.favicon, classNameProp)
 
-    return (
-      <RVBox {...otherProps}>
-        <Img className={Images.favicon} {...img} />
-      </RVBox>
-    )
-  }
+  return <RVBox tag={Img} className={className} {...otherProps} />
 }

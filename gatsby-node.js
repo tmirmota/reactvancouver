@@ -1,8 +1,8 @@
 const path = require(`path`)
 const slash = require(`slash`)
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ actions, graphql }) => {
+  const { createPage } = actions
 
   return new Promise((resolve, reject) => {
     resolve(
@@ -47,6 +47,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
                   edges {
                     node {
                       id
+                      slug
                     }
                   }
                 }
@@ -59,15 +60,18 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
             const eventTemplate = path.resolve(`./src/templates/event.js`)
 
-            result.data.allContentfulEvents.edges.forEach(({ node }) => {
-              createPage({
-                path: `/event/${node.id}`,
-                component: slash(eventTemplate),
-                context: {
-                  id: node.id,
-                },
-              })
-            })
+            result.data.allContentfulEvents.edges.forEach(
+              ({ node: { slug, id } }) => {
+                createPage({
+                  path: `/event/${slug}`,
+                  component: slash(eventTemplate),
+                  context: {
+                    id,
+                    slug,
+                  },
+                })
+              }
+            )
           })
         })
 
@@ -113,6 +117,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
                   edges {
                     node {
                       id
+                      slug
                     }
                   }
                 }
@@ -125,15 +130,18 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
             const jobTemplate = path.resolve(`./src/templates/job.js`)
 
-            result.data.allContentfulJobs.edges.forEach(({ node }) => {
-              createPage({
-                path: `/job/${node.id}`,
-                component: slash(jobTemplate),
-                context: {
-                  id: node.id,
-                },
-              })
-            })
+            result.data.allContentfulJobs.edges.forEach(
+              ({ node: { id, slug } }) => {
+                createPage({
+                  path: `/job/${slug}`,
+                  component: slash(jobTemplate),
+                  context: {
+                    id,
+                    slug,
+                  },
+                })
+              }
+            )
           })
         })
 
@@ -170,5 +178,13 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           })
         })
     )
+  })
+}
+
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    },
   })
 }

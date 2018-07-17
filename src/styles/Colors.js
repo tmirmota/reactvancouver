@@ -6,12 +6,17 @@ export const theme = {
   secondary: melrose,
 }
 
+export const calcGrey = value => `hsl(230, 20%, ${value}%)`
+
 export const grey = {
   black: '#000000',
-  dark: '#4A4A4A',
-  light: '#FAFAFA',
+  // TODO: Review this color.
+  lightDark: '#EBEDEF',
+  dark: calcGrey(30),
+  medium: calcGrey(60),
+  light: calcGrey(98),
   white: '#FFFFFF',
-  calc: value => `hsl(230, 20%, ${value}%)`,
+  calc: calcGrey,
 }
 
 export const gradient = {

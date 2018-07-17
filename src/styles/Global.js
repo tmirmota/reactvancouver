@@ -4,7 +4,6 @@ import Layout from './Layout'
 import Typography from './Typography'
 
 injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900');
   * {
     box-sizing: border-box;
   }
@@ -12,7 +11,7 @@ injectGlobal`
   html,
   body {
     height: 100%;
-    position: realtive;
+    position: relative;
     background-color: ${Colors.grey.light};
     margin: 0;
     padding: 0;
@@ -92,6 +91,18 @@ injectGlobal`
     user-select: none;
     vertical-align: middle;
     white-space: nowrap;
+  }
+
+  @-webkit-keyframes autofill {
+    to {
+      color: ${Colors.grey.calc(70)};
+      background: transparent;
+    }
+}
+
+  input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
   }
 
 `

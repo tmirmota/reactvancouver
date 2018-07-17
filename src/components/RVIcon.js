@@ -7,13 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 library.add(fab)
 
-export default class RVIcon extends React.Component {
-  render() {
-    const { fontAwesomeIcon, ...otherProps } = this.props
-    return (
-      <RVBox {...otherProps}>
-        <FontAwesomeIcon {...fontAwesomeIcon} />
-      </RVBox>
-    )
-  }
+const RVIcon = ({ fontAwesomeIcon, ...otherProps }) => {
+  return (
+    <RVBox tag="a" target="_blank" rel="noopener noreferrer" {...otherProps}>
+      <FontAwesomeIcon {...fontAwesomeIcon} />
+    </RVBox>
+  )
 }
+
+export default RVIcon
