@@ -68,7 +68,7 @@ const renderStats = data => {
         </RVBox>
         <RVBox>
           <RVText title>{totalEvents.toLocaleString()}</RVText>
-          <RVText subheading>Events since Jan 2016</RVText>
+          <RVText subheading>Events since Oct 2015</RVText>
         </RVBox>
       </RVGrid>
     </RVContainer>
