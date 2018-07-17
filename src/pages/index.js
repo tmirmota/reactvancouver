@@ -55,7 +55,7 @@ const renderStats = data => {
               </RVText>
             )}
           </MeetupGroup>
-          <RVText subheading>React Lovers in Vancouver</RVText>
+          <RVText subheading>React Fans in Vancouver</RVText>
         </RVText>
 
         {/* https://github.com/gatsbyjs/gatsby/issues/4033 */}
@@ -119,11 +119,10 @@ export default class IndexPage extends React.Component {
               })}
             </RVCard>
           </RVGrid>
-          <Sponsors mb3 sponsors={sponsors} />
 
           <RVBox mb4>
-            <RVText heading mx-auto alignCenter style={{ maxWidth: 700 }}>
-              Latest speakers who share their 💞 and knowledge
+            <RVText subheading mx-auto alignCenter style={{ maxWidth: 700 }}>
+              Latest speakers
             </RVText>
             <RVGrid columns4>
               {speakers.map(speaker => (
@@ -144,8 +143,11 @@ export default class IndexPage extends React.Component {
               </Link>
             </RVBox>
           </RVBox>
-
           <RVBox mb4>
+            <Sponsors mb3 sponsors={sponsors} />
+          </RVBox>
+
+          {/* <RVBox mb4>
             <RVText heading alignCenter>
               About Us
             </RVText>
@@ -162,7 +164,7 @@ export default class IndexPage extends React.Component {
               stages. This community has been, and will continue to be one of
               the best ReactJS meetups in Vancouver.
             </RVText>
-          </RVBox>
+          </RVBox> */}
 
           <ContactUs />
         </RVContainer>

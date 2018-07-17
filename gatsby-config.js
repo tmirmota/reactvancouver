@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'React Vancouver',
+    siteUrl: `https://reactvancouver.com`,
+    description: `Join one of the biggest tech communities in Vancouver`,
   },
   plugins: [
     {
