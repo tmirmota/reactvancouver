@@ -30,27 +30,14 @@ const ContactUs = () => (
     >
       <input type="hidden" name="bot-field" />
       <RVBox flex>
-        <RVInput placeholder="Name" />
-        <RVInput placeholder="Email" />
+        <RVInput name="name" placeholder="Name" />
+        <RVInput name="email" placeholder="Email" />
       </RVBox>
 
-      <RVInput tag="textarea" placeholder="Message" rows="9" />
-      <RVButton
-        tag="input"
-        type="submit"
-        value="Submit"
-        style={{
-          float: 'right',
-          textTransform: 'uppercase',
-          letterSpacing: '0.1rem',
-          lineHeight: 1,
-          fontWeight: 700,
-          WebkitFontSmoothing: 'antialiased',
-        }}
-        mt2
-        px2
-        py1
-      />
+      <RVInput name="message" tag="textarea" placeholder="Message" rows="9" />
+      <RVButton type="submit" style={{ float: 'right' }} mt2>
+        Submit
+      </RVButton>
     </form>
   </RVGrid>
 )
