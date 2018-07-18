@@ -5,9 +5,15 @@ import styled from 'react-emotion'
 import { RVBox } from 'components'
 import { Typography } from 'styles'
 
-const RVLink = ({ className, navigate, children, ...otherProps }) => (
+const RVLink = ({
+  className,
+  navigate,
+  children,
+  activeStyle,
+  ...otherProps
+}) => (
   <RVBox {...otherProps}>
-    <Link className={className} to={navigate}>
+    <Link className={className} to={navigate} activeStyle={activeStyle}>
       {children}
     </Link>
   </RVBox>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'react-emotion'
 import { RVButton, RVBox, RVLogo, RVLink } from 'components'
 import { Colors } from 'styles'
+import { darken } from 'polished'
 
 const styles = {
   header: props =>
@@ -40,28 +41,36 @@ const NavLogo = ({ navigate, title }) => (
   />
 )
 const NavLink = ({ navigate, children }) => (
-  <RVLink pr2 inline itemsCenter style={{ height: '100%' }} navigate={navigate}>
+  <RVLink
+    pr2
+    inline
+    itemsCenter
+    style={{ height: '100%' }}
+    navigate={navigate}
+    activeStyle={{
+      color: darken(0.2, Colors.theme.primary),
+    }}
+  >
     {children}
   </RVLink>
 )
 
-const Nav = ({ siteTitle, className }) => {
-  return (
-    <RVBox tag="header" container flex spaceBetween pt2 className={className}>
-      <section>
-        <NavLogo title={siteTitle} navigate="/" />
-      </section>
-      <nav>
-        <NavLink navigate="/events">Events</NavLink>
-        <NavLink navigate="/speakers">Speakers</NavLink>
-        <NavLink navigate="/jobs">Jobs</NavLink>
-        <NavLink navigate="/#contact-us">
-          <RVButton>Get Involved</RVButton>
-        </NavLink>
-      </nav>
-    </RVBox>
-  )
-}
+const Nav = ({ siteTitle, className }) => (
+  <RVBox tag="header" container flex spaceBetween pt2 className={className}>
+    <section>
+      <NavLogo title={siteTitle} navigate="/" />
+    </section>
+    <nav>
+      <NavLink navigate="/events">Events</NavLink>
+      <NavLink navigate="/speakers">Speakers</NavLink>
+      <NavLink navigate="/jobs">Jobs</NavLink>
+      <NavLink navigate="/#contact-us">
+        <RVButton>Get Involved</RVButton>
+      </NavLink>
+    </nav>
+  </RVBox>
+)
+
 Nav.propTypes = {
   siteTitle: PropTypes.string,
   className: PropTypes.string,
