@@ -54,8 +54,7 @@ const Nav = ({ siteTitle, className }) => (
     flex
     flexWrap
     spaceBetween
-    alignStretch
-    pt2
+    itemsCenter
     className={className}
   >
     <section>
