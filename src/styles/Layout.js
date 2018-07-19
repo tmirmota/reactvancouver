@@ -42,6 +42,9 @@ export default {
       display: 'grid',
       gridGap: '2rem',
     }),
+    justifyCenter: css({
+      justifyContent: 'center',
+    }),
     columns2: css(
       breakpoints({
         gridTemplateColumns: [
