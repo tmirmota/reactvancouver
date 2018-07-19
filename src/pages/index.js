@@ -248,7 +248,10 @@ export const query = graphql`
           companyName
           companyUrl
           companyLogoDark {
-            fixed(width: 148) {
+            fixed(width: 200) {
+              ...GatsbyContentfulFixed
+            }
+            hero: fixed(width: 148) {
               ...GatsbyContentfulFixed
             }
           }

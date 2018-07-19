@@ -122,7 +122,7 @@ const Hero = ({ onClickCTA, sponsors, ...otherProps }) => {
               {sponsors.map(sponsor => (
                 <RVBox key={sponsor.node.id}>
                   <Img
-                    fixed={sponsor.node.companyLogoDark.fixed}
+                    fixed={sponsor.node.companyLogoDark.hero}
                     className={styles.sponsor}
                   />
                 </RVBox>
