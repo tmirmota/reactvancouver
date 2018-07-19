@@ -8,7 +8,6 @@ import { darken } from 'polished'
 const styles = {
   header: props =>
     css({
-      flexWrap: 'wrap',
       height: props.height || '4rem',
       zIndex: '100',
       '@media (max-width: 420px)': {
@@ -32,20 +31,13 @@ const styles = {
 }
 
 const NavLogo = ({ navigate, title }) => (
-  <RVLogo
-    inline
-    itemsCenter
-    style={{ height: '100%' }}
-    navigate={navigate}
-    title={title}
-  />
+  <RVLogo inline itemsCenter navigate={navigate} title={title} />
 )
 const NavLink = ({ navigate, children }) => (
   <RVLink
-    pr2
+    pl2
     inline
     itemsCenter
-    style={{ height: '100%' }}
     navigate={navigate}
     activeStyle={{
       color: darken(0.2, Colors.theme.primary),
@@ -56,18 +48,27 @@ const NavLink = ({ navigate, children }) => (
 )
 
 const Nav = ({ siteTitle, className }) => (
-  <RVBox tag="header" container flex spaceBetween pt2 className={className}>
+  <RVBox
+    tag="header"
+    container
+    flex
+    flexWrap
+    spaceBetween
+    alignStretch
+    pt2
+    className={className}
+  >
     <section>
       <NavLogo title={siteTitle} navigate="/" />
     </section>
-    <nav>
+    <RVBox tag="nav" flex itemsStretch>
       <NavLink navigate="/events">Events</NavLink>
       <NavLink navigate="/speakers">Speakers</NavLink>
       <NavLink navigate="/jobs">Jobs</NavLink>
       <NavLink navigate="/#contact-us">
         <RVButton>Get Involved</RVButton>
       </NavLink>
-    </nav>
+    </RVBox>
   </RVBox>
 )
 

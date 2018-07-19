@@ -76,6 +76,9 @@ export default {
   itemsBottom: css({
     alignItems: 'baseline',
   }),
+  itemsStretch: css({
+    alignItems: 'stretch',
+  }),
   spaceAround: css({
     justifyContent: 'space-around',
   }),

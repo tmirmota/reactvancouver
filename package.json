@@ -19,6 +19,7 @@
     "gatsby-plugin-emotion": "next",
     "gatsby-plugin-google-analytics": "next",
     "gatsby-plugin-google-fonts": "^0.0.4",
+    "gatsby-plugin-manifest": "^1.0.27",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-source-contentful": "next",
     "gatsby-transformer-remark": "next",

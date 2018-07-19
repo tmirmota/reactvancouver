@@ -7,32 +7,33 @@ import background from '../assets/background.jpg'
 
 const styles = {
   hero: css({
-    height: '100vh',
+    minHeight: '100vh',
     backgroundImage: `url(${background})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
   }),
-  background: css({
+  overlay: css({
     background: Colors.gradient.dark,
     width: '100%',
-    height: '100%',
+    minHeight: '100vh',
+  }),
+  contentWrapper: css({
+    maxWidth: 750,
   }),
   title: css({
     color: Colors.grey.white,
-    maxWidth: 750,
   }),
   description: css({
     color: Colors.grey.white,
-    maxWidth: 750,
   }),
 }
 
-const Background = styled.div(styles.background)
+const Overlay = styled.div(styles.overlay)
 
-const Hero = ({ onClickCTA, className }) => {
+const Hero = ({ onClickCTA, ...otherProps }) => {
   return (
-    <section className={className}>
-      <Background>
+    <RVBox tag="section" {...otherProps}>
+      <Overlay>
         <RVContainer
           py2
           pt4
@@ -43,35 +44,37 @@ const Hero = ({ onClickCTA, className }) => {
           alignCenter
           style={{ height: '100%' }}
         >
-          <RVText tag="h1" mb4 heading className={styles.title}>
-            Join one of the biggest tech communities in Vancouver
-          </RVText>
-          <RVText tag="p" mb4 className={styles.description}>
-            You’re a developer who wants to learn more about React or is looking
-            for a job, a recruiter who wants to find talent, or an entrepreneur
-            who wishes to connect with new people? You’re in the right place.
-          </RVText>
-          <RVBox flex>
-            <RVButton halo onClick={onClickCTA} mr3>
-              July Meetup
-            </RVButton>
-            <RVButton halo link="https://slack.reactvancouver.com/">
-              <RVBox flex>
+          <RVBox className={styles.contentWrapper}>
+            <RVText tag="h1" mb4 heading className={styles.title}>
+              Join one of the biggest tech communities in Vancouver
+            </RVText>
+            <RVText tag="p" mb4 className={styles.description}>
+              You’re a developer who wants to learn more about React or is
+              looking for a job, a recruiter who wants to find talent, or an
+              entrepreneur who wishes to connect with new people? You’re in the
+              right place.
+            </RVText>
+            <RVBox flex flexWrap>
+              <RVButton onClick={onClickCTA} halo mr3 mb3>
+                July Meetup
+              </RVButton>
+              <RVButton halo link="https://slack.reactvancouver.com/">
                 <RVIcon
                   key={'slack'}
                   mr1
+                  flex
                   fontAwesomeIcon={{
                     icon: ['fab', 'slack'],
                     size: '1x',
                     color: 'white',
                   }}
                 />Join Slack
-              </RVBox>
-            </RVButton>
+              </RVButton>
+            </RVBox>
           </RVBox>
         </RVContainer>
-      </Background>
-    </section>
+      </Overlay>
+    </RVBox>
   )
 }
 Hero.propTypes = {
