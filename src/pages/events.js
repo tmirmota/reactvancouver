@@ -49,7 +49,13 @@ class Events extends React.Component {
         keywords="events, meetups, hacknights, react, vancouver"
       >
         <RVContainer pt8>
-          <RVGrid columns2>
+          <RVGrid
+            gridTemplateColumns={[
+              'repeat(1, 1fr)',
+              'min-content 1fr',
+              'min-content 1fr',
+            ]}
+          >
             <RVBox tag="ul" style={styles.list}>
               {events.map(({ node }, index) => {
                 if (!seeAllEvents && index >= 10) {
