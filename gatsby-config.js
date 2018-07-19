@@ -30,7 +30,7 @@ module.exports = {
         start_url: '/',
         background_color: '#F9F9FB',
         display: 'minimal-ui',
-        icon: '/static/favicon.png',
+        icon: 'static/favicon.png',
       },
     },
     'gatsby-plugin-emotion',
