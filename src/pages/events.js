@@ -125,7 +125,7 @@ class Events extends React.Component {
                 ))}
             </RVCard>
           </RVBox>
-          <RVCard alignCenter p3 my4>
+          <RVBox grey radius alignCenter p3 my4>
             <RVText subheading>Have an idea for a talk?</RVText>
             <RVBox my3>
               <Link to="/#contact-us">
@@ -136,7 +136,7 @@ class Events extends React.Component {
               We are always looking for presenters with interesting ideas,
               projects or tips to share.
             </RVText>
-          </RVCard>
+          </RVBox>
         </RVContainer>
       </Layout>
     )
