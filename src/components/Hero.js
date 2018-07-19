@@ -1,77 +1,137 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'react-emotion'
-import { RVButton, RVContainer, RVText, RVBox, RVIcon } from 'components'
+import {
+  RVButton,
+  RVContainer,
+  RVText,
+  RVBox,
+  RVIcon,
+  RVGrid,
+  RVLink,
+} from 'components'
 import { Colors, Layout } from 'styles'
 import background from '../assets/background.jpg'
+import Img from 'gatsby-image'
 
 const styles = {
   hero: css({
-    height: '100vh',
+    minHeight: '100vh',
     backgroundImage: `url(${background})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
   }),
-  background: css({
+  overlay: css({
     background: Colors.gradient.dark,
     width: '100%',
-    height: '100%',
+    minHeight: '100vh',
+  }),
+  container: css({
+    minHeight: '100vh',
+  }),
+  contentWrapper: css({
+    maxWidth: 750,
   }),
   title: css({
     color: Colors.grey.white,
-    maxWidth: 750,
+    '@media (max-width: 420px)': {
+      textAlign: 'left',
+    },
   }),
   description: css({
+    fontSize: Layout.calcSpace(2.5),
     color: Colors.grey.white,
-    maxWidth: 750,
+    '@media (max-width: 420px)': {
+      textAlign: 'left',
+    },
+  }),
+  sponsoredby: css({
+    color: Colors.grey.white,
+    letterSpacing: 2,
+    textTransform: 'uppercase',
+  }),
+  sponsor: css({
+    filter: 'brightness(0) invert(1)',
+    opacity: '.7',
   }),
 }
 
-const Background = styled.div(styles.background)
+const Overlay = styled.div(styles.overlay)
 
-const Hero = ({ onClickCTA, className }) => {
+const Hero = ({ onClickCTA, sponsors, ...otherProps }) => {
   return (
-    <section className={className}>
-      <Background>
+    <RVBox tag="section" {...otherProps}>
+      <Overlay>
         <RVContainer
-          py2
-          pt4
           flex
           column
           center
           itemsCenter
           alignCenter
-          style={{ height: '100%' }}
+          className={styles.container}
+          pt8
+          pb2
         >
-          <RVText tag="h1" mb4 heading className={styles.title}>
-            Join one of the biggest tech communities in Vancouver
-          </RVText>
-          <RVText tag="p" mb4 className={styles.description}>
-            You’re a developer who wants to learn more about React or is looking
-            for a job, a recruiter who wants to find talent, or an entrepreneur
-            who wishes to connect with new people? You’re in the right place.
-          </RVText>
-          <RVBox flex>
-            <RVButton halo onClick={onClickCTA} mr3>
-              July Meetup
-            </RVButton>
-            <RVButton halo link="https://slack.reactvancouver.com/">
-              <RVBox flex>
+          <RVBox className={styles.contentWrapper}>
+            <RVText tag="h1" mb4 heading className={styles.title}>
+              Join one of the biggest tech communities in Vancouver
+            </RVText>
+            <RVText tag="p" mb4 className={styles.description}>
+              You’re a developer who wants to learn more about React or is
+              looking for a job, a recruiter who wants to find talent, or an
+              entrepreneur who wishes to connect with new people? You’re in the
+              right place.
+            </RVText>
+            <RVGrid
+              justifyCenter
+              gridTemplateColumns={[
+                'repeat(1, 1fr)',
+                'repeat(2, min-content)',
+                'repeat(2, min-content)',
+              ]}
+              mb8
+            >
+              <RVButton onClick={onClickCTA} halo>
+                July Meetup
+              </RVButton>
+              <RVButton halo link="https://slack.reactvancouver.com/">
                 <RVIcon
                   key={'slack'}
                   mr1
+                  flex
                   fontAwesomeIcon={{
                     icon: ['fab', 'slack'],
                     size: '1x',
                     color: 'white',
                   }}
                 />Join Slack
-              </RVBox>
-            </RVButton>
+              </RVButton>
+            </RVGrid>
+            <RVText className={styles.sponsoredby} mb1>
+              Sponsored by
+            </RVText>
+            <RVGrid
+              justifyCenter
+              itemsCenter
+              gridTemplateColumns={[
+                'repeat(1, 1fr)',
+                'repeat(3, min-content)',
+                'repeat(3, min-content)',
+              ]}
+            >
+              {sponsors.map(sponsor => (
+                <RVBox key={sponsor.node.id}>
+                  <Img
+                    fixed={sponsor.node.companyLogoDark.hero}
+                    className={styles.sponsor}
+                  />
+                </RVBox>
+              ))}
+            </RVGrid>
           </RVBox>
         </RVContainer>
-      </Background>
-    </section>
+      </Overlay>
+    </RVBox>
   )
 }
 Hero.propTypes = {

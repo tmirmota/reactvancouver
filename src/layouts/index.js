@@ -8,10 +8,13 @@ import styled from 'react-emotion'
 import './index.css'
 import 'styles/Global'
 
-const navHeight = '4rem'
+// TODO: Remove if manifest generates favicons
+import favicon from '../../static/favicon.png'
+
+const navHeight = '6rem'
 
 const Main = styled.main({
-  minHeight: `calc(100vh -${navHeight})`,
+  minHeight: `calc(100vh - ${navHeight})`,
   marginTop: `-${navHeight}`,
 })
 
@@ -34,6 +37,7 @@ const Layout = ({
         href="https://fonts.googleapis.com/css?family=Nunito:400,700,900"
         rel="stylesheet"
       />
+      <link rel="shortcut icon" href={favicon} type="image/x-icon" />
       <script
         async
         src="https://widget.picatic.com/latest/js/embed.min.js"

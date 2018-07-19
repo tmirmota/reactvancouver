@@ -22,7 +22,7 @@ import Layout from 'layouts'
 import { Buttons } from 'styles'
 import classNames from 'classnames'
 
-const renderStats = data => {
+const _renderStats = data => {
   const talksThisYear = data.allContentfulEvents.edges.reduce(
     (sum, { node: event }) => {
       const startOfThisYear = moment().startOf('year')
@@ -101,8 +101,10 @@ export default class IndexPage extends React.Component {
         description="React Vancouver is a community of developers, designers, marketers and entrepreneurs that are passionate about React."
         keywords="react, vancouver, events, developers, frontend, development, frameworks"
       >
-        <Hero onClickCTA={this.scrollToEvents} />
-        {renderStats(data)}
+        <Hero onClickCTA={this.scrollToEvents} sponsors={sponsors} />
+
+        {_renderStats(data)}
+
         <RVContainer>
           <RVGrid
             boxRef={node => (this.events = node)}
@@ -120,7 +122,7 @@ export default class IndexPage extends React.Component {
                 />
               )}
 
-              {/*TODO: Move into it's own component*/}
+              {/* TODO: Move into it's own component */}
               <RVBox
                 tag="a"
                 href={`https://www.picatic.com/${
@@ -244,8 +246,12 @@ export const query = graphql`
         node {
           id
           companyName
+          companyUrl
           companyLogoDark {
             fixed(width: 200) {
+              ...GatsbyContentfulFixed
+            }
+            hero: fixed(width: 148) {
               ...GatsbyContentfulFixed
             }
           }

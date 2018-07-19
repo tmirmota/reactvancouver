@@ -18,12 +18,18 @@ export default {
     fontSize: Layout.calcSpace(12),
     fontWeight: font.weight.black,
     margin: `0 0 ${Layout.calcSpace(4)} 0`,
+    '@media (max-width: 420px)': {
+      fontSize: Layout.calcSpace(7),
+    },
   }),
   heading: css({
     fontFamily: font.title,
     fontSize: Layout.calcSpace(6),
     fontWeight: font.weight.black,
     margin: `0 0 ${Layout.calcSpace(4)} 0`,
+    '@media (max-width: 420px)': {
+      fontSize: Layout.calcSpace(4),
+    },
   }),
   subheading: css({
     fontFamily: font.title,
