@@ -8,9 +8,11 @@ import {
   RVBox,
   RVIcon,
   RVGrid,
+  RVLink,
 } from 'components'
 import { Colors, Layout } from 'styles'
 import background from '../assets/background.jpg'
+import Img from 'gatsby-image'
 
 const styles = {
   hero: css({
@@ -32,16 +34,31 @@ const styles = {
   }),
   title: css({
     color: Colors.grey.white,
+    '@media (max-width: 420px)': {
+      textAlign: 'left',
+    },
   }),
   description: css({
     fontSize: Layout.calcSpace(2.5),
     color: Colors.grey.white,
+    '@media (max-width: 420px)': {
+      textAlign: 'left',
+    },
+  }),
+  sponsoredby: css({
+    color: Colors.grey.white,
+    letterSpacing: 2,
+    textTransform: 'uppercase',
+  }),
+  sponsor: css({
+    filter: 'brightness(0) invert(1)',
+    opacity: '.7',
   }),
 }
 
 const Overlay = styled.div(styles.overlay)
 
-const Hero = ({ onClickCTA, ...otherProps }) => {
+const Hero = ({ onClickCTA, sponsors, ...otherProps }) => {
   return (
     <RVBox tag="section" {...otherProps}>
       <Overlay>
@@ -52,7 +69,8 @@ const Hero = ({ onClickCTA, ...otherProps }) => {
           itemsCenter
           alignCenter
           className={styles.container}
-          py8
+          pt8
+          pb2
         >
           <RVBox className={styles.contentWrapper}>
             <RVText tag="h1" mb4 heading className={styles.title}>
@@ -71,6 +89,7 @@ const Hero = ({ onClickCTA, ...otherProps }) => {
                 'repeat(2, min-content)',
                 'repeat(2, min-content)',
               ]}
+              mb8
             >
               <RVButton onClick={onClickCTA} halo>
                 July Meetup
@@ -87,6 +106,27 @@ const Hero = ({ onClickCTA, ...otherProps }) => {
                   }}
                 />Join Slack
               </RVButton>
+            </RVGrid>
+            <RVText className={styles.sponsoredby} mb1>
+              Sponsored by
+            </RVText>
+            <RVGrid
+              justifyCenter
+              itemsCenter
+              gridTemplateColumns={[
+                'repeat(1, 1fr)',
+                'repeat(3, min-content)',
+                'repeat(3, min-content)',
+              ]}
+            >
+              {sponsors.map(sponsor => (
+                <RVBox key={sponsor.node.id}>
+                  <Img
+                    fixed={sponsor.node.companyLogoDark.fixed}
+                    className={styles.sponsor}
+                  />
+                </RVBox>
+              ))}
             </RVGrid>
           </RVBox>
         </RVContainer>

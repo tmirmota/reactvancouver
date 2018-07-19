@@ -49,7 +49,7 @@ class Events extends React.Component {
         keywords="events, meetups, hacknights, react, vancouver"
       >
         <RVContainer pt8>
-          <RVBox flex>
+          <RVGrid columns2>
             <RVBox tag="ul" style={styles.list}>
               {events.map(({ node }, index) => {
                 if (!seeAllEvents && index >= 10) {
@@ -124,7 +124,7 @@ class Events extends React.Component {
                   </RVGrid>
                 ))}
             </RVCard>
-          </RVBox>
+          </RVGrid>
           <RVBox grey radius alignCenter p3 my4>
             <RVText subheading>Have an idea for a talk?</RVText>
             <RVBox my3>

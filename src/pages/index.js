@@ -101,7 +101,7 @@ export default class IndexPage extends React.Component {
         description="React Vancouver is a community of developers, designers, marketers and entrepreneurs that are passionate about React."
         keywords="react, vancouver, events, developers, frontend, development, frameworks"
       >
-        <Hero onClickCTA={this.scrollToEvents} />
+        <Hero onClickCTA={this.scrollToEvents} sponsors={sponsors} />
 
         {_renderStats(data)}
 
@@ -246,8 +246,9 @@ export const query = graphql`
         node {
           id
           companyName
+          companyUrl
           companyLogoDark {
-            fixed(width: 200) {
+            fixed(width: 148) {
               ...GatsbyContentfulFixed
             }
           }

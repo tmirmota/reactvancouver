@@ -6,7 +6,7 @@ export default class MeetupGroup extends Component {
     group: null,
   }
   componentDidMount() {
-    fetch('https://meetup.reactvancouver.com/')
+    fetch('https://meetuprv.now.sh')
       .then(res => res.json())
       .then(json => this.setState({ group: json }))
   }
