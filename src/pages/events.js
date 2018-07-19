@@ -49,7 +49,13 @@ class Events extends React.Component {
         keywords="events, meetups, hacknights, react, vancouver"
       >
         <RVContainer pt8>
-          <RVBox flex>
+          <RVGrid
+            gridTemplateColumns={[
+              'repeat(1, 1fr)',
+              'min-content 1fr',
+              'min-content 1fr',
+            ]}
+          >
             <RVBox tag="ul" style={styles.list}>
               {events.map(({ node }, index) => {
                 if (!seeAllEvents && index >= 10) {
@@ -124,8 +130,8 @@ class Events extends React.Component {
                   </RVGrid>
                 ))}
             </RVCard>
-          </RVBox>
-          <RVCard alignCenter p3 my4>
+          </RVGrid>
+          <RVBox grey radius alignCenter p3 my4>
             <RVText subheading>Have an idea for a talk?</RVText>
             <RVBox my3>
               <Link to="/#contact-us">
@@ -136,7 +142,7 @@ class Events extends React.Component {
               We are always looking for presenters with interesting ideas,
               projects or tips to share.
             </RVText>
-          </RVCard>
+          </RVBox>
         </RVContainer>
       </Layout>
     )

@@ -1,5 +1,10 @@
 import React from 'react'
 import { RVBox, RVInput, RVGrid, RVText, RVButton, RVIcon } from 'components'
+import { css } from 'react-emotion'
+
+const styles = {
+  inputGridWrapper: css({ gridGap: 0 }),
+}
 
 const icons = [
   { icon: 'slack', link: 'https://slack.reactvancouver.com/' },
@@ -29,12 +34,12 @@ const ContactUs = () => (
       data-netlify-honeypot="bot-field"
     >
       <input type="hidden" name="bot-field" />
-      <RVBox flex>
+      <RVGrid columns2 className={styles.inputGridWrapper}>
         <RVInput name="name" placeholder="Name" />
         <RVInput name="email" placeholder="Email" />
-      </RVBox>
-
+      </RVGrid>
       <RVInput name="message" tag="textarea" placeholder="Message" rows="9" />
+
       <RVButton type="submit" style={{ float: 'right' }} mt2>
         Submit
       </RVButton>

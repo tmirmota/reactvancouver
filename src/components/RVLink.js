@@ -5,13 +5,43 @@ import styled from 'react-emotion'
 import { RVBox } from 'components'
 import { Typography } from 'styles'
 
-const RVLink = ({ className, navigate, children, ...otherProps }) => (
-  <RVBox {...otherProps}>
-    <Link className={className} to={navigate}>
-      {children}
-    </Link>
-  </RVBox>
-)
+const RVLink = ({
+  className,
+  children,
+  href,
+  navigate,
+  to,
+  activeClassName,
+  activeStyle,
+  ...otherProps
+}) => {
+  if (href) {
+    return (
+      <RVBox
+        tag="a"
+        target="_blank"
+        rel={'noopener referrer'}
+        href={href}
+        className={className}
+        {...otherProps}
+      >
+        {children}
+      </RVBox>
+    )
+  }
+  return (
+    <RVBox {...otherProps}>
+      <Link
+        className={className}
+        to={to || navigate}
+        activeStyle={activeStyle}
+        activeClassName={activeClassName}
+      >
+        {children}
+      </Link>
+    </RVBox>
+  )
+}
 
 RVLink.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -19,6 +49,10 @@ RVLink.propTypes = {
   color: PropTypes.string,
   disabled: PropTypes.bool,
   navigate: PropTypes.string,
+  to: PropTypes.string,
+  href: PropTypes.string,
+  activeStyle: PropTypes.object,
+  activeClassName: PropTypes.string,
 }
 
 export default styled(RVLink)(

@@ -5,9 +5,9 @@ import styled from 'react-emotion'
 import { RVText } from 'components'
 import { Typography } from 'styles'
 
-const RVLogo = ({ className, navigate, title, ...otherProps }) => (
-  <RVText subheading {...otherProps}>
-    <Link className={className} to={navigate} title={title}>
+const RVLogo = ({ className, to, navigate, ...otherProps }) => (
+  <RVText subheading style={{ margin: 0 }} {...otherProps}>
+    <Link className={className} to={to || navigate}>
       ReactVancouver
     </Link>
   </RVText>
@@ -18,7 +18,7 @@ RVLogo.propTypes = {
   color: PropTypes.string,
   disabled: PropTypes.bool,
   navigate: PropTypes.string,
-  title: PropTypes.string,
+  to: PropTypes.string,
 }
 
 export default styled(RVLogo)(

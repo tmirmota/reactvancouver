@@ -22,6 +22,17 @@ module.exports = {
         respectDNT: true,
       },
     },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'React Vancouver',
+        short_name: 'React Vancouver',
+        start_url: '/',
+        background_color: '#F9F9FB',
+        display: 'minimal-ui',
+        icon: 'static/favicon.png',
+      },
+    },
     'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-remark',

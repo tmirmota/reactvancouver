@@ -12,7 +12,6 @@ import {
   Sponsors,
 } from 'components'
 import { Layout, Colors } from 'styles'
-import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 import LayoutComponent from 'layouts'
 
@@ -77,7 +76,7 @@ const getEvent = ({ id, events, type }) => {
   return events[newIndex]
 }
 
-const renderEventLink = ({ event, textProps, label }) => {
+const _renderEventLink = ({ event, textProps, label }) => {
   if (!event) return <div />
 
   return (
@@ -103,13 +102,13 @@ const EventTemplate = ({ data }) => {
       description={`React Vancouver ${title}.`}
       keywords="events, react, vancouver"
     >
-      <RVContainer pt8>
-        <RVGrid columns3 mt3>
-          {renderEventLink({ event: previousEvent, label: 'Previous' })}
-          <RVText subheading tag="h1" mx-auto>
+      <RVContainer pt8 mb4>
+        <RVGrid columns3>
+          {_renderEventLink({ event: previousEvent, label: 'Previous' })}
+          <RVText subheading tag="h1" mx-auto my3>
             {title}
           </RVText>
-          {renderEventLink({
+          {_renderEventLink({
             event: nextEvent,
             textProps: { alignRight: true },
             label: 'Next',
