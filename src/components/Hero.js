@@ -94,7 +94,7 @@ const Hero = ({ onClickCTA, sponsors, ...otherProps }) => {
               <RVButton onClick={onClickCTA} halo>
                 July Meetup
               </RVButton>
-              <RVButton halo link="https://slack.reactvancouver.com/">
+              <RVButton halo link="https://slackrv.now.sh">
                 <RVIcon
                   key={'slack'}
                   mr1
