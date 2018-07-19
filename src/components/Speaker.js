@@ -3,6 +3,7 @@ import { css } from 'emotion'
 import { sortBy } from 'lodash'
 import Img from 'gatsby-image'
 import { RVBox, RVText, RVBadge } from 'components'
+import { Colors, Typography } from 'styles'
 
 const Speaker = ({
   fixed,
@@ -14,14 +15,14 @@ const Speaker = ({
 }) => (
   <RVBox>
     {fixed && <Img fixed={fixed} imgStyle={{ borderRadius: 6 }} />}
-    <RVBox className={styles.nameBox}>
-      <RVText subheading>
+    <RVBox mt1>
+      <RVText subheading className={styles.name}>
         {firstName} {lastName}
       </RVText>
     </RVBox>
 
-    <RVBox className={styles.titleBox}>
-      <RVText>
+    <RVBox mb2>
+      <RVText className={styles.title}>
         {jobTitle}
         {!!company && ` at ${company}`}
       </RVText>
@@ -43,15 +44,15 @@ const _renderTalk = ({ id, title, date }) => (
 )
 
 const styles = {
-  nameBox: css({
-    height: 80,
+  name: css({
+    margin: 0,
   }),
-  titleBox: css({
-    minHeight: 50,
-    marginBottom: 10,
+  title: css({
+    color: Colors.grey.medium,
+    fontWeight: Typography.font.weight.bold,
   }),
   talksBox: css({
-    maskImage: 'linear-gradient(to bottom, black 90%, transparent)',
+    maskImage: 'linear-gradient(to bottom, #FFFFFF 80%, transparent)',
     overflowX: 'hidden',
     overflowY: 'auto',
     WebkitOverflowScrolling: 'touch',
@@ -59,20 +60,20 @@ const styles = {
     '@media (max-width: 420px)': {},
   }),
   talkBox: css({
-    minHeight: 90,
-    marginBottom: 10,
+    minHeight: 88,
+    marginBottom: 8,
   }),
   talkDateBadge: css({
-    float: 'left',
-    marginBottom: 10,
-    height: 30,
-    fontSize: '60%',
+    marginTop: 0,
+    marginBottom: 8,
+    height: 32,
+    fontSize: 12,
     minWidth: 105,
     textAlign: 'center',
-    marginRight: 10,
+    marginRight: 8,
   }),
   titleText: {
-    minHeight: 50,
+    minHeight: 48,
   },
 }
 
