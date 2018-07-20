@@ -90,7 +90,21 @@ export default class IndexPage extends React.Component {
     )
     const sponsors = data.allContentfulSponsors.edges
     const talks = data.allContentfulTalks.edges || []
-    const speakers = talks.map(({ node: talk }) => talk.speakers[0])
+    const allSpeakers = talks.reduce((arr, talk) => {
+      const { speakers } = talk.node
+      if (!speakers) {
+        return arr
+      }
+      return arr.concat(speakers)
+    }, [])
+    const speakers = allSpeakers.reduce((arr, speaker) => {
+      const speakerExists = arr.find(s => s.id === speaker.id)
+      if (speakerExists || arr.length === 4) {
+        return arr
+      }
+      return arr.concat(speaker)
+    }, [])
+    console.log(talks)
     const assets = data.allContentfulAsset.edges || []
     const rvIdenticon = assets && get(assets[0], 'node.fixed')
 
@@ -259,7 +273,7 @@ export const query = graphql`
       }
     }
     allContentfulTalks(
-      limit: 4
+      limit: 10
       sort: { fields: [date], order: DESC }
       filter: { date: { ne: null } }
     ) {
