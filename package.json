@@ -21,6 +21,7 @@
     "gatsby-plugin-google-fonts": "^0.0.4",
     "gatsby-plugin-manifest": "^1.0.27",
     "gatsby-plugin-react-helmet": "next",
+    "gatsby-plugin-sitemap": "^1.2.25",
     "gatsby-source-contentful": "next",
     "gatsby-transformer-remark": "next",
     "lodash": "^4.17.10",

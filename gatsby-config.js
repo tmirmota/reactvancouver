@@ -33,6 +33,7 @@ module.exports = {
         icon: 'static/favicon.png',
       },
     },
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-remark',
