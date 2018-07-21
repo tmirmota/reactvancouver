@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
 import { get } from 'lodash'
 import moment from 'moment'
+import { css } from 'react-emotion'
 import {
   Hero,
   RVBox,
@@ -11,6 +12,7 @@ import {
   RVCard,
   RVContainer,
   RVGrid,
+  RVIcon,
   RVText,
   RVInput,
   MeetupGroup,
@@ -19,8 +21,9 @@ import {
   ContactUs,
 } from 'components'
 import Layout from 'layouts'
-import { Buttons } from 'styles'
+import { Colors, Buttons, Typography } from 'styles'
 import classNames from 'classnames'
+import { faCalendar, faMapMarker } from '@fortawesome/free-solid-svg-icons'
 
 const _renderStats = data => {
   const talksThisYear = data.allContentfulEvents.edges.reduce(
@@ -75,6 +78,21 @@ const _renderStats = data => {
   )
 }
 
+const styles = {
+  eventTitle: css({
+    marginBottom: '.7rem',
+  }),
+  eventDate: css({
+    color: Colors.grey.medium,
+    fontWeight: Typography.font.weight.bold,
+  }),
+  eventSubheadingWrapperGrid: css({
+    gridGap: 0,
+    gridRowGap: '.5rem',
+    gridColumnGap: '1rem',
+  }),
+}
+
 export default class IndexPage extends React.Component {
   scrollToEvents = () => {
     this.events.scrollIntoView({ behavior: 'smooth' })
@@ -90,9 +108,27 @@ export default class IndexPage extends React.Component {
     )
     const sponsors = data.allContentfulSponsors.edges
     const talks = data.allContentfulTalks.edges || []
-    const speakers = talks.map(({ node: talk }) => talk.speakers[0])
+    const allSpeakers = talks.reduce((arr, talk) => {
+      const { speakers } = talk.node
+      if (!speakers) {
+        return arr
+      }
+      return arr.concat(speakers)
+    }, [])
+    const speakers = allSpeakers.reduce((arr, speaker) => {
+      const speakerExists = arr.find(s => s.id === speaker.id)
+      if (speakerExists || arr.length === 4) {
+        return arr
+      }
+      return arr.concat(speaker)
+    }, [])
     const assets = data.allContentfulAsset.edges || []
     const rvIdenticon = assets && get(assets[0], 'node.fixed')
+    const { lat, lon } = upcomingEvent.node.location
+
+    const gMapsLink = `https://maps.google.com/?q=${
+      upcomingEvent.node.venueName
+    }${upcomingEvent.node.venueAddress}&ll=${lat},${lon}`
 
     return (
       <Layout
@@ -112,7 +148,48 @@ export default class IndexPage extends React.Component {
             my4
           >
             <RVCard p3>
-              <RVText subheading>{upcomingEvent.node.title}</RVText>
+              <RVText subheading className={styles.eventTitle}>
+                {upcomingEvent.node.title}
+              </RVText>
+              <RVGrid
+                gridTemplateColumns={[
+                  'repeat(1,1fr)',
+                  'min-content 100%',
+                  'min-content 100%',
+                ]}
+                className={styles.eventSubheadingWrapperGrid}
+                mb1
+              >
+                <RVIcon
+                  href={gMapsLink}
+                  fontAwesomeIcon={{ icon: faMapMarker }}
+                />
+                <RVLink
+                  href={gMapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <RVText>
+                    {upcomingEvent.node.venueName}{' '}
+                    {upcomingEvent.node.venueAddress}
+                  </RVText>
+                </RVLink>
+                <RVIcon
+                  fontAwesomeIcon={{
+                    icon: faCalendar,
+                    className: styles.eventDate,
+                  }}
+                />
+                <RVText className={styles.eventDate}>
+                  {moment(upcomingEvent.node.startDate).format(
+                    'dddd, MMM Do, Y'
+                  )}{' '}
+                  {moment(upcomingEvent.node.startDate).format('h:mmA')}
+                  {' - '}
+                  {moment(upcomingEvent.node.endDate).format('h:mmA')}
+                </RVText>
+              </RVGrid>
+
               {upcomingEvent.node.description && (
                 <div
                   dangerouslySetInnerHTML={{
@@ -225,6 +302,7 @@ export const query = graphql`
           venueName
           venueAddress
           startDate
+          endDate
           description {
             childMarkdownRemark {
               html
@@ -259,7 +337,7 @@ export const query = graphql`
       }
     }
     allContentfulTalks(
-      limit: 4
+      limit: 10
       sort: { fields: [date], order: DESC }
       filter: { date: { ne: null } }
     ) {

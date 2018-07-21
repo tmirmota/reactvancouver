@@ -31,6 +31,10 @@ const Layout = ({
       meta={[
         { name: 'description', content: description },
         { name: 'keywords', content: keywords },
+        {
+          name: 'google-site-verification',
+          content: 'qawJEhyNW_Ux370OkBi5pVNesHU4mdxd722lgU9ynn4',
+        },
       ]}
     >
       <link
