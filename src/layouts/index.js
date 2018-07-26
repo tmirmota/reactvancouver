@@ -35,6 +35,10 @@ const Layout = ({
           name: 'google-site-verification',
           content: 'qawJEhyNW_Ux370OkBi5pVNesHU4mdxd722lgU9ynn4',
         },
+        {
+          name: 'google-site-verification',
+          content: 'EdhKuuz7qIqzKK1VLfkoTKOeoUyHNxlw2bYmEoEYSoY',
+        },
       ]}
     >
       <link
