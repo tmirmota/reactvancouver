@@ -54,7 +54,7 @@ const Layout = ({
     </Helmet>
     <Nav siteTitle={title} height={navHeight} theme={theme} />
     <Main>{children}</Main>
-    {/* <Footer /> */}
+    <Footer />
   </React.Fragment>
 )
 

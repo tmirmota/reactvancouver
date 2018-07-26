@@ -25,59 +25,6 @@ import { Colors, Buttons, Typography } from 'styles'
 import classNames from 'classnames'
 import { faCalendar, faMapMarker } from '@fortawesome/free-solid-svg-icons'
 
-const _renderStats = data => {
-  const talksThisYear = data.allContentfulEvents.edges.reduce(
-    (sum, { node: event }) => {
-      const startOfThisYear = moment().startOf('year')
-      const numTalks = event.talks && event.talks.length
-      const startDate = moment(event.startDate)
-
-      if (startDate.isAfter(startOfThisYear) && startDate.isBefore()) {
-        return sum + numTalks
-      }
-      return sum
-    },
-    0
-  )
-
-  const totalEvents = data.allContentfulEvents.edges.reduce(
-    (sum, { node: event }) => {
-      if (moment(event.startDate).isBefore()) {
-        sum++
-      }
-      return sum
-    },
-    0
-  )
-
-  return (
-    <RVContainer my8>
-      <RVGrid columns3 alignCenter mb2>
-        <RVText>
-          <MeetupGroup>
-            {group => (
-              <RVText title>
-                {group ? group.members.toLocaleString() : 'A few'}
-              </RVText>
-            )}
-          </MeetupGroup>
-          <RVText subheading>React Fans in Vancouver</RVText>
-        </RVText>
-
-        {/* https://github.com/gatsbyjs/gatsby/issues/4033 */}
-        <RVBox>
-          <RVText title>{talksThisYear.toLocaleString()}</RVText>
-          <RVText subheading>Talks This Year</RVText>
-        </RVBox>
-        <RVBox>
-          <RVText title>{totalEvents.toLocaleString()}</RVText>
-          <RVText subheading>Events since Oct 2015</RVText>
-        </RVBox>
-      </RVGrid>
-    </RVContainer>
-  )
-}
-
 const styles = {
   eventTitle: css({
     marginBottom: '.7rem',
@@ -91,6 +38,9 @@ const styles = {
     gridRowGap: '.5rem',
     gridColumnGap: '1rem',
   }),
+  statsTitle: css({
+    fontSize: '5rem',
+  }),
 }
 
 export default class IndexPage extends React.Component {
@@ -98,11 +48,72 @@ export default class IndexPage extends React.Component {
     this.events.scrollIntoView({ behavior: 'smooth' })
   }
 
+  _renderStats = data => {
+    const talksThisYear = data.allContentfulEvents.edges.reduce(
+      (sum, { node: event }) => {
+        const startOfThisYear = moment().startOf('year')
+        const numTalks = event.talks && event.talks.length
+        const startDate = moment(event.startDate)
+
+        if (startDate.isAfter(startOfThisYear) && startDate.isBefore()) {
+          return sum + numTalks
+        }
+        return sum
+      },
+      0
+    )
+
+    const totalEvents = data.allContentfulEvents.edges.reduce(
+      (sum, { node: event }) => {
+        if (moment(event.startDate).isBefore()) {
+          sum++
+        }
+        return sum
+      },
+      0
+    )
+
+    return (
+      <RVContainer my8>
+        <RVGrid columns3 alignCenter mb2>
+          <RVText>
+            <MeetupGroup>
+              {group => (
+                <RVText title className={styles.statsTitle}>
+                  {group ? group.members.toLocaleString() : 'A few'}
+                </RVText>
+              )}
+            </MeetupGroup>
+            <RVText subheading>React Fans in Vancouver</RVText>
+          </RVText>
+
+          {/* https://github.com/gatsbyjs/gatsby/issues/4033 */}
+          <RVBox>
+            <RVText title className={styles.statsTitle}>
+              {talksThisYear.toLocaleString()}
+            </RVText>
+            <RVText subheading>Talks This Year</RVText>
+          </RVBox>
+          <RVBox>
+            <RVText title className={styles.statsTitle}>
+              {totalEvents.toLocaleString()}
+            </RVText>
+            <RVText subheading>Events since Oct 2015</RVText>
+          </RVBox>
+        </RVGrid>
+      </RVContainer>
+    )
+  }
+
   render() {
     const { data } = this.props
-    const upcomingEvent = data.allContentfulEvents.edges.filter(
+    const upcomingEvents = data.allContentfulEvents.edges.filter(
       ({ node: event }) => moment(event.startDate).isAfter()
-    )[0]
+    )
+    let upcomingEvent = { node: { location: {} } }
+    if (upcomingEvents.length > 0) {
+      upcomingEvent = upcomingEvents[0]
+    }
     const pastEvents = data.allContentfulEvents.edges.filter(
       ({ node: event }) => moment(event.startDate).isBefore()
     )
@@ -139,7 +150,7 @@ export default class IndexPage extends React.Component {
       >
         <Hero onClickCTA={this.scrollToEvents} sponsors={sponsors} />
 
-        {_renderStats(data)}
+        {this._renderStats(data)}
 
         <RVContainer>
           <RVGrid
@@ -147,78 +158,80 @@ export default class IndexPage extends React.Component {
             gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']}
             my4
           >
-            <RVCard p3>
-              <RVText subheading className={styles.eventTitle}>
-                {upcomingEvent.node.title}
-              </RVText>
-              <RVGrid
-                gridTemplateColumns={[
-                  'repeat(1,1fr)',
-                  'min-content 100%',
-                  'min-content 100%',
-                ]}
-                className={styles.eventSubheadingWrapperGrid}
-                mb1
-              >
-                <RVIcon
-                  href={gMapsLink}
-                  fontAwesomeIcon={{ icon: faMapMarker }}
-                />
-                <RVLink
-                  href={gMapsLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <RVText>
-                    {upcomingEvent.node.venueName}{' '}
-                    {upcomingEvent.node.venueAddress}
-                  </RVText>
-                </RVLink>
-                <RVIcon
-                  fontAwesomeIcon={{
-                    icon: faCalendar,
-                    className: styles.eventDate,
-                  }}
-                />
-                <RVText className={styles.eventDate}>
-                  {moment(upcomingEvent.node.startDate).format(
-                    'dddd, MMM Do, Y'
-                  )}{' '}
-                  {moment(upcomingEvent.node.startDate).format('h:mmA')}
-                  {' - '}
-                  {moment(upcomingEvent.node.endDate).format('h:mmA')}
+            {upcomingEvent.length > 0 && (
+              <RVCard p3>
+                <RVText subheading className={styles.eventTitle}>
+                  {upcomingEvent.node.title}
                 </RVText>
-              </RVGrid>
+                <RVGrid
+                  gridTemplateColumns={[
+                    'repeat(1,1fr)',
+                    'min-content 100%',
+                    'min-content 100%',
+                  ]}
+                  className={styles.eventSubheadingWrapperGrid}
+                  mb1
+                >
+                  <RVIcon
+                    href={gMapsLink}
+                    fontAwesomeIcon={{ icon: faMapMarker }}
+                  />
+                  <RVLink
+                    href={gMapsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <RVText>
+                      {upcomingEvent.node.venueName}{' '}
+                      {upcomingEvent.node.venueAddress}
+                    </RVText>
+                  </RVLink>
+                  <RVIcon
+                    fontAwesomeIcon={{
+                      icon: faCalendar,
+                      className: styles.eventDate,
+                    }}
+                  />
+                  <RVText className={styles.eventDate}>
+                    {moment(upcomingEvent.node.startDate).format(
+                      'dddd, MMM Do, Y'
+                    )}{' '}
+                    {moment(upcomingEvent.node.startDate).format('h:mmA')}
+                    {' - '}
+                    {moment(upcomingEvent.node.endDate).format('h:mmA')}
+                  </RVText>
+                </RVGrid>
 
-              {upcomingEvent.node.description && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      upcomingEvent.node.description.childMarkdownRemark.html,
+                {upcomingEvent.node.description && (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        upcomingEvent.node.description.childMarkdownRemark.html,
+                    }}
+                  />
+                )}
+
+                {/* TODO: Move into it's own component */}
+                <RVBox
+                  tag="a"
+                  href={`https://www.picatic.com/${
+                    upcomingEvent.node.picaticEventId
+                  }`}
+                  style={{
+                    alignSelf: 'bottom',
+                    color: 'white',
+                    textTransform: 'uppercase',
+                    fontWeight: 700,
+                    WebkitFontSmoothing: 'antialiased',
                   }}
-                />
-              )}
-
-              {/* TODO: Move into it's own component */}
-              <RVBox
-                tag="a"
-                href={`https://www.picatic.com/${
-                  upcomingEvent.node.picaticEventId
-                }`}
-                style={{
-                  alignSelf: 'bottom',
-                  color: 'white',
-                  textTransform: 'uppercase',
-                  fontWeight: 700,
-                  WebkitFontSmoothing: 'antialiased',
-                }}
-                className={classNames(Buttons.base, Buttons.medium)}
-                px2
-                py1
-              >
-                Get Tickets
-              </RVBox>
-            </RVCard>
+                  className={classNames(Buttons.base, Buttons.medium)}
+                  px2
+                  py1
+                >
+                  Get Tickets
+                </RVBox>
+              </RVCard>
+            )}
             <RVCard p3>
               <RVText subheading>Past Events</RVText>
               {pastEvents.map(({ node: event }, index) => {

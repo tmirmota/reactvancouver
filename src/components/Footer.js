@@ -1,5 +1,7 @@
 import React from 'react'
 import { RVBox, RVLink, RVText, RVGrid, RVIcon } from 'components'
+import { css } from 'react-emotion'
+import { Colors } from 'styles'
 
 const links = [
   { navigate: '/jobs', title: 'Jobs' },
@@ -13,39 +15,30 @@ const icons = [
   { icon: 'meetup', link: 'https://www.meetup.com/ReactJS-Vancouver-Meetup/' },
 ]
 
+const grey = Colors.grey.calc(80)
+
+const styles = {
+  text: css({
+    color: grey,
+    a: {
+      color: grey,
+      textDecoration: 'underline',
+    },
+  }),
+}
+
 const Footer = () => (
-  <RVBox tag="footer" container py2>
-    <RVGrid
-      gridTemplateColumns={[
-        'repeat(2, 1fr)',
-        'repeat(2, 1fr)',
-        'repeat(2, 1fr)',
-      ]}
-    >
-      <RVBox>
-        <RVText mb2 subheading>
-          ReactVancouver
-        </RVText>
-        {links.map(({ navigate, title }) => (
-          <RVLink key={title} navigate={navigate}>
-            {title}
-          </RVLink>
-        ))}
-
-        <RVText mt1>2018</RVText>
-      </RVBox>
-
-      <RVBox style={{ alignSelf: 'end', justifySelf: 'end' }}>
-        {icons.map(({ icon, link }) => (
-          <RVIcon
-            key={icon}
-            href={link}
-            fontAwesomeIcon={{ icon: ['fab', icon], size: '3x' }}
-            m2
-          />
-        ))}
-      </RVBox>
-    </RVGrid>
+  <RVBox tag="footer" container pb2 pt3>
+    <RVBox flex center alignCenter>
+      <RVText label className={styles.text}>
+        Designed by <RVLink href="https://www.alexa-gueguen.com">Alexa</RVLink>{' '}
+        & <RVLink href="https://github.com/AkimaLunar">Ria</RVLink> <br />
+        Developed by <RVLink href="https://github.com/tmirmota">
+          Thomas
+        </RVLink>, <RVLink href="https://github.com/AkimaLunar">Ria</RVLink> &{' '}
+        <RVLink href="https://github.com/bosung90">Eric</RVLink>
+      </RVText>
+    </RVBox>
   </RVBox>
 )
 

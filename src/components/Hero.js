@@ -10,7 +10,7 @@ import {
   RVGrid,
   RVLink,
 } from 'components'
-import { Colors, Layout } from 'styles'
+import { Colors, Layout, Shadows } from 'styles'
 import background from '../assets/background.jpg'
 import Img from 'gatsby-image'
 
@@ -34,6 +34,7 @@ const styles = {
   }),
   title: css({
     color: Colors.grey.white,
+    textShadow: Shadows.textShadow,
     '@media (max-width: 420px)': {
       textAlign: 'left',
     },
