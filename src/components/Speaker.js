@@ -1,5 +1,5 @@
 import React from 'react'
-import { css } from 'emotion'
+import { css } from 'react-emotion'
 import { sortBy } from 'lodash'
 import Img from 'gatsby-image'
 import { RVBox, RVText, RVBadge } from 'components'
