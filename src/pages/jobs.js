@@ -18,7 +18,7 @@ import {
 function getActiveJobs(jobs) {
   return jobs.filter(job => {
     const { startDate, endDate } = job.node
-    if (startDate.isBefore() && endDate.isAfter()) {
+    if (moment(startDate).isBefore() && moment(endDate).isAfter()) {
       return job
     }
   })
@@ -55,7 +55,7 @@ Job.propTypes = {
   slug: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   companyName: PropTypes.string,
-  logo: PropTypes.string,
+  logo: PropTypes.object,
 }
 
 const Jobs = ({ data }) => {

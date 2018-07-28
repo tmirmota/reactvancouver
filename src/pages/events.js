@@ -12,6 +12,7 @@ import {
   RVGrid,
   RVIcon,
   RVText,
+  EventDetails,
 } from 'components'
 import Layout from 'layouts'
 
@@ -48,7 +49,9 @@ class Events extends React.Component {
 
   _renderEventListItem = ({ id, slug, startDate }) => (
     <li key={id}>
-      <Link to={`/event/${slug}`}>{startDate}</Link>
+      <Link to={`/event/${slug}`}>
+        {moment(startDate).format('MMMM Do, Y')}
+      </Link>
     </li>
   )
 
@@ -58,7 +61,7 @@ class Events extends React.Component {
     const events = allContentfulEvents && allContentfulEvents.edges
     const upcomingEvents = getUpcomingEvents(events)
     const pastEvents = getPastEvents(events)
-    const event = getNextEvent(events).node
+    const event = getNextEvent(events)
 
     return (
       <Layout
@@ -75,7 +78,7 @@ class Events extends React.Component {
             ]}
           >
             <RVBox tag="ul" style={styles.list}>
-              <RVText>Upcoming Events</RVText>
+              <RVText subheading>Upcoming Events</RVText>
               {upcomingEvents.length > 0 ? (
                 upcomingEvents.map(({ node }) => {
                   return this._renderEventListItem({ ...node })
@@ -83,7 +86,7 @@ class Events extends React.Component {
               ) : (
                 <RVText>No Upcoming Events</RVText>
               )}
-              <RVText>Past Events</RVText>
+              <RVText subheading>Past Events</RVText>
               {pastEvents.map(({ node }, index) => {
                 if (!seeAllEvents && index >= 4) {
                   return null
@@ -96,15 +99,12 @@ class Events extends React.Component {
             </RVBox>
 
             <RVCard px3 py2>
-              <Link to={`/event/${event.slug}`}>
-                <RVText tag="h3">{event.title}</RVText>
-              </Link>
-              {event.description && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: event.description.childMarkdownRemark.html,
-                  }}
-                />
+              {event ? (
+                <EventDetails {...event.node} />
+              ) : (
+                <RVText alignCenter label>
+                  No upcoming events
+                </RVText>
               )}
             </RVCard>
           </RVGrid>
@@ -148,7 +148,7 @@ export const query = graphql`
               html
             }
           }
-          startDate(formatString: "MMMM Do, Y")
+          startDate
           talks {
             id
             title
