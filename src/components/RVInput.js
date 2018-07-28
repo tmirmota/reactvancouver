@@ -1,6 +1,6 @@
 import React from 'react'
-import { Forms } from 'styles'
 import classNames from 'classnames'
+import { Forms } from 'styles'
 
 const RVInput = ({
   className: classNameProp,

@@ -1,13 +1,30 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
 import moment from 'moment'
-import { Colors } from 'styles'
-import { RVContainer, RVGrid, RVText, RVCard, RVBox, RVImage } from 'components'
 import Layout from 'layouts'
+import { Colors } from 'styles'
+import {
+  RVContainer,
+  RVGrid,
+  RVText,
+  RVCard,
+  RVBox,
+  RVImage,
+  RVLink,
+} from 'components'
 
-const Job = ({ id, slug, title, companyName, logo, startDate }) => (
+function getActiveJobs(jobs) {
+  return jobs.filter(job => {
+    const { startDate, endDate } = job.node
+    if (startDate.isBefore() && endDate.isAfter()) {
+      return job
+    }
+  })
+}
+
+const Job = ({ slug, title, companyName, logo, startDate }) => (
   <Link to={`/job/${slug}`}>
     <RVCard mb2 px3 pt2 pb3>
       <RVGrid
@@ -34,23 +51,17 @@ const Job = ({ id, slug, title, companyName, logo, startDate }) => (
   </Link>
 )
 
-// An active job starts before now and ends after now
-const filterActiveJobs = jobs =>
-  jobs.filter(job => {
-    // Convert dates to moment
-    const startDate = moment(job.node.startDate)
-    const endDate = moment(job.node.endDate)
-    if (startDate.isBefore() && endDate.isAfter()) {
-      return job
-    }
-  })
+Job.propTypes = {
+  slug: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  companyName: PropTypes.string,
+  logo: PropTypes.string,
+}
 
 const Jobs = ({ data }) => {
-  const activeJobs = filterActiveJobs(data.allContentfulJobs.edges)
+  const jobs = data.allContentfulJobs && data.allContentfulJobs.edges
 
-  if (activeJobs.length <= 0) {
-    return <RVBox>No Jobs</RVBox>
-  }
+  const activeJobs = getActiveJobs(jobs)
 
   return (
     <Layout
@@ -61,15 +72,15 @@ const Jobs = ({ data }) => {
       <RVContainer pt8>
         <RVBox flex itemsBottom spaceBetween>
           <RVText tag="h2">Job Opportunities</RVText>
-          <a
-            href="https://tmirmota.seeker.company/submit/job"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <RVLink href="https://tmirmota.seeker.company/submit/job">
             Post a job
-          </a>
+          </RVLink>
         </RVBox>
-        {activeJobs.map(({ node }) => <Job key={node.id} {...node} />)}
+        {activeJobs.length > 0 ? (
+          activeJobs.map(({ node }) => <Job key={node.id} {...node} />)
+        ) : (
+          <RVText>No Jobs</RVText>
+        )}
       </RVContainer>
     </Layout>
   )

@@ -27,15 +27,17 @@ exports.createPages = ({ actions, graphql }) => {
 
           const speakerTemplate = path.resolve(`./src/templates/speaker.js`)
 
-          result.data.allContentfulSpeakers.edges.forEach(({ node }) => {
-            createPage({
-              path: `/speaker/${node.id}/`,
-              component: slash(speakerTemplate),
-              context: {
-                id: node.id,
-              },
-            })
-          })
+          result.data.allContentfulSpeakers.edges.forEach(
+            ({ node: { id } }) => {
+              createPage({
+                path: `/speaker/${id}/`,
+                component: slash(speakerTemplate),
+                context: {
+                  id,
+                },
+              })
+            }
+          )
         })
 
         // Event Pages
@@ -96,12 +98,12 @@ exports.createPages = ({ actions, graphql }) => {
 
             const talkTemplate = path.resolve(`./src/templates/talk.js`)
 
-            result.data.allContentfulTalks.edges.forEach(({ node }) => {
+            result.data.allContentfulTalks.edges.forEach(({ node: { id } }) => {
               createPage({
-                path: `/talk/${node.id}`,
+                path: `/talk/${id}`,
                 component: slash(talkTemplate),
                 context: {
-                  id: node.id,
+                  id,
                 },
               })
             })
@@ -166,15 +168,17 @@ exports.createPages = ({ actions, graphql }) => {
 
             const sponsorTemplate = path.resolve(`./src/templates/sponsor.js`)
 
-            result.data.allContentfulSponsors.edges.forEach(({ node }) => {
-              createPage({
-                path: `/sponsor/${node.id}`,
-                component: slash(sponsorTemplate),
-                context: {
-                  id: node.id,
-                },
-              })
-            })
+            result.data.allContentfulSponsors.edges.forEach(
+              ({ node: { id } }) => {
+                createPage({
+                  path: `/sponsor/${id}`,
+                  component: slash(sponsorTemplate),
+                  context: {
+                    id,
+                  },
+                })
+              }
+            )
           })
         })
     )

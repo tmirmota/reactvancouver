@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout } from 'styles'
-import { RVBox } from 'components'
 import classNames from 'classnames'
+import { RVBox } from 'components'
+import { Layout } from 'styles'
 
 const RVCard = ({ className: classNameProp, ...otherProps }) => {
   const className = classNames(Layout.card, classNameProp)

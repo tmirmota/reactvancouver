@@ -1,6 +1,6 @@
 import React from 'react'
-import { RVBox, RVInput, RVGrid, RVText, RVButton, RVIcon } from 'components'
 import { css } from 'react-emotion'
+import { RVBox, RVInput, RVGrid, RVText, RVButton, RVIcon } from 'components'
 
 const styles = {
   inputGridWrapper: css({ gridGap: 0 }),

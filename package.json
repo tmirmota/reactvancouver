@@ -3,6 +3,13 @@
   "description": "Public website for React Vancouver",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "format": "prettier --write 'src/**/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
@@ -10,7 +17,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
     "@fortawesome/react-fontawesome": "^0.1.0-11",
     "classnames": "^2.2.6",
-    "emotion": "^9.2.4",
     "emotion-server": "^9.2.4",
     "facepaint": "^1.2.1",
     "gatsby": "^2.0.0-beta.23",
@@ -35,13 +41,6 @@
     "react-helmet": "^5.2.0",
     "slash": "^2.0.0"
   },
-  "scripts": {
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "format": "prettier --write 'src/**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^8.2.5",
     "eslint": "^5.0.0",

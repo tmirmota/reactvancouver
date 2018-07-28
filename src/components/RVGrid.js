@@ -1,10 +1,10 @@
 import React from 'react'
-import { Layout } from 'styles'
 import { css } from 'react-emotion'
+import classNames from 'classnames'
 import { RVBox } from 'components'
+import { Layout } from 'styles'
 import { breakpoints } from 'styles/Layout'
 import { injectStyles } from 'utils'
-import classNames from 'classnames'
 
 const RVGrid = ({
   className: classNameProp,

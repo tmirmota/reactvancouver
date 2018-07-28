@@ -1,10 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { RVText, RVGrid, RVIcon, RVLink } from 'components'
-import { faCalendar, faMapMarker } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment'
-import classNames from 'classnames'
+import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
+import classNames from 'classnames'
+import { faCalendar, faMapMarker } from '@fortawesome/free-solid-svg-icons'
+import { RVText, RVGrid, RVIcon, RVLink, Talk } from 'components'
 import { Colors, Buttons, Typography } from 'styles'
 
 const styles = {
@@ -37,6 +37,7 @@ const EventDetails = ({
   startDate,
   endDate,
   description,
+  talks,
   picaticEventId,
 }) => {
   const gMapsLink = getGMapsLink({
@@ -85,6 +86,8 @@ const EventDetails = ({
           }}
         />
       )}
+
+      {talks && talks.map(talk => <Talk key={talk.id} {...talk} />)}
 
       <RVLink
         href={`https://www.picatic.com/${picaticEventId}`}

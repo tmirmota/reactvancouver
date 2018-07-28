@@ -15,7 +15,7 @@ import { Layout, Colors } from 'styles'
 import Link from 'gatsby-link'
 import LayoutComponent from 'layouts'
 
-const renderTalk = talk => (
+const _renderTalk = talk => (
   <RVCard key={talk.id} mb3 p3>
     <RVText subheading>{talk.title}</RVText>
     {talk.description && (
@@ -118,7 +118,7 @@ const EventTemplate = ({ data }) => {
         <RVBox grey radius p3 mb3>
           <RVText subheading>Talks</RVText>
           {talks ? (
-            talks.map(talk => renderTalk(talk))
+            talks.map(talk => _renderTalk(talk))
           ) : (
             <RVText>No Talks</RVText>
           )}

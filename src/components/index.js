@@ -16,7 +16,6 @@ export { default as RVInput } from './RVInput'
 export { default as RVLink } from './RVLink'
 export { default as RVLogo } from './RVLogo'
 export { default as RVNav } from './RVNav'
-export { default as RVSwitch } from './RVSwitch'
 export { default as RVText } from './RVText'
 
 // Other
@@ -25,3 +24,4 @@ export { default as MeetupGroup } from './MeetupGroup'
 export { default as Sponsors } from './Sponsors'
 export { default as Speaker } from './Speaker'
 export { default as EventDetails } from './EventDetails'
+export { default as Talk } from './Talk'

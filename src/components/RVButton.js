@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Buttons } from 'styles'
 import { RVBox } from 'components'
+import { Buttons } from 'styles'
 import { injectStyles } from 'utils'
 
 function openInNewTab(url) {

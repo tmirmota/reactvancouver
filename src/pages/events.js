@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import moment from 'moment'
 import {
   RVAvatar,
   RVBox,
@@ -21,11 +22,20 @@ const styles = {
   },
 }
 
-const Event = ({ id, slug, startDate }) => (
-  <li key={id}>
-    <Link to={`/event/${slug}`}>{startDate}</Link>
-  </li>
-)
+function getNextEvent(events) {
+  const upcomingEvents = events.filter(event =>
+    moment(event.node.startDate).isAfter()
+  )
+  return upcomingEvents[upcomingEvents.length - 1]
+}
+
+function getUpcomingEvents(events) {
+  return events.filter(event => moment(event.node.startDate).isAfter())
+}
+
+function getPastEvents(events) {
+  return events.filter(event => moment(event.node.startDate).isBefore())
+}
 
 class Events extends React.Component {
   state = {
@@ -36,11 +46,19 @@ class Events extends React.Component {
     this.setState(({ seeAllEvents }) => ({ seeAllEvents: !seeAllEvents }))
   }
 
+  _renderEventListItem = ({ id, slug, startDate }) => (
+    <li key={id}>
+      <Link to={`/event/${slug}`}>{startDate}</Link>
+    </li>
+  )
+
   render() {
-    const { data } = this.props
     const { seeAllEvents } = this.state
-    const events = data.allContentfulEvents.edges
-    const event = events[0].node
+    const { allContentfulEvents } = this.props.data
+    const events = allContentfulEvents && allContentfulEvents.edges
+    const upcomingEvents = getUpcomingEvents(events)
+    const pastEvents = getPastEvents(events)
+    const event = getNextEvent(events).node
 
     return (
       <Layout
@@ -57,16 +75,24 @@ class Events extends React.Component {
             ]}
           >
             <RVBox tag="ul" style={styles.list}>
-              {events.map(({ node }, index) => {
-                if (!seeAllEvents && index >= 10) {
+              <RVText>Upcoming Events</RVText>
+              {upcomingEvents.length > 0 ? (
+                upcomingEvents.map(({ node }) => {
+                  return this._renderEventListItem({ ...node })
+                })
+              ) : (
+                <RVText>No Upcoming Events</RVText>
+              )}
+              <RVText>Past Events</RVText>
+              {pastEvents.map(({ node }, index) => {
+                if (!seeAllEvents && index >= 4) {
                   return null
                 }
-
-                return <Event key={node.id} {...node} />
+                return this._renderEventListItem({ ...node })
               })}
-              <button onClick={this.toggleEventsList}>
+              <RVButton onClick={this.toggleEventsList}>
                 {seeAllEvents ? 'Shorten List' : 'Show All'}
-              </button>
+              </RVButton>
             </RVBox>
 
             <RVCard px3 py2>
@@ -80,55 +106,6 @@ class Events extends React.Component {
                   }}
                 />
               )}
-
-              {event.talks &&
-                event.talks.map(talk => (
-                  // TODO: Remove mb3
-                  <RVGrid key={talk.id} columns2 mb3>
-                    <RVText subheading>{talk.title}</RVText>
-
-                    {talk.speakers &&
-                      talk.speakers.map(speaker => (
-                        <RVBox key={speaker.id} flex>
-                          <RVAvatar
-                            img={{
-                              fixed: speaker.profilePicture.fixed,
-                            }}
-                            mr2
-                          />
-                          <RVBox>
-                            <RVText>
-                              {speaker.firstName} {speaker.lastName}
-                            </RVText>
-                            <RVText mb1>
-                              {speaker.jobTitle}
-                              {speaker.company && ' at '}
-                              {speaker.company}
-                            </RVText>
-                            <RVBox flex>
-                              {speaker.githubLink && (
-                                <RVIcon
-                                  href={speaker.githubLink}
-                                  fontAwesomeIcon={{
-                                    icon: ['fab', 'github'],
-                                  }}
-                                  mr1
-                                />
-                              )}
-                              {speaker.linkedInLink && (
-                                <RVIcon
-                                  href={speaker.linkedInLink}
-                                  fontAwesomeIcon={{
-                                    icon: ['fab', 'linkedin'],
-                                  }}
-                                />
-                              )}
-                            </RVBox>
-                          </RVBox>
-                        </RVBox>
-                      ))}
-                  </RVGrid>
-                ))}
             </RVCard>
           </RVGrid>
           <RVBox grey radius alignCenter p3 my4>

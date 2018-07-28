@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
-import { Images } from 'styles'
 import { RVBox } from 'components'
+import { Images } from 'styles'
 
 const RVAvatar = ({ img, ...otherProps }) => (
   <RVBox {...otherProps}>

@@ -15,6 +15,7 @@ import background from '../assets/background.jpg'
 import Img from 'gatsby-image'
 
 const styles = {
+  // TODO: center background
   hero: css({
     minHeight: '100vh',
     backgroundImage: `url(${background})`,

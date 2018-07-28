@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { injectStyles } from 'utils'
 import { Box } from 'styles'
+import { injectStyles } from 'utils'
 
 const RVBox = ({ boxRef, tag: Component, ...otherProps }) => (
   <Component {...otherProps} ref={boxRef} />

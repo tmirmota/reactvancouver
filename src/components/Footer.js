@@ -1,19 +1,7 @@
 import React from 'react'
-import { RVBox, RVLink, RVText, RVGrid, RVIcon } from 'components'
 import { css } from 'react-emotion'
+import { RVBox, RVLink, RVText, RVGrid, RVIcon } from 'components'
 import { Colors } from 'styles'
-
-const links = [
-  { navigate: '/jobs', title: 'Jobs' },
-  { navigate: '/events', title: 'Events' },
-  { navigate: '/speakers', title: 'Speakers' },
-  { navigate: '/contact-us', title: 'Contact Us' },
-]
-
-const icons = [
-  { icon: 'slack', link: 'https://slackrv.now.sh' },
-  { icon: 'meetup', link: 'https://www.meetup.com/ReactJS-Vancouver-Meetup/' },
-]
 
 const grey = Colors.grey.calc(80)
 
