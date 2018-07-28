@@ -1,4 +1,4 @@
-import { css } from 'emotion'
+import { css } from 'react-emotion'
 import facepaint from 'facepaint'
 import Colors from './Colors'
 import * as Shadows from './Shadows'

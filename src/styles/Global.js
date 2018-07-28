@@ -1,4 +1,4 @@
-import { injectGlobal } from 'emotion'
+import { injectGlobal } from 'react-emotion'
 import Colors from './Colors'
 import Layout from './Layout'
 import Typography from './Typography'

@@ -1,5 +1,5 @@
 import { Layout, Colors } from 'styles'
-import { css } from 'emotion'
+import { css } from 'react-emotion'
 
 const space = size => {
   if (typeof size !== 'number') {
