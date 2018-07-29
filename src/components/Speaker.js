@@ -1,6 +1,5 @@
 import React from 'react'
 import { css } from 'react-emotion'
-import { sortBy } from 'lodash'
 import Img from 'gatsby-image'
 import { RVBox, RVText, RVBadge } from 'components'
 import { Colors, Typography } from 'styles'
@@ -27,14 +26,9 @@ const Speaker = ({
         {!!company && ` at ${company}`}
       </RVText>
     </RVBox>
-    <div className={styles.talksBox}>{_renderTalks(talks)}</div>
+    <div className={styles.talksBox}>{talks.map(_renderTalk)}</div>
   </RVBox>
 )
-
-const _renderTalks = talks => {
-  const sortedTalks = sortBy(talks, 'date').reverse()
-  return sortedTalks.map(_renderTalk)
-}
 
 const _renderTalk = ({ id, title, date }) => (
   <RVBox key={id} className={styles.talkBox}>
