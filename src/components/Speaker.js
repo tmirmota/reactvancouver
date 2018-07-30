@@ -3,6 +3,8 @@ import { css } from 'react-emotion'
 import Img from 'gatsby-image'
 import { RVBox, RVText, RVBadge } from 'components'
 import { Colors, Typography } from 'styles'
+import { sortBy } from 'lodash'
+import moment from 'moment'
 
 const Speaker = ({
   fixed,
@@ -26,16 +28,25 @@ const Speaker = ({
         {!!company && ` at ${company}`}
       </RVText>
     </RVBox>
-    <div className={styles.talksBox}>{talks.map(_renderTalk)}</div>
+    <div className={styles.talksBox}>{_renderTalks(talks)}</div>
   </RVBox>
 )
 
-const _renderTalk = ({ id, title, date }) => (
-  <RVBox key={id} className={styles.talkBox}>
-    <RVBadge className={styles.talkDateBadge}>{date || 'Unknown'}</RVBadge>
-    <RVText className={styles.titleText}>{title}</RVText>
-  </RVBox>
-)
+const _renderTalks = talks => {
+  const sortedTalks = sortBy(talks, 'date').reverse()
+  return sortedTalks.map(_renderTalk)
+}
+
+const _renderTalk = ({ id, title, date }) => {
+  const formatedDate = date ? moment(date).format('MMM Do, Y') : 'Unknown'
+
+  return (
+    <RVBox key={id} className={styles.talkBox}>
+      <RVBadge className={styles.talkDateBadge}>{formatedDate}</RVBadge>
+      <RVText className={styles.titleText}>{title}</RVText>
+    </RVBox>
+  )
+}
 
 const styles = {
   name: css({

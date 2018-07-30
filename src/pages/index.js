@@ -290,7 +290,7 @@ export const query = graphql`
             talks {
               id
               title
-              date(formatString: "MMM Do, Y")
+              date
             }
           }
         }
