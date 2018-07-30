@@ -179,13 +179,14 @@ export default class IndexPage extends React.Component {
               })}
             </RVCard>
           </RVGrid>
+        </RVContainer>
 
-          <RVBox mb4>
-            <Sponsors mb3 sponsors={sponsors} />
-          </RVBox>
+        <RVBox mb4>
+          <Sponsors mb3 sponsors={sponsors} />
+        </RVBox>
 
-          {/* SPEAKERS */}
-
+        {/* SPEAKERS */}
+        <RVContainer>
           <RVBox my8>
             <RVText subheading mx-auto alignCenter style={{ maxWidth: 700 }}>
               Latest speakers
