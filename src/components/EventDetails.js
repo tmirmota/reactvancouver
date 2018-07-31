@@ -89,14 +89,16 @@ const EventDetails = ({
 
       {talks && talks.map(talk => <Talk key={talk.id} {...talk} />)}
 
-      <RVLink
-        href={`https://www.picatic.com/${picaticEventId}`}
-        className={classNames(Buttons.base, Buttons.medium)}
-        px2
-        py1
-      >
-        Get Tickets
-      </RVLink>
+      {picaticEventId && (
+        <RVLink
+          href={`https://www.picatic.com/${picaticEventId}`}
+          className={classNames(Buttons.base, Buttons.medium)}
+          px2
+          py1
+        >
+          Get Tickets
+        </RVLink>
+      )}
     </div>
   )
 }
