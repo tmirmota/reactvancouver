@@ -149,6 +149,12 @@ export const query = graphql`
             }
           }
           startDate
+          venueName
+          venueAddress
+          location {
+            lat
+            lon
+          }
           talks {
             id
             title
