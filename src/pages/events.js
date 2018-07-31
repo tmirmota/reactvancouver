@@ -149,6 +149,7 @@ export const query = graphql`
             }
           }
           startDate
+          endDate
           venueName
           venueAddress
           location {
