@@ -33,6 +33,7 @@ function getUpcomingEvent(events) {
   const upcomingEvents = events.filter(({ node: event }) =>
     moment(event.startDate).isAfter()
   )
+  console.log('upcomingEvents', upcomingEvents)
   let upcomingEvent = { node: { location: {} } }
   if (upcomingEvents.length > 0) {
     upcomingEvent = upcomingEvents[0]
@@ -160,7 +161,7 @@ export default class IndexPage extends React.Component {
             boxRef={node => (this.eventsWrapper = node)}
             my4
           >
-            {upcomingEvent.length > 0 && (
+            {upcomingEvent.node.title && (
               <RVCard p3>
                 <EventDetails {...upcomingEvent.node} />
               </RVCard>
@@ -246,6 +247,21 @@ export const query = graphql`
           }
           talks {
             id
+            title
+            speakers {
+              id
+              firstName
+              lastName
+              jobTitle
+              company
+              githubLink
+              linkedInLink
+              profilePicture {
+                fixed(height: 50, width: 50) {
+                  ...GatsbyContentfulFixed
+                }
+              }
+            }
           }
           picaticEventId
         }

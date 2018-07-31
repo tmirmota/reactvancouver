@@ -109,8 +109,8 @@ EventDetails.propTypes = {
   venueAddress: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,
   endDate: PropTypes.string.isRequired,
-  description: PropTypes.object.isRequired,
-  picaticEventId: PropTypes.number.isRequired,
+  description: PropTypes.object,
+  picaticEventId: PropTypes.number,
 }
 
 export default EventDetails

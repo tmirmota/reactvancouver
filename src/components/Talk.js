@@ -75,7 +75,7 @@ const Talk = ({ id, title, speakers }) => (
 Talk.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  speakers: PropTypes.object.isRequired,
+  speakers: PropTypes.array.isRequired,
 }
 
 export default Talk
