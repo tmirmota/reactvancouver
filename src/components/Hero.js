@@ -94,7 +94,7 @@ const Hero = ({ onClickCTA, sponsors, ...otherProps }) => {
               mb8
             >
               <RVButton onClick={onClickCTA} halo>
-                July Meetup
+                August Meetup
               </RVButton>
               <RVButton halo link="https://slackrv.now.sh">
                 <RVIcon
@@ -106,7 +106,8 @@ const Hero = ({ onClickCTA, sponsors, ...otherProps }) => {
                     size: '1x',
                     color: 'white',
                   }}
-                />Join Slack
+                />
+                Join Slack
               </RVButton>
             </RVGrid>
             <RVText className={styles.sponsoredby} mb1>
