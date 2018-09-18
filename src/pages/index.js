@@ -33,7 +33,6 @@ function getUpcomingEvent(events) {
   const upcomingEvents = events.filter(({ node: event }) =>
     moment(event.startDate).isAfter()
   )
-  console.log('upcomingEvents', upcomingEvents)
   let upcomingEvent = { node: { location: {} } }
   if (upcomingEvents.length > 0) {
     upcomingEvent = upcomingEvents[0]
