@@ -152,6 +152,7 @@ export const query = graphql`
           endDate
           venueName
           venueAddress
+          eventbriteEventId
           location {
             lat
             lon

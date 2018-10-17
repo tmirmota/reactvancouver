@@ -45,6 +45,8 @@ const EventDetails = ({
     ...location,
   })
 
+  console.log(eventbriteEventId)
+
   return (
     <div>
       <RVText subheading className={styles.eventTitle}>
