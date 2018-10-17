@@ -38,7 +38,7 @@ const EventDetails = ({
   endDate,
   description,
   talks,
-  picaticEventId,
+  eventbriteEventId,
 }) => {
   const gMapsLink = getGMapsLink({
     query: venueName + venueAddress,
@@ -89,9 +89,9 @@ const EventDetails = ({
 
       {talks && talks.map(talk => <Talk key={talk.id} {...talk} />)}
 
-      {picaticEventId && (
+      {eventbriteEventId && (
         <RVLink
-          href={`https://www.picatic.com/${picaticEventId}`}
+          href={`https://www.eventbrite.com/e/${eventbriteEventId}`}
           className={classNames(Buttons.base, Buttons.medium)}
           px2
           py1
@@ -110,7 +110,7 @@ EventDetails.propTypes = {
   startDate: PropTypes.string.isRequired,
   endDate: PropTypes.string.isRequired,
   description: PropTypes.object,
-  picaticEventId: PropTypes.number,
+  eventbriteEventId: PropTypes.number,
 }
 
 export default EventDetails
