@@ -235,6 +235,7 @@ export const query = graphql`
           venueAddress
           startDate
           endDate
+          eventbriteEventId
           description {
             childMarkdownRemark {
               html
