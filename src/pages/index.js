@@ -96,7 +96,7 @@ export default class IndexPage extends React.Component {
             <MeetupGroup>
               {group => (
                 <RVText title className={styles.statsTitle}>
-                  {group ? group.members.toLocaleString() : 'A few'}
+                  {group ? group.members.toLocaleString() : '2000'}
                 </RVText>
               )}
             </MeetupGroup>
