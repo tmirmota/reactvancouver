@@ -6,7 +6,9 @@ export default class MeetupGroup extends Component {
     group: null,
   }
   componentDidMount() {
-    fetch('https://meetuprv.now.sh')
+    fetch(
+      'https://reactvancouverapi.netlify.com/.netlify/functions/memberCount'
+    )
       .then(res => res.json())
       .then(json => this.setState({ group: json }))
   }
