@@ -14,7 +14,9 @@ const icons = [
 const ContactUs = () => (
   <RVGrid gridTemplateColumns={['repeat(1,1fr)', '1fr 2fr', '1fr 2fr']} mb3>
     <div>
-      <RVText heading>Contact Us</RVText>
+      <RVText heading>Email us at:</RVText>
+      <RVText>eric@reactvancouver.com</RVText>
+      <RVText>thomas@reactvancouver.com</RVText>
       {/* <RVText>or email us at: </RVText> */}
       <RVBox flex>
         {icons.map(({ icon, link }) => (
@@ -27,7 +29,7 @@ const ContactUs = () => (
         ))}
       </RVBox>
     </div>
-    <form
+    {/* <form
       name="contact"
       method="post"
       data-netlify="true"
@@ -43,7 +45,7 @@ const ContactUs = () => (
       <RVButton type="submit" style={{ float: 'right' }} mt2>
         Submit
       </RVButton>
-    </form>
+    </form> */}
   </RVGrid>
 )
 
