@@ -28,8 +28,6 @@ Photo.propTypes = {
 const Photos = ({ data }) => {
   const albums = data.allContentfulPhotos && data.allContentfulPhotos.edges
 
-  console.log('Photos: ', albums)
-
   return (
     <Layout
       title="Photos of React Vancouver"
