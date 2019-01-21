@@ -62,6 +62,7 @@ const Nav = ({ siteTitle, className }) => (
     </section>
     <RVBox tag="nav" flex itemsStretch>
       <NavLink navigate="/events">Events</NavLink>
+      <NavLink navigate="/photos">Photos</NavLink>
       <NavLink navigate="/speakers">Speakers</NavLink>
       <NavLink navigate="/jobs">Jobs</NavLink>
       <NavLink navigate="/#contact-us">
