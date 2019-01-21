@@ -14,10 +14,12 @@ const icons = [
 const ContactUs = () => (
   <RVGrid gridTemplateColumns={['repeat(1,1fr)', '1fr 2fr', '1fr 2fr']} mb3>
     <div>
-      <RVText heading>Email us at:</RVText>
-      <RVText>eric@reactvancouver.com</RVText>
-      <RVText>thomas@reactvancouver.com</RVText>
-      {/* <RVText>or email us at: </RVText> */}
+      <RVText heading mb1>
+        Email Us
+      </RVText>
+      <RVText subheading mb1>
+        admin@reactvancouver.com
+      </RVText>
       <RVBox flex>
         {icons.map(({ icon, link }) => (
           <RVIcon
