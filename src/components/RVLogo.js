@@ -8,7 +8,7 @@ import { Typography } from 'styles'
 const RVLogo = ({ className, to, navigate, ...otherProps }) => (
   <RVText subheading style={{ margin: 0 }} {...otherProps}>
     <Link className={className} to={to || navigate}>
-      ReactVancouver
+      React Vancouver
     </Link>
   </RVText>
 )
