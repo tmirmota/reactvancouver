@@ -7,13 +7,10 @@ import {
   Hero,
   RVBox,
   RVButton,
-  RVLink,
   RVCard,
   RVContainer,
   RVGrid,
-  RVIcon,
   RVText,
-  RVInput,
   MeetupGroup,
   Sponsors,
   Speaker,
@@ -21,7 +18,6 @@ import {
   EventDetails,
 } from 'components'
 import Layout from 'layouts'
-import { Colors, Buttons, Typography } from 'styles'
 
 const styles = {
   statsTitle: css({
@@ -54,12 +50,11 @@ function getSpeakersFromTalks(talks) {
   }, [])
 }
 
-function getTalksThisYear(talks) {
+function getTalksCount(talks) {
   return talks.reduce((sum, { node }) => {
-    const startOfThisYear = moment().startOf('year')
     const talkDate = moment(node.date)
 
-    if (talkDate.isAfter(startOfThisYear) && talkDate.isBefore()) {
+    if (talkDate.isBefore()) {
       return sum + 1
     }
     return sum
@@ -86,7 +81,7 @@ export default class IndexPage extends React.Component {
   }
 
   _renderStats = ({ talks, pastEvents }) => {
-    const talksThisYear = getTalksThisYear(talks)
+    const talksCount = getTalksCount(talks)
     const oldestEvent = getOldestEvent(pastEvents)
 
     return (
@@ -100,14 +95,14 @@ export default class IndexPage extends React.Component {
                 </RVText>
               )}
             </MeetupGroup>
-            <RVText subheading>React Fans in Vancouver</RVText>
+            <RVText subheading>React Vancouver Fans</RVText>
           </RVText>
 
           <RVBox>
             <RVText title className={styles.statsTitle}>
-              {talksThisYear.toLocaleString()}
+              {talksCount.toLocaleString()}
             </RVText>
-            <RVText subheading>Talks This Year</RVText>
+            <RVText subheading>Talks since Oct 2015</RVText>
           </RVBox>
           <RVBox>
             <RVText title className={styles.statsTitle}>
@@ -285,7 +280,7 @@ export const query = graphql`
       }
     }
     allContentfulTalks(
-      limit: 10
+      limit: 1000
       sort: { fields: [date], order: DESC }
       filter: { date: { ne: null } }
     ) {
