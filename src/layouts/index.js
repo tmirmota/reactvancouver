@@ -46,11 +46,6 @@ const Layout = ({
         rel="stylesheet"
       />
       <link rel="shortcut icon" href={favicon} type="image/x-icon" />
-      <script
-        async
-        src="https://widget.picatic.com/latest/js/embed.min.js"
-        id="picatic-widget-script"
-      />
       <script src="https://embed.small.chat/T0K6DLYBBGHLCY0M6X.js" async />
     </Helmet>
     <Nav siteTitle={title} height={navHeight} theme={theme} />
