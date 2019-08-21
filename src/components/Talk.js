@@ -13,12 +13,14 @@ const SpeakerSummary = ({
   linkedInLink,
 }) => (
   <RVBox flex>
-    <RVAvatar
-      img={{
-        fixed: profilePicture.fixed,
-      }}
-      mr2
-    />
+    {!!profilePicture && (
+      <RVAvatar
+        img={{
+          fixed: profilePicture.fixed,
+        }}
+        mr2
+      />
+    )}
     <RVBox>
       <RVText>
         {firstName} {lastName}

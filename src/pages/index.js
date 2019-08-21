@@ -88,13 +88,19 @@ export default class IndexPage extends React.Component {
       <RVContainer my8>
         <RVGrid columns3 alignCenter mb2>
           <RVText>
-            <MeetupGroup>
+            {/* <MeetupGroup>
               {group => (
                 <RVText title className={styles.statsTitle}>
-                  {group ? group.members.toLocaleString() : '2000'}
+                  {group && group.members
+                    ? group.members.toLocaleString()
+                    : '2000'}
                 </RVText>
               )}
-            </MeetupGroup>
+            </MeetupGroup> */}
+            {/* meetup api is suddenly failing to fetch correct number */}
+            <RVText title className={styles.statsTitle}>
+              {'2425'.toLocaleString()}
+            </RVText>
             <RVText subheading>React Vancouver Fans</RVText>
           </RVText>
 
