@@ -99,7 +99,7 @@ export default class IndexPage extends React.Component {
             </MeetupGroup> */}
             {/* meetup api is suddenly failing to fetch correct number */}
             <RVText title className={styles.statsTitle}>
-              {'2425'.toLocaleString()}
+              {'2500+'}
             </RVText>
             <RVText subheading>React Vancouver Fans</RVText>
           </RVText>
