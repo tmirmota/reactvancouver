@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
+import { RVLink } from 'components'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import Layout from 'layouts'
