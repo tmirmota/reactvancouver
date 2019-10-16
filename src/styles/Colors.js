@@ -13,7 +13,7 @@ export const grey = {
   // TODO: Review this color.
   lightDark: '#EBEDEF',
   dark: calcGrey(30),
-  medium: calcGrey(60),
+  medium: calcGrey(50),
   light: calcGrey(98),
   white: '#FFFFFF',
   calc: calcGrey,

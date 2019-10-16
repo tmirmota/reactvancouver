@@ -77,7 +77,7 @@ class Events extends React.Component {
               'min-content 1fr',
             ]}
           >
-            <RVBox tag="ul" style={styles.list}>
+            <RVBox style={styles.list}>
               <RVText subheading mb2>Upcoming Events</RVText>
               {upcomingEvents.length > 0 ? (
                 upcomingEvents.map(({ node }) => {
