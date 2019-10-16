@@ -1,6 +1,6 @@
 import React from 'react'
 import { css } from 'react-emotion'
-import { RVBox, RVLink, RVText, RVGrid, RVIcon } from 'components'
+import { RVBox, RVLink, RVText, RVGrid } from 'components'
 import { Colors } from 'styles'
 
 const grey = Colors.grey.calc(80)

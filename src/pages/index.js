@@ -157,9 +157,9 @@ export default class IndexPage extends React.Component {
             id="events"
             my4
           >
-            {upcomingEvent.node.title && (
+            {pastEvents[0].node.title && (
               <RVCard p3>
-                <EventDetails {...upcomingEvent.node} />
+                <EventDetails {...pastEvents[0].node} />
               </RVCard>
             )}
             <RVCard p3>

@@ -101,7 +101,6 @@ const Hero = ({ sponsors, ...otherProps }) => {
               <RVLink href="https://slackrv.now.sh">
                 <RVButton halo decorative>
                   <RVIcon
-                    key={'slack'}
                     mr1
                     flex
                     fontAwesomeIcon={{

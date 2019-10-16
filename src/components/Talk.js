@@ -32,21 +32,27 @@ const SpeakerSummary = ({
       </RVText>
       <RVBox flex>
         {githubLink && (
-          <RVIcon
-            href={githubLink}
-            fontAwesomeIcon={{
-              icon: ['fab', 'github'],
-            }}
-            mr1
-          />
+          <RVLink href={githubLink}>
+            <RVIcon
+              fontAwesomeIcon={{
+                icon: ['fab', 'github'],
+              }}
+              mr1
+              aria-label={`${firstName}'s GitHub profile`}
+            />
+          </RVLink>
         )}
+
         {linkedInLink && (
-          <RVIcon
-            href={linkedInLink}
-            fontAwesomeIcon={{
-              icon: ['fab', 'linkedin'],
-            }}
-          />
+          <RVLink href={linkedInLink}>
+            <RVIcon
+              fontAwesomeIcon={{
+                icon: ['fab', 'linkedin'],
+              }}
+              mr1
+              aria-label={`${firstName}'s LinkedIn profile`}
+            />
+          </RVLink>
         )}
       </RVBox>
     </RVBox>

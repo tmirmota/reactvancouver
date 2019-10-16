@@ -59,8 +59,13 @@ const EventDetails = ({
         className={styles.eventSubheadingWrapperGrid}
         mb1
       >
-        <RVIcon href={gMapsLink} fontAwesomeIcon={{ icon: faMapMarker }} />
-        <RVLink href={gMapsLink} target="_blank" rel="noopener noreferrer">
+        <RVLink href={gMapsLink}>
+          <RVIcon
+            fontAwesomeIcon={{ icon: faMapMarker }}
+            aria-label="View on Google Maps"
+          />
+        </RVLink>
+        <RVLink href={gMapsLink}>
           <RVText>
             {venueName} {venueAddress}
           </RVText>
@@ -70,6 +75,7 @@ const EventDetails = ({
             icon: faCalendar,
             className: styles.eventDate,
           }}
+          aria-label="Date"
         />
         <RVText className={styles.eventDate}>
           {moment(startDate).format('dddd, MMM Do, Y')}{' '}

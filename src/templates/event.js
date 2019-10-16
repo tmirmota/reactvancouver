@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {
   RVText,
   RVBox,
+  RVLink,
   RVAvatar,
   RVCard,
   RVIcon,
@@ -43,21 +44,27 @@ const _renderTalk = talk => (
             </RVText>
             <RVBox flex>
               {speaker.githubLink && (
-                <RVIcon
-                  href={speaker.githubLink}
-                  fontAwesomeIcon={{
-                    icon: ['fab', 'github'],
-                  }}
-                  mr1
-                />
+                <RVLink href={speaker.githubLink}>
+                  <RVIcon
+                    fontAwesomeIcon={{
+                      icon: ['fab', 'github'],
+                    }}
+                    mr1
+                    aria-label={`${speaker.firstName}'s GitHub profile`}
+                  />
+                </RVLink>
               )}
+
               {speaker.linkedInLink && (
-                <RVIcon
-                  href={speaker.linkedInLink}
-                  fontAwesomeIcon={{
-                    icon: ['fab', 'linkedin'],
-                  }}
-                />
+                <RVLink href={speaker.linkedInLink}>
+                  <RVIcon
+                    fontAwesomeIcon={{
+                      icon: ['fab', 'linkedin'],
+                    }}
+                    mr1
+                    aria-label={`${speaker.firstName}'s LinkedIn profile`}
+                  />
+                </RVLink>
               )}
             </RVBox>
           </RVBox>
