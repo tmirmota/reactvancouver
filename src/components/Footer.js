@@ -3,7 +3,7 @@ import { css } from 'react-emotion'
 import { RVBox, RVLink, RVText, RVGrid, RVIcon } from 'components'
 import { Colors } from 'styles'
 
-const grey = Colors.grey.calc(80)
+const grey = Colors.grey.calc(50)
 
 const styles = {
   text: css({
