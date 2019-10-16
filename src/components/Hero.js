@@ -131,6 +131,7 @@ const Hero = ({ sponsors, ...otherProps }) => {
                     <Img
                       fixed={sponsor.node.companyLogoDark.hero}
                       className={styles.sponsor}
+                      alt={sponsor.node.companyName}
                     />
                   )}
                 </RVBox>

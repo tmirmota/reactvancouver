@@ -24,7 +24,10 @@ const Sponsors = ({ sponsors, ...otherProps }) => (
                   mr2
                 >
                   {sponsor.companyLogoDark ? (
-                    <Img fixed={sponsor.companyLogoDark.fixed} />
+                    <Img
+                      fixed={sponsor.companyLogoDark.fixed}
+                      alt={sponsor.companyName}
+                    />
                   ) : (
                     sponsor.companyName
                   )}
