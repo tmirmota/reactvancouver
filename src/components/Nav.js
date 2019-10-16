@@ -30,18 +30,18 @@ const styles = {
     }),
 }
 
-const NavLogo = ({ navigate, title }) => (
-  <RVLogo inline itemsCenter navigate={navigate} title={title} />
+const NavLogo = ({ title, to }) => (
+  <RVLogo inline itemsCenter title={title} to={to} />
 )
-const NavLink = ({ navigate, children }) => (
+const NavLink = ({ children, ...otherProps }) => (
   <RVLink
     pl2
     inline
     itemsCenter
-    navigate={navigate}
     activeStyle={{
       color: darken(0.2, Colors.theme.primary),
     }}
+    {...otherProps}
   >
     {children}
   </RVLink>
@@ -58,13 +58,13 @@ const Nav = ({ siteTitle, className }) => (
     className={className}
   >
     <section>
-      <NavLogo title={siteTitle} navigate="/" />
+      <NavLogo title={siteTitle} to="/" />
     </section>
     <RVBox tag="nav" flex itemsStretch>
-      <NavLink navigate="/events">Events</NavLink>
-      <NavLink navigate="/photos">Photos</NavLink>
-      <NavLink navigate="/speakers">Speakers</NavLink>
-      {/* <NavLink navigate="/jobs">Jobs</NavLink> */}
+      <NavLink to="/events">Events</NavLink>
+      <NavLink to="/photos">Photos</NavLink>
+      <NavLink to="/speakers">Speakers</NavLink>
+      {/* <NavLink to="/jobs">Jobs</NavLink> */}
       <NavLink navigate="/#contact-us">
         <RVButton decorative>Get Involved</RVButton>
       </NavLink>

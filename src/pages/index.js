@@ -7,6 +7,7 @@ import {
   Hero,
   RVBox,
   RVButton,
+  RVLink,
   RVCard,
   RVContainer,
   RVGrid,
@@ -169,9 +170,9 @@ export default class IndexPage extends React.Component {
                 if (index >= eventListLimit) return null
 
                 return (
-                  <Link to={`/event/${event.slug}`} key={event.id}>
+                  <RVLink navigate={`/event/${event.slug}`} key={event.id}>
                     <RVText mb1>{event.title}</RVText>
-                  </Link>
+                  </RVLink>
                 )
               })}
             </RVCard>

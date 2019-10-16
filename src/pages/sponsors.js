@@ -7,9 +7,9 @@ import Layout from 'layouts'
 
 const Sponsor = ({ id, companyName, companyLogoDark }) => {
   return (
-    <Link to={`/sponsor/${id}`}>
+    <RVLink navigate={`/sponsor/${id}`}>
       {companyLogoDark ? <Img {...companyLogoDark} /> : <h3>{companyName}</h3>}
-    </Link>
+    </RVLink>
   )
 }
 

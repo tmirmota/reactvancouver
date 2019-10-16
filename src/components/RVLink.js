@@ -29,11 +29,23 @@ const RVLink = ({
       </RVBox>
     )
   }
+  if (navigate) {
+    return (
+      <RVBox {...otherProps}>
+        <Link
+          className={className}
+          to={navigate}
+        >
+          {children}
+        </Link>
+      </RVBox>
+    )
+  }
   return (
     <RVBox {...otherProps}>
       <Link
         className={className}
-        to={to || navigate}
+        to={to}
         activeStyle={activeStyle}
         activeClassName={activeClassName}
       >

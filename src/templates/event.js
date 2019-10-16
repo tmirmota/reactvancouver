@@ -87,11 +87,11 @@ const _renderEventLink = ({ event, textProps, label }) => {
   if (!event) return <div />
 
   return (
-    <Link to={`/event/${event.node.slug}`}>
+    <RVLink navigate={`/event/${event.node.slug}`}>
       <RVText {...textProps}>
         {label}: {event.node.title}
       </RVText>
-    </Link>
+    </RVLink>
   )
 }
 

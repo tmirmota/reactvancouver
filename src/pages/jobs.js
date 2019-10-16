@@ -25,7 +25,7 @@ function getActiveJobs(jobs) {
 }
 
 const Job = ({ slug, title, companyName, logo, startDate }) => (
-  <Link to={`/job/${slug}`}>
+  <RVLink navigate={`/job/${slug}`}>
     <RVCard mb2 px3 pt2 pb3>
       <RVGrid
         gridTemplateColumns={[
@@ -48,7 +48,7 @@ const Job = ({ slug, title, companyName, logo, startDate }) => (
         </RVBox>
       </RVGrid>
     </RVCard>
-  </Link>
+  </RVLink>
 )
 
 Job.propTypes = {
