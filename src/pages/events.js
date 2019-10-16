@@ -18,7 +18,6 @@ import Layout from 'layouts'
 
 const styles = {
   list: {
-    listStyle: 'none',
     minWidth: 200,
   },
 }
@@ -48,11 +47,9 @@ class Events extends React.Component {
   }
 
   _renderEventListItem = ({ id, slug, startDate }) => (
-    <li key={id}>
-      <Link to={`/event/${slug}`}>
-        {moment(startDate).format('MMMM Do, Y')}
-      </Link>
-    </li>
+    <Link to={`/event/${slug}`} key={id}>
+      <RVText mb1>{moment(startDate).format('MMMM Do, Y')}</RVText>
+    </Link>
   )
 
   render() {
