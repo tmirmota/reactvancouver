@@ -112,7 +112,7 @@ class Events extends React.Component {
             <RVText subheading>Have an idea for a talk?</RVText>
             <RVBox my3>
               <Link to="/#contact-us">
-                <RVButton>Reach Out</RVButton>
+                <RVButton decorative>Reach Out</RVButton>
               </Link>
             </RVBox>
             <RVText>

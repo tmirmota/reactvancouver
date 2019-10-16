@@ -88,7 +88,6 @@ injectGlobal`
     line-height: 1;
     padding: ${Layout.calcSpace(2)} ${Layout.calcSpace(4)};
     text-decoration: none;
-    user-select: none;
     vertical-align: middle;
     white-space: nowrap;
   }
@@ -98,7 +97,7 @@ injectGlobal`
       color: ${Colors.grey.calc(70)};
       background: transparent;
     }
-}
+  }
 
   input:-webkit-autofill {
     -webkit-animation-name: autofill;

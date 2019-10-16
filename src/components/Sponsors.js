@@ -36,9 +36,9 @@ const Sponsors = ({ sponsors, ...otherProps }) => (
           )}
         </RVBox>
 
-        {/* <RVButton link="https://reactvancouver.typeform.com/to/D7KXgd">
-          Become a Sponsor
-        </RVButton> */}
+        {/* <RVLink href="https://reactvancouver.typeform.com/to/D7KXgd">
+          <RVButton decorative>Become a Sponsor</RVButton>
+        </RVLink> */}
       </RVBox>
     </RVContainer>
   </RVBox>

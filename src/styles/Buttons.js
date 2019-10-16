@@ -1,9 +1,21 @@
 import { css } from 'react-emotion'
 import Layout from './Layout'
+import Typography from './Typography'
 import Colors from './Colors'
 import Shadows from './Shadows'
 
 export const base = css({
+  appearance: 'none',
+  fontSize: Layout.calcSpace(2),
+  textTransform: 'uppercase',
+  letterSpacing: '0.1rem',
+  webkitFontSmoothing: 'antialiased',
+  fontWeight: Typography.font.weight.bold,
+  lineHeight: 1,
+  padding: `${Layout.calcSpace(2)} ${Layout.calcSpace(4)}`,
+  textDecoration: 'none',
+  verticalAlign: 'middle',
+  whiteSpace: 'nowrap',
   margin: 0,
   display: 'inline-flex',
   justifyContent: 'center',
