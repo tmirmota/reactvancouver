@@ -41,6 +41,7 @@ const Layout = ({
         },
       ]}
     >
+      <html lang="en" />
       <link
         href="https://fonts.googleapis.com/css?family=Nunito:400,700,900"
         rel="stylesheet"

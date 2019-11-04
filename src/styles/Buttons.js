@@ -14,7 +14,6 @@ export const base = css({
   borderColor: Colors.theme.primary,
   background: Colors.theme.primary,
   color: Colors.grey.white,
-  outline: 'none',
 })
 
 export const outline = css({
@@ -29,7 +28,6 @@ export const link = css({
   color: Colors.theme.primary,
   fontStyle: 'italic',
   textTransform: 'none',
-  outline: 'none',
 })
 
 export const halo = css({
