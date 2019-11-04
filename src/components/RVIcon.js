@@ -9,7 +9,7 @@ library.add(fab)
 
 const RVIcon = ({ fontAwesomeIcon, ...otherProps }) => {
   return (
-    <RVBox tag="a" target="_blank" rel="noopener noreferrer" {...otherProps}>
+    <RVBox tag="div" {...otherProps}>
       <FontAwesomeIcon {...fontAwesomeIcon} />
     </RVBox>
   )

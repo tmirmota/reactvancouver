@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Layout from 'layouts'
-import { RVBox, RVText, RVContainer } from 'components'
+import { RVBox, RVText, RVLink, RVContainer } from 'components'
 
 const JobTemplate = ({ data }) => {
   const job = data.contentfulJobs
@@ -23,13 +23,9 @@ const JobTemplate = ({ data }) => {
             }}
           />
           {urlToJobApplication && (
-            <a
-              href={urlToJobApplication}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <RVLink href={urlToJobApplication}>
               See Official Posting
-            </a>
+            </RVLink>
           )}
         </RVBox>
       </RVContainer>

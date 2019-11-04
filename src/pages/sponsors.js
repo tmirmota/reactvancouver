@@ -1,15 +1,16 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
+import { RVLink } from 'components'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import Layout from 'layouts'
 
 const Sponsor = ({ id, companyName, companyLogoDark }) => {
   return (
-    <Link to={`/sponsor/${id}`}>
+    <RVLink navigate={`/sponsor/${id}`}>
       {companyLogoDark ? <Img {...companyLogoDark} /> : <h3>{companyName}</h3>}
-    </Link>
+    </RVLink>
   )
 }
 

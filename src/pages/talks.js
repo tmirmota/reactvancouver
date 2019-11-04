@@ -3,11 +3,12 @@ import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Layout from 'layouts'
+import { RVLink } from 'components'
 
 const Talk = ({ id, title }) => (
-  <Link to={`/talk/${id}`}>
+  <RVLink navigate={`/talk/${id}`}>
     <h3>{title}</h3>
-  </Link>
+  </RVLink>
 )
 
 const Talks = ({ data }) => {

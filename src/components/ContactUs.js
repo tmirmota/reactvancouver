@@ -1,6 +1,6 @@
 import React from 'react'
 import { css } from 'react-emotion'
-import { RVBox, RVInput, RVGrid, RVText, RVButton, RVIcon } from 'components'
+import { RVBox, RVInput, RVGrid, RVText, RVLink, RVButton, RVIcon } from 'components'
 
 const styles = {
   inputGridWrapper: css({ gridGap: 0 }),
@@ -22,12 +22,11 @@ const ContactUs = () => (
       </RVText>
       <RVBox flex>
         {icons.map(({ icon, link }) => (
-          <RVIcon
-            key={icon}
-            href={link}
-            fontAwesomeIcon={{ icon: ['fab', icon], size: '3x' }}
-            m2
-          />
+          <RVLink href={link} m2 key={icon} aria-label={icon}>
+            <RVIcon
+              fontAwesomeIcon={{ icon: ['fab', icon], size: '3x' }}
+            />
+          </RVLink>
         ))}
       </RVBox>
     </div>

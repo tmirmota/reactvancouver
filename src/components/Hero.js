@@ -60,7 +60,7 @@ const styles = {
 
 const Overlay = styled.div(styles.overlay)
 
-const Hero = ({ onClickCTA, sponsors, ...otherProps }) => {
+const Hero = ({ sponsors, ...otherProps }) => {
   return (
     <RVBox tag="section" {...otherProps}>
       <Overlay>
@@ -93,22 +93,25 @@ const Hero = ({ onClickCTA, sponsors, ...otherProps }) => {
               ]}
               mb8
             >
-              <RVButton onClick={onClickCTA} halo>
-                Upcoming Meetup
-              </RVButton>
-              <RVButton halo link="https://slackrv.now.sh">
-                <RVIcon
-                  key={'slack'}
-                  mr1
-                  flex
-                  fontAwesomeIcon={{
-                    icon: ['fab', 'slack'],
-                    size: '1x',
-                    color: 'white',
-                  }}
-                />
-                Join Slack
-              </RVButton>
+              <RVLink navigate="/#events">
+                <RVButton halo decorative>
+                  Upcoming Meetup
+                </RVButton>
+              </RVLink>
+              <RVLink href="https://slackrv.now.sh">
+                <RVButton halo decorative>
+                  <RVIcon
+                    mr1
+                    flex
+                    fontAwesomeIcon={{
+                      icon: ['fab', 'slack'],
+                      size: '1x',
+                      color: 'white',
+                    }}
+                  />
+                  Join Slack
+                </RVButton>
+              </RVLink>
             </RVGrid>
             <RVText className={styles.sponsoredby} mb1>
               Sponsored by
@@ -128,6 +131,7 @@ const Hero = ({ onClickCTA, sponsors, ...otherProps }) => {
                     <Img
                       fixed={sponsor.node.companyLogoDark.hero}
                       className={styles.sponsor}
+                      alt={sponsor.node.companyName}
                     />
                   )}
                 </RVBox>
@@ -138,9 +142,6 @@ const Hero = ({ onClickCTA, sponsors, ...otherProps }) => {
       </Overlay>
     </RVBox>
   )
-}
-Hero.propTypes = {
-  onClickCTA: PropTypes.func.isRequired,
 }
 
 export default styled(Hero)(styles.hero)

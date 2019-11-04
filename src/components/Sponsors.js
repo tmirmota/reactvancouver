@@ -1,7 +1,7 @@
 import React from 'react'
 import Img from 'gatsby-image'
 import PropTypes from 'prop-types'
-import { RVContainer, RVBox, RVText, RVButton } from 'components'
+import { RVContainer, RVBox, RVText, RVLink, RVButton } from 'components'
 import { Layout, Colors } from 'styles'
 
 const Sponsors = ({ sponsors, ...otherProps }) => (
@@ -18,16 +18,18 @@ const Sponsors = ({ sponsors, ...otherProps }) => (
               return (
                 <RVBox
                   key={sponsor.id}
-                  tag="a"
-                  href={sponsor.companyUrl}
-                  target="_blank"
                   mr2
                 >
-                  {sponsor.companyLogoDark ? (
-                    <Img fixed={sponsor.companyLogoDark.fixed} />
-                  ) : (
-                    sponsor.companyName
-                  )}
+                  <RVLink href={sponsor.companyUrl}>
+                    {sponsor.companyLogoDark ? (
+                      <Img
+                        fixed={sponsor.companyLogoDark.fixed}
+                        alt={sponsor.companyName}
+                      />
+                    ) : (
+                      sponsor.companyName
+                    )}
+                  </RVLink>
                 </RVBox>
               )
             })
@@ -36,9 +38,9 @@ const Sponsors = ({ sponsors, ...otherProps }) => (
           )}
         </RVBox>
 
-        {/* <RVButton link="https://reactvancouver.typeform.com/to/D7KXgd">
-          Become a Sponsor
-        </RVButton> */}
+        {/* <RVLink href="https://reactvancouver.typeform.com/to/D7KXgd">
+          <RVButton decorative>Become a Sponsor</RVButton>
+        </RVLink> */}
       </RVBox>
     </RVContainer>
   </RVBox>

@@ -7,6 +7,7 @@ import {
   Hero,
   RVBox,
   RVButton,
+  RVLink,
   RVCard,
   RVContainer,
   RVGrid,
@@ -76,10 +77,6 @@ function getOldestEvent(events) {
 }
 
 export default class IndexPage extends React.Component {
-  scrollToEvents = () => {
-    this.eventsWrapper.scrollIntoView({ behavior: 'smooth' })
-  }
-
   _renderStats = ({ talks, pastEvents }) => {
     const talksCount = getTalksCount(talks)
     const oldestEvent = getOldestEvent(pastEvents)
@@ -147,7 +144,7 @@ export default class IndexPage extends React.Component {
         description="React Vancouver is a community of developers, designers, marketers and entrepreneurs that are passionate about React."
         keywords="react, vancouver, events, developers, frontend, development, frameworks"
       >
-        <Hero onClickCTA={this.scrollToEvents} sponsors={sponsors} />
+        <Hero sponsors={sponsors} />
 
         {/* STATS */}
 
@@ -158,12 +155,12 @@ export default class IndexPage extends React.Component {
         <RVContainer>
           <RVGrid
             gridTemplateColumns={['repeat(1,1fr)', '2fr 1fr', '2fr 1fr']}
-            boxRef={node => (this.eventsWrapper = node)}
+            id="events"
             my4
           >
-            {upcomingEvent.node.title && (
+            {pastEvents[0].node.title && (
               <RVCard p3>
-                <EventDetails {...upcomingEvent.node} />
+                <EventDetails {...pastEvents[0].node} />
               </RVCard>
             )}
             <RVCard p3>
@@ -173,9 +170,9 @@ export default class IndexPage extends React.Component {
                 if (index >= eventListLimit) return null
 
                 return (
-                  <Link to={`/event/${event.slug}`} key={event.id}>
+                  <RVLink navigate={`/event/${event.slug}`} key={event.id}>
                     <RVText mb1>{event.title}</RVText>
-                  </Link>
+                  </RVLink>
                 )
               })}
             </RVCard>
@@ -205,7 +202,7 @@ export default class IndexPage extends React.Component {
             </RVGrid>
             <RVBox alignCenter mt3>
               <Link to="/speakers">
-                <RVButton>Discover All Speakers</RVButton>
+                <RVButton decorative>Discover All Speakers</RVButton>
               </Link>
             </RVBox>
           </RVBox>

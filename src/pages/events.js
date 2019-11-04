@@ -12,6 +12,7 @@ import {
   RVGrid,
   RVIcon,
   RVText,
+  RVLink,
   EventDetails,
 } from 'components'
 import Layout from 'layouts'
@@ -112,9 +113,9 @@ class Events extends React.Component {
           <RVBox grey radius alignCenter p3 my4>
             <RVText subheading>Have an idea for a talk?</RVText>
             <RVBox my3>
-              <Link to="/#contact-us">
-                <RVButton>Reach Out</RVButton>
-              </Link>
+              <RVLink navigate="/#contact-us">
+                <RVButton decorative>Reach Out</RVButton>
+              </RVLink>
             </RVBox>
             <RVText>
               We are always looking for presenters with interesting ideas,
