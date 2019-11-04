@@ -38,11 +38,11 @@ const _renderTalks = talks => {
 }
 
 const _renderTalk = ({ id, title, date }) => {
-  const formatedDate = date ? moment(date).format('MMM Do, Y') : 'Unknown'
+  const formattedDate = date ? moment(date).format('MMM Do, Y') : 'Unknown'
 
   return (
     <RVBox key={id} className={styles.talkBox}>
-      <RVBadge className={styles.talkDateBadge}>{formatedDate}</RVBadge>
+      <RVText className={styles.dateText}>{formattedDate}</RVText>
       <RVText className={styles.titleText}>{title}</RVText>
     </RVBox>
   )
@@ -68,14 +68,10 @@ const styles = {
     minHeight: 88,
     marginBottom: 8,
   }),
-  talkDateBadge: css({
-    marginTop: 0,
-    marginBottom: 8,
-    height: 32,
-    fontSize: 12,
-    minWidth: 105,
-    textAlign: 'center',
-    marginRight: 8,
+  dateText: css({
+    marginBottom: 6,
+    color: Colors.grey.medium,
+    fontWeight: Typography.font.weight.bold,
   }),
   titleText: {
     minHeight: 48,

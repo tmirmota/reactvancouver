@@ -200,7 +200,7 @@ export default class IndexPage extends React.Component {
                 />
               ))}
             </RVGrid>
-            <RVBox alignCenter>
+            <RVBox alignCenter mt3>
               <Link to="/speakers">
                 <RVButton decorative>Discover All Speakers</RVButton>
               </Link>

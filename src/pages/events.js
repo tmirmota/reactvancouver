@@ -19,7 +19,6 @@ import Layout from 'layouts'
 
 const styles = {
   list: {
-    listStyle: 'none',
     minWidth: 200,
   },
 }
@@ -49,11 +48,9 @@ class Events extends React.Component {
   }
 
   _renderEventListItem = ({ id, slug, startDate }) => (
-    <li key={id}>
-      <RVLink navigate={`/event/${slug}`}>
-        {moment(startDate).format('MMMM Do, Y')}
-      </RVLink>
-    </li>
+    <Link to={`/event/${slug}`} key={id}>
+      <RVText mb1>{moment(startDate).format('MMMM Do, Y')}</RVText>
+    </Link>
   )
 
   render() {
@@ -78,8 +75,8 @@ class Events extends React.Component {
               'min-content 1fr',
             ]}
           >
-            <RVBox tag="ul" style={styles.list}>
-              <RVText subheading>Upcoming Events</RVText>
+            <RVBox style={styles.list}>
+              <RVText subheading mb2>Upcoming Events</RVText>
               {upcomingEvents.length > 0 ? (
                 upcomingEvents.map(({ node }) => {
                   return this._renderEventListItem({ ...node })
@@ -87,27 +84,31 @@ class Events extends React.Component {
               ) : (
                 <RVText>No Upcoming Events</RVText>
               )}
-              <RVText subheading>Past Events</RVText>
+
+              <RVText subheading mb2 mt3>Past Events</RVText>
               {pastEvents.map(({ node }, index) => {
                 if (!seeAllEvents && index >= 4) {
                   return null
                 }
                 return this._renderEventListItem({ ...node })
               })}
-              <RVButton onClick={this.toggleEventsList}>
+
+              <RVButton onClick={this.toggleEventsList} mt3>
                 {seeAllEvents ? 'Shorten List' : 'Show All'}
               </RVButton>
             </RVBox>
 
-            <RVCard px3 py2>
-              {event ? (
+            {event ? (
+              <RVCard px3 py2>
                 <EventDetails {...event.node} />
-              ) : (
-                <RVText alignCenter label>
+              </RVCard>
+            ) : (
+              <RVCard px3 py2 flex center itemsCenter>
+                <RVText label>
                   No upcoming events
                 </RVText>
-              )}
-            </RVCard>
+              </RVCard>
+            )}
           </RVGrid>
           <RVBox grey radius alignCenter p3 my4>
             <RVText subheading>Have an idea for a talk?</RVText>

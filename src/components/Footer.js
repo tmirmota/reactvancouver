@@ -3,13 +3,11 @@ import { css } from 'react-emotion'
 import { RVBox, RVLink, RVText, RVGrid } from 'components'
 import { Colors } from 'styles'
 
-const grey = Colors.grey.calc(80)
-
 const styles = {
   text: css({
-    color: grey,
+    color: Colors.grey.medium,
     a: {
-      color: grey,
+      color: Colors.grey.medium,
       textDecoration: 'underline',
     },
   }),
