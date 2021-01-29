@@ -17,7 +17,7 @@ const ContactUs = () => (
       <RVText heading mb1>
         Email Us
       </RVText>
-      <RVText subheading mb1>
+      <RVText subheading mb1 tag="a" href="mailto:admin@reactvancouver.com">
         admin@reactvancouver.com
       </RVText>
       <RVBox flex>
