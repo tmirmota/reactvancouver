@@ -7,7 +7,7 @@ const styles = {
 }
 
 const icons = [
-  { icon: 'slack', link: 'https://slackrv.now.sh' },
+  { icon: 'slack', link: 'https://join.slack.com/t/reactvancouver/shared_invite/zt-99b8tq3n-iLoOMxzIN8RNGUjKIbPyIw' },
   { icon: 'meetup', link: 'https://www.meetup.com/ReactJS-Vancouver-Meetup' },
 ]
 
