@@ -32,7 +32,7 @@
     "gatsby-source-contentful": "next",
     "gatsby-transformer-remark": "next",
     "lodash": "^4.17.10",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "path": "^0.12.7",
     "polished": "^1.9.3",
     "prop-types": "^15.6.2",
