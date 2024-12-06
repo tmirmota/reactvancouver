@@ -31,7 +31,7 @@
     "gatsby-plugin-sitemap": "^1.2.25",
     "gatsby-source-contentful": "next",
     "gatsby-transformer-remark": "next",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "moment": "^2.22.2",
     "path": "^0.12.7",
     "polished": "^1.9.3",
